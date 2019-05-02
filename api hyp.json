@@ -265,6 +265,44 @@
         "x-swagger-router-controller": "Author"
       }
     },
+    "/authors/{authorId}": {
+      "get": {
+        "tags": [
+          "author"
+        ],
+        "summary": "Find author by ID",
+        "description": "Returns an author",
+        "operationId": "getAuthorById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "authorId",
+            "in": "path",
+            "description": "ID of author to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Author"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Author not found"
+          }
+        },
+        "x-swagger-router-controller": "Author"
+      }
+    },
     "/events": {
       "get": {
         "tags": [
@@ -304,6 +342,44 @@
           },
           "404": {
             "description": "Unexpected error"
+          }
+        },
+        "x-swagger-router-controller": "Event"
+      }
+    },
+    "/events/{eventId}": {
+      "get": {
+        "tags": [
+          "event"
+        ],
+        "summary": "Find event by ID",
+        "description": "Returns an event",
+        "operationId": "getEventById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "eventId",
+            "in": "path",
+            "description": "ID of event to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Event"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Event not found"
           }
         },
         "x-swagger-router-controller": "Event"
@@ -394,7 +470,7 @@
           "type": "string"
         },
         "author": {
-          "type": "string"
+          "$ref": "#/definitions/Author"
         },
         "price": {
           "$ref": "#/definitions/Amount"
@@ -468,6 +544,23 @@
         },
         "book": {
           "$ref": "#/definitions/Book"
+        }
+      },
+      "title": "Event",
+      "description": "An event in which a book will be presented",
+      "example": {
+        "id": 0,
+        "date": "2019-24-10T10:00:00Z",
+        "place": "Piazza Leonardo da Vinci 1 Milano",
+        "book": {
+          "id": 0,
+          "title": "Il deserto dei tartari",
+          "author": "Dino Buzzati",
+          "price": {
+            "value": 10,
+            "currency": "eur"
+          },
+          "status": "available"
         }
       }
     },
