@@ -20,6 +20,14 @@
       "description": "Available book"
     },
     {
+      "name": "author",
+      "description": "Author of a book"
+    },
+    {
+      "name": "event",
+      "description": "Event to present a book"
+    },
+    {
       "name": "cart",
       "description": "Access to the cart"
     },
@@ -55,6 +63,13 @@
             "name": "limit",
             "in": "query",
             "description": "Maximum number of items per page. Default is 20 and cannot exceed 500.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "author",
+            "in": "query",
+            "description": "Filter list of books by author",
             "required": false,
             "type": "integer"
           }
@@ -179,7 +194,7 @@
         ],
         "responses": {
           "200": {
-            "description": "successfull registration"
+            "description": "successful registration"
           },
           "404": {
             "description": "unauthorized"
@@ -244,6 +259,13 @@
             "name": "limit",
             "in": "query",
             "description": "Maximum number of items per page. Default is 20 and cannot exceed 500.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "book",
+            "in": "query",
+            "description": "Filter authors who wrote the given book.",
             "required": false,
             "type": "integer"
           }
@@ -326,6 +348,20 @@
             "name": "limit",
             "in": "query",
             "description": "Maximum number of items per page. Default is 20 and cannot exceed 500.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "book",
+            "in": "query",
+            "description": "Filter events where given book is presented",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "author",
+            "in": "query",
+            "description": "Filter events presented by an author",
             "required": false,
             "type": "integer"
           }
@@ -469,8 +505,41 @@
         "title": {
           "type": "string"
         },
-        "author": {
-          "$ref": "#/definitions/Author"
+        "authors": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/Author"
+          }
+        },
+        "genres": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "description": "list of genres of the book",
+            "enum": [
+              "fantasy",
+              "science fiction",
+              "adventure",
+              "action",
+              "biography",
+              "autobiography",
+              "thriller",
+              "romance",
+              "anthology",
+              "horror",
+              "poetry",
+              "drama",
+              "historical fiction",
+              "fairytale",
+              "scientific paper"
+            ]
+          }
         },
         "price": {
           "$ref": "#/definitions/Amount"
@@ -535,6 +604,9 @@
           "type": "integer",
           "format": "int64"
         },
+        "title": {
+          "type": "string"
+        },
         "date": {
           "type": "string",
           "format": "date-time"
@@ -550,6 +622,7 @@
       "description": "An event in which a book will be presented",
       "example": {
         "id": 0,
+        "title": "Buzzati Grand Tour",
         "date": "2019-24-10T10:00:00Z",
         "place": "Piazza Leonardo da Vinci 1 Milano",
         "book": {
