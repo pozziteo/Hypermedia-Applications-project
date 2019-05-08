@@ -72,6 +72,20 @@
             "description": "Filter list of books by author",
             "required": false,
             "type": "integer"
+          },
+          {
+            "name": "genre",
+            "in": "query",
+            "description": "Filter list of books about the same genre",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "theme",
+            "in": "query",
+            "description": "Filter list of books which treat the same theme",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {
@@ -520,25 +534,16 @@
           "maxItems": 3,
           "uniqueItems": true,
           "items": {
-            "type": "string",
-            "description": "list of genres of the book",
-            "enum": [
-              "fantasy",
-              "science fiction",
-              "adventure",
-              "action",
-              "biography",
-              "autobiography",
-              "thriller",
-              "romance",
-              "anthology",
-              "horror",
-              "poetry",
-              "drama",
-              "historical fiction",
-              "fairytale",
-              "scientific paper"
-            ]
+            "$ref": "#/definitions/Genre"
+          }
+        },
+        "themes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 6,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/Theme"
           }
         },
         "price": {
@@ -559,6 +564,8 @@
         "id": 0,
         "title": "Il deserto dei tartari",
         "author": "Dino Buzzati",
+        "genres": ["fiction"],
+        "themes": ["self-deception"],
         "price": {
           "value": 10,
           "currency": "eur"
@@ -569,8 +576,7 @@
     "Author": {
       "type": "object",
       "required": [
-        "name",
-        "surname"
+        "name"
       ],
       "properties": {
         "id": {
@@ -579,18 +585,59 @@
         },
         "name": {
           "type": "string"
-        },
-        "surname": {
-          "type": "string"
         }
       },
       "title": "Author",
       "description": "An author who wrote a book in the store",
       "example": {
         "id": 0,
-        "name": "Dino",
-        "surname": "Buzzati"
+        "name": "Dino Buzzati"
       }
+    },
+    "Genre": {
+      "type": "string",
+      "description": "A genre of a book",
+      "enum": [
+        "fantasy",
+        "science fiction",
+        "adventure",
+        "action",
+        "biography",
+        "autobiography",
+        "thriller",
+        "romance",
+        "fiction",
+        "horror",
+        "poetry",
+        "drama",
+        "historical fiction",
+        "fairytale",
+        "scientific paper"
+      ]
+    },
+    "Theme": {
+      "type": "string",
+      "description": "A theme treated by a book",
+      "enum": [
+        "war",
+        "love",
+        "death",
+        "exile",
+        "travel",
+        "friendship",
+        "family",
+        "immortality",
+        "chaos",
+        "coming of age",
+        "survival",
+        "self-deception",
+        "courage",
+        "good vs evil",
+        "corruption",
+        "racism",
+        "fear of failure",
+        "betrayal"
+      ]
     },
     "Event": {
       "type": "object",
