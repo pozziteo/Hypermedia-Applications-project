@@ -20,6 +20,14 @@
       "description": "Available book"
     },
     {
+      "name": "genre",
+      "description": "Literary genre"
+    },
+    {
+      "name": "theme",
+      "description": "Literary theme"
+    },
+    {
       "name": "author",
       "description": "Author of a book"
     },
@@ -143,6 +151,95 @@
         "x-swagger-router-controller": "Book"
       }
     },
+    "/books/genres": {
+      "get": {
+        "tags": [
+          "genre"
+        ],
+        "summary": "Literary genres of books",
+        "description": "List of literary genres the books belong to",
+        "operationId": "genresGET",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Pagination offset. Default is 0.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of items per page. Default is 20 and cannot exceed 500.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A collection of Genres",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Genre"
+              }
+            }
+          },
+          "404": {
+            "description": "Unexpected error"
+          }
+        },
+        "x-swagger-router-controller": "Genre"
+      }
+    },
+    "/books/themes": {
+      "get": {
+        "tags": [
+          "theme"
+        ],
+        "summary": "Themes treated by books",
+        "description": "List of themes the books treat",
+        "operationId": "themesGET",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Pagination offset. Default is 0.",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of items per page. Default is 20 and cannot exceed 500.",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A collection of Themes",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Theme"
+              }
+            }
+          },
+          "404": {
+            "description": "Unexpected error"
+          }
+        },
+        "x-swagger-router-controller": "Theme"
+      }
+    },
+
     "/user/login": {
       "post": {
         "tags": [
@@ -549,6 +646,12 @@
         "price": {
           "$ref": "#/definitions/Amount"
         },
+        "copies": {
+          "type": "integer",
+          "description": "number of copies available of the book",
+          "minimum": 0,
+          "maximum": 20
+        },
         "status": {
           "type": "string",
           "description": "book availability in the inventory",
@@ -563,9 +666,10 @@
       "example": {
         "id": 0,
         "title": "Il deserto dei tartari",
-        "author": "Dino Buzzati",
+        "authors": ["Dino Buzzati"],
         "genres": ["fiction"],
         "themes": ["self-deception"],
+        "copies": 3,
         "price": {
           "value": 10,
           "currency": "eur"
