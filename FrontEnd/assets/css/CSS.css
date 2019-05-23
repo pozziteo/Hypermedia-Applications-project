@@ -1,0 +1,157 @@
+:root {
+  --input-padding-x: 1.5rem;
+  --input-padding-y: .75rem;
+}
+body{
+  background: #ddd;
+}
+img {
+  max-width: 100%;
+  max-height: inherit;
+  vertical-align: middle;
+}
+a:link {
+  color: #lightblue;
+  background-color: transparent;
+  text-decoration: none;
+}
+a:hover {
+  color: purple;
+  background-color: transparent;
+  text-decoration: underline;
+}
+#bookImage{
+  position: relative;
+  top: 2em;
+  left: 100px;
+  border: 3px solid #000;
+  padding: 5px;
+}
+#bookData{
+  position: relative;
+  left: 20px;
+  top: 80px;
+}
+#addToCartButton {
+  position: relative;
+  left: 100px;
+  top: 80px;
+  background-color: #28f;
+  border: 1px solid #333;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.nav_text_color{
+  color: #ddd;
+}
+.dark_color{
+  background: #333;
+}
+.carousel, .carousel-inner{
+  height: 30em;
+  width: 20em;
+}
+.footer {
+  height: 4%;
+  width: 100%;
+  background-color: #333;
+  color: #333;
+  text-align: center;
+}
+.funny_color {
+  background: #33AEFF;
+}
+
+.card-signin {
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.5);
+}
+
+.card-signin .card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.card-signin .card-body {
+  padding: 2rem;
+}
+
+.form-signin {
+  width: 100%;
+}
+
+.form-signin .btn {
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: all 0.2s;
+}
+
+.form-label-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.form-label-group>input,
+.form-label-group>label {
+  padding: var(--input-padding-y) var(--input-padding-x);
+}
+
+.form-label-group input {
+  height: auto;
+  border-radius: 2rem;
+}
+
+.form-label-group>label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  /* Override default `<label>` margin */
+  line-height: 1.5;
+  color: #495057;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  transition: all .1s ease-in-out;
+}
+
+.form-label-group input:not(:placeholder-shown) {
+  padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+  padding-bottom: calc(var(--input-padding-y) / 3);
+}
+
+.form-label-group input:not(:placeholder-shown)~label {
+  padding-top: calc(var(--input-padding-y) / 3);
+  padding-bottom: calc(var(--input-padding-y) / 3);
+  font-size: 12px;
+  color: #777;
+}
+
+.signup-text{
+  position: relative;
+  top: -15px;
+}
+#ourFavorites, #bestSeller{
+  border-style: outset;
+  border: 2px groove ;
+  background: #fff;
+  height: auto;
+  max-width: auto;
+  position: relative;
+  top: 1em;
+
+}
+.ourFavoritesImage{
+  max-height: 100%;
+  max-width: 100%;
+}

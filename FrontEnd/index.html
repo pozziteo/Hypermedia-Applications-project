@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Home</title>
+  <link rel="icon" type="image/png" href="GTA.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="CSS.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <!--navbar-->
+  <div class="container-fluid dark_color">
+    <h2 class="nav_text_color">Titolo e Logo del  sito</h2>
+
+    <!--navbar-->
+    <nav id="navbar" class="navbar navbar-expand-sm dark_color sticky-top">
+      <button id="navbarButton" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsCollapse" aria-controls="navbarsCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarsCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link nav_text_color" href="#">Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#"><i class="fas fa-cart-plus"></i></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle nav_text_color" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Books</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown03">
+              <a class="dropdown-item" href="#">Themes</a>
+              <a class="dropdown-item" href="#">Genres</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav_text_color" href="#">Authors</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav_text_color" href="#">Events</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav_text_color" href="#">Contact Us</a>
+          </li>
+        </ul>
+        <form class="form-inline" action="">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search">
+          <button class="btn btn-success" type="submit">Submit</button>
+          <a class="nav-link nav_text_color" href="C:\FACO\Hypermedia\Progetto HyperMedia\Log_In.html">Log In</a>
+        </form>
+      </div>
+    </nav>
+  </div>
+  <br>
+
+
+  <!-- Our Favorites, Best Seller and Events-->
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Our Favorites-->
+      <div class="col-9" >
+        <div id="ourFavorites" class=" container">
+          <div id="ourFavoritesTitle" class="container">
+            <br>
+            <p>Our Favorites</p>
+            <hr>
+          </div>
+          <div class="row">
+
+            <div  class="col bookelements ourFavoriteBook">
+              <div class="row">
+                <div class="col-3">
+
+                  <figure>
+                    <a href="#BookPage" style="display: block" data-trackcontent>
+                      <img class="ourFavoritesImage" src="fotoHP.jpg" alt="Favorite 1">
+                    </a>
+                  </figure>
+                </div>
+                <div class="col-9">
+                  <figcaption>
+                    <a href="#BookPage">
+                      <h6 class="bookTitle">
+                        TITOLO
+                      </h6>
+                      <h6 class="bookAuthor">
+                        NOME AUTORE
+                      </h6>
+                      <h6 class="bookPrice">
+                        PREZZO
+                      </h6>
+
+                    </pre>
+                  </a>
+                </figcaption>
+              </div>
+            </div>
+            <hr>
+          </div>
+
+          <div class="col bookelements ourFavoriteBook">
+            <div class="row">
+              <div class="col-3">
+
+                <figure>
+                  <a href="#BookPage" style="display: block" data-trackcontent>
+                    <img class="ourFavoritesImage" src="fotoHP.jpg" alt="Favorite 1">
+                  </a>
+                </figure>
+              </div>
+              <div class="col-9">
+                <figcaption>
+                  <a href="#BookPage">
+                    <h6 class="bookTitle">
+                      TITOLO
+                    </h6>
+                    <h6 class="bookAuthor">
+                      NOME AUTORE
+                    </h6>
+                    <h6 class="bookPrice">
+                      PREZZO
+                    </h6>
+
+                  </pre>
+                </a>
+              </figcaption>
+            </div>
+          </div>
+          <hr>
+        </div>
+      </div>
+      <!--second line of favorite books-->
+
+      <div class="row">
+        <div class="col bookelements ourFavoriteBook">
+          <div class="row">
+            <div class="col-3">
+
+              <figure>
+                <a href="#BookPage" style="display: block" data-trackcontent>
+                  <img class="ourFavoritesImage" src="fotoHP.jpg" alt="Favorite 1">
+                </a>
+              </figure>
+            </div>
+            <div class="col-9">
+              <figcaption>
+                <a href="#BookPage">
+                  <h6 class="bookTitle">
+                    TITOLO
+                  </h6>
+                  <h6 class="bookAuthor">
+                    NOME AUTORE
+                  </h6>
+                  <h6 class="bookPrice">
+                    PREZZO
+                  </h6>
+                </pre>
+              </a>
+            </figcaption>
+          </div>
+        </div>
+        <hr>
+      </div>
+
+      <div class="col bookelements ourFavoriteBook">
+        <div class="row">
+          <div class="col-3">
+
+            <figure>
+              <a href="#BookPage" style="display: block" data-trackcontent>
+                <img class="ourFavoritesImage" src="fotoHP.jpg" alt="Favorite 1">
+              </a>
+            </figure>
+          </div>
+          <div class="col-9">
+            <figcaption>
+              <a href="#BookPage">
+                <h6 class="bookTitle">
+                  TITOLO
+                </h6>
+                <h6 class="bookAuthor">
+                  NOME AUTORE
+                </h6>
+                <h6 class="bookPrice">
+                  PREZZO
+                </h6>
+              </pre>
+            </a>
+          </figcaption>
+        </div>
+      </div>
+      <hr>
+    </div>
+  </div>
+  </div>
+<br>
+<!--Best Seller-->
+
+<div id="bestSeller" class="container">
+  <div id="bestSellerTitle" class="container">
+    <br>
+    <p>Best Seller</p>
+    <hr>
+  </div>
+  <div class="row">
+
+    <div class="col bookelements bestSellerBook">
+      <div class="row">
+        <div class="col-3">
+
+          <figure>
+            <a href="#BookPage" style="display: block" data-trackcontent>
+              <img class="bestSellerImage" src="fotoHP.jpg" alt="Favorite 1">
+            </a>
+          </figure>
+        </div>
+        <div class="col-9">
+          <figcaption>
+            <a href="#BookPage">
+              <h6 class="bookTitle">
+                TITOLO
+              </h6>
+              <h6 class="bookAuthor">
+                NOME AUTORE
+              </h6>
+              <h6 class="bookPrice">
+                PREZZO
+              </h6>
+
+            </pre>
+          </a>
+        </figcaption>
+      </div>
+    </div>
+    <hr>
+  </div>
+
+  <div class="col bookelements bestSellerBook">
+    <div class="row">
+      <div class="col-3">
+
+        <figure>
+          <a href="#BookPage" style="display: block" data-trackcontent>
+            <img class="ourFavoritesImage" src="fotoHP.jpg" alt="Favorite 1">
+          </a>
+        </figure>
+      </div>
+      <div class="col-9">
+        <figcaption>
+          <a href="#BookPage">
+            <h6 class="bookTitle">
+              TITOLO
+            </h6>
+            <h6 class="bookAuthor">
+              NOME AUTORE
+            </h6>
+            <h6 class="bookPrice">
+              PREZZO
+            </h6>
+
+          </pre>
+        </a>
+      </figcaption>
+    </div>
+  </div>
+  <hr>
+</div>
+</div>
+<!--second line of favorite books-->
+
+<div class="row">
+<div class="col bookelements bestSellerBook">
+  <div class="row">
+    <div class="col-3">
+
+      <figure>
+        <a href="#BookPage" style="display: block" data-trackcontent>
+          <img class="bestSellerImage" src="fotoHP.jpg" alt="Favorite 1">
+        </a>
+      </figure>
+    </div>
+    <div class="col-9">
+      <figcaption>
+        <a href="#BookPage">
+          <h6 class="bookTitle">
+            TITOLO
+          </h6>
+          <h6 class="bookAuthor">
+            NOME AUTORE
+          </h6>
+          <h6 class="bookPrice">
+            PREZZO
+          </h6>
+        </pre>
+      </a>
+    </figcaption>
+  </div>
+</div>
+<hr>
+</div>
+
+<div class="col bookelements bestSellerBook">
+<div class="row">
+  <div class="col-3">
+
+    <figure>
+      <a href="#BookPage" style="display: block" data-trackcontent>
+        <img class="ourFavoritesImage" src="fotoHP.jpg" alt="Favorite 1">
+      </a>
+    </figure>
+  </div>
+  <div class="col-9">
+    <figcaption>
+      <a href="#BookPage">
+        <h6 class="bookTitle">
+          TITOLO
+        </h6>
+        <h6 class="bookAuthor">
+          NOME AUTORE
+        </h6>
+        <h6 class="bookPrice">
+          PREZZO
+        </h6>
+      </pre>
+    </a>
+  </figcaption>
+</div>
+</div>
+<hr>
+</div>
+</div>
+</div>
+</div>
+<br>
+<div id="events" class="col-3">
+  <!--Events-->
+  <p>Events</p>
+  <hr>
+  <div class="container">
+    <div id="demo" class="carousel slide mx-auto" data-ride="carousel">
+
+      <!-- Indicators -->
+      <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+      </ul>
+
+      <!-- The slideshow -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="fotoHP.jpg" alt="Los Angeles">
+          <div class="carousel-caption">
+            <h3>Nome Libro</h3><br>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="fotoHP.jpg" alt="Chicago">
+          <div class="carousel-caption">
+            <h3>Nome Libro</h3><br>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="fotoHP.jpg" alt="New York">
+          <div class="carousel-caption">
+            <h3>Nome Libro</h3><br>
+          </div>
+        </div>
+      </div>
+      <!-- Left and right controls -->
+      <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+</body>
+</html>

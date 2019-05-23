@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Nome libro</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="CSS.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+</head>
+
+<body>
+  <div class="container-fluid dark_color">
+    <h2 class="nav_text_color">Titolo e Logo del  sito</h2>
+
+    <!--navbar-->
+    <nav id="navbar" class="navbar navbar-expand-sm dark_color sticky-top">
+      <button id="navbarButton" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsCollapse" aria-controls="navbarsCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarsCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link nav_text_color" href="#">Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#"><i class="fas fa-cart-plus"></i></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle nav_text_color" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Books</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown03">
+              <a class="dropdown-item" href="#">Themes</a>
+              <a class="dropdown-item" href="#">Genres</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav_text_color" href="#">Authors</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav_text_color" href="#">Events</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav_text_color" href="#">Contact Us</a>
+          </li>
+        </ul>
+        <form class="form-inline" action="">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search">
+          <button class="btn btn-success" type="submit">Submit</button>
+          <a class="nav-link nav_text_color" href="C:\FACO\Hypermedia\Progetto HyperMedia\Log_In.html">Log In</a>
+        </form>
+      </div>
+    </nav>
+  </div>
+
+  <br>
+
+  <div id="bookContainer" class="row">
+    <div class="col-4">
+      <img id="bookImage" src="fotoHP.jpg" alt="">
+    </div>
+    <div id="bookData" class="col-4">
+      <h4>Titolo: <a href="#titoloLibro" >Titolo libro</a></h4><br>
+      <h6>Autore: <a href="#autoreLibro" >Autore libro</a></h6><br>
+      <h6>Prezzo: <a href="#prezzoLibro" >Prezzo</a></h6><br>
+      <h6>Descrizione: </h6>
+    </div>
+    <div class="col-4">
+      <a id="addToCartButton" href="#" class="btn btn-info btn-lg">
+        <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
+      </a>
+    </div>
+  </div>
+</body>
+</html>
