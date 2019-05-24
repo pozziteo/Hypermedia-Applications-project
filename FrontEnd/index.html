@@ -51,133 +51,127 @@
         <form class="form-inline" action="">
           <input class="form-control mr-sm-2" type="text" placeholder="Search">
           <button class="btn btn-success" type="submit">Submit</button>
-          <a class="nav-link nav_text_color" href="C:\FACO\Hypermedia\Progetto HyperMedia\Log_In.html">Log In</a>
+          <a class="nav-link nav_text_color" href="pages/Log_In.html">Log In</a>
         </form>
       </div>
     </nav>
   </div>
   <br>
 
+  <!--______________________________END NAVBAR______________________________-->
+  <!--Slide carousel-->
 
-  <!-- Our Favorites, Best Seller and Events-->
-  <div class="container-fluid">
+  <div class="container">
+    <div id="demo" class="carousel slide mx-auto" data-ride="carousel">
+    <div class="container ourFavorite">
+      Our Favorite
+    </div>
+      <!-- Indicators -->
+      <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+      </ul>
+
+      <!-- The slideshow -->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="row">
+            <div class="col">
+              <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
+              <div class="container carouselPrice">
+                <p>15.50</p>
+              </div>
+            </div>
+            <div class="col">
+              <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
+              <div class="container carouselPrice">
+                <p class="text-center">15.50</p>
+              </div>
+            </div>
+            <div class="col">
+              <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
+              <div class="container carouselPrice">
+                <p class="text-center">15.50</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="row">
+            <div class="col">
+              <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
+              <div class="container carouselPrice">
+                <p class="text-center">15.50</p>
+              </div>
+            </div>
+            <div class="col">
+              <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
+              <div class="container carouselPrice">
+                <p class="text-center">15.50</p>
+              </div>
+            </div>
+            <div class="col">
+              <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
+              <div class="container carouselPrice">
+                <p class="text-center">15.50</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="row">
+            <div class="col">
+              <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
+              <div class="container carouselPrice">
+                <p class="text-center">15.50</p>
+              </div>
+            </div>
+            <div class="col">
+              <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
+              <div class="container carouselPrice">
+                <p class="text-center">15.50</p>
+              </div>
+            </div>
+            <div class="col">
+              <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
+              <div class="container carouselPrice">
+                <p class="text-center">15.50</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Left and right controls -->
+      <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
+    </div>
+  </div>
+
+  <!--__________________________END Slide carousel__________________________-->
+
+  <div id="bestSeller" class="container">
+    <div id="bestSellerTitle" class="container-fluid">
+      <br>
+      <p>Best Seller</p>
+      <hr>
+    </div>
     <div class="row">
-      <!-- Our Favorites-->
-      <div class="col-9" >
-        <div id="ourFavorites" class=" container">
-          <div id="ourFavoritesTitle" class="container">
-            <br>
-            <p>Our Favorites</p>
-            <hr>
-          </div>
-          <div class="row">
-
-            <div  class="col bookelements ourFavoriteBook">
-              <div class="row">
-                <div class="col-3">
-
-                  <figure>
-                    <a href="#BookPage" style="display: block" data-trackcontent>
-                      <img class="ourFavoritesImage" src="assets/img/fotoHP.jpg" alt="Favorite 1">
-                    </a>
-                  </figure>
-                </div>
-                <div class="col-9">
-                  <figcaption>
-                    <a href="#BookPage">
-                      <h6 class="bookTitle">
-                        TITOLO
-                      </h6>
-                      <h6 class="bookAuthor">
-                        NOME AUTORE
-                      </h6>
-                      <h6 class="bookPrice">
-                        PREZZO
-                      </h6>
-
-                    </pre>
-                  </a>
-                </figcaption>
-              </div>
-            </div>
-            <hr>
-          </div>
-
-          <div class="col bookelements ourFavoriteBook">
-            <div class="row">
-              <div class="col-3">
-
-                <figure>
-                  <a href="#BookPage" style="display: block" data-trackcontent>
-                    <img class="ourFavoritesImage" src="assets/img/fotoHP.jpg" alt="Favorite 1">
-                  </a>
-                </figure>
-              </div>
-              <div class="col-9">
-                <figcaption>
-                  <a href="#BookPage">
-                    <h6 class="bookTitle">
-                      TITOLO
-                    </h6>
-                    <h6 class="bookAuthor">
-                      NOME AUTORE
-                    </h6>
-                    <h6 class="bookPrice">
-                      PREZZO
-                    </h6>
-
-                  </pre>
-                </a>
-              </figcaption>
-            </div>
-          </div>
-          <hr>
-        </div>
-      </div>
-      <!--second line of favorite books-->
-
-      <div class="row">
-        <div class="col bookelements ourFavoriteBook">
-          <div class="row">
-            <div class="col-3">
-
-              <figure>
-                <a href="#BookPage" style="display: block" data-trackcontent>
-                  <img class="ourFavoritesImage" src="assets/img/fotoHP.jpg" alt="Favorite 1">
-                </a>
-              </figure>
-            </div>
-            <div class="col-9">
-              <figcaption>
-                <a href="#BookPage">
-                  <h6 class="bookTitle">
-                    TITOLO
-                  </h6>
-                  <h6 class="bookAuthor">
-                    NOME AUTORE
-                  </h6>
-                  <h6 class="bookPrice">
-                    PREZZO
-                  </h6>
-                </pre>
-              </a>
-            </figcaption>
-          </div>
-        </div>
-        <hr>
-      </div>
-
-      <div class="col bookelements ourFavoriteBook">
+      <div id="firstBestSeller" class="col">
+        <p>1°</p>
         <div class="row">
-          <div class="col-3">
-
+          <div class="col-5">
             <figure>
               <a href="#BookPage" style="display: block" data-trackcontent>
-                <img class="ourFavoritesImage" src="assets/img/fotoHP.jpg" alt="Favorite 1">
+                <img class="bestSellerImage" src="assets/img/fotoHP.jpg" alt="Favorite 1">
               </a>
             </figure>
           </div>
-          <div class="col-9">
+          <div class="col-7">
             <figcaption>
               <a href="#BookPage">
                 <h6 class="bookTitle">
@@ -187,32 +181,19 @@
                   NOME AUTORE
                 </h6>
                 <h6 class="bookPrice">
-                  PREZZO
+                  15.50
                 </h6>
               </pre>
             </a>
           </figcaption>
         </div>
       </div>
-      <hr>
     </div>
-  </div>
-  </div>
-<br>
-<!--Best Seller-->
 
-<div id="bestSeller" class="container">
-  <div id="bestSellerTitle" class="container">
-    <br>
-    <p>Best Seller</p>
-    <hr>
-  </div>
-  <div class="row">
-
-    <div class="col bookelements bestSellerBook">
+    <div class="col">
+      <p>2°</p>
       <div class="row">
         <div class="col-3">
-
           <figure>
             <a href="#BookPage" style="display: block" data-trackcontent>
               <img class="bestSellerImage" src="assets/img/fotoHP.jpg" alt="Favorite 1">
@@ -229,24 +210,20 @@
                 NOME AUTORE
               </h6>
               <h6 class="bookPrice">
-                PREZZO
+                15.50
               </h6>
-
             </pre>
           </a>
         </figcaption>
       </div>
     </div>
     <hr>
-  </div>
-
-  <div class="col bookelements bestSellerBook">
+    <p>4°</p>
     <div class="row">
       <div class="col-3">
-
         <figure>
           <a href="#BookPage" style="display: block" data-trackcontent>
-            <img class="ourFavoritesImage" src="assets/img/fotoHP.jpg" alt="Favorite 1">
+            <img class="bestSellerImage" src="assets/img/fotoHP.jpg" alt="Favorite 1">
           </a>
         </figure>
       </div>
@@ -260,24 +237,46 @@
               NOME AUTORE
             </h6>
             <h6 class="bookPrice">
-              PREZZO
+              15.50
             </h6>
-
           </pre>
         </a>
       </figcaption>
     </div>
   </div>
   <hr>
-</div>
-</div>
-<!--second line of favorite books-->
-
-<div class="row">
-<div class="col bookelements bestSellerBook">
+  </div>
+  <div class="col">
+    <p>3°</p>
+    <div class="row">
+      <div class="col-3">
+        <figure>
+          <a href="#BookPage" style="display: block" data-trackcontent>
+            <img class="bestSellerImage" src="assets/img/fotoHP.jpg" alt="Favorite 1">
+          </a>
+        </figure>
+      </div>
+      <div class="col-9">
+        <figcaption>
+          <a href="#BookPage">
+            <h6 class="bookTitle">
+              TITOLO
+            </h6>
+            <h6 class="bookAuthor">
+              NOME AUTORE
+            </h6>
+            <h6 class="bookPrice">
+              15.50
+            </h6>
+          </pre>
+        </a>
+      </figcaption>
+    </div>
+  </div>
+  <hr>
+  <p>5°</p>
   <div class="row">
     <div class="col-3">
-
       <figure>
         <a href="#BookPage" style="display: block" data-trackcontent>
           <img class="bestSellerImage" src="assets/img/fotoHP.jpg" alt="Favorite 1">
@@ -294,97 +293,24 @@
             NOME AUTORE
           </h6>
           <h6 class="bookPrice">
-            PREZZO
+            15.50
           </h6>
         </pre>
       </a>
     </figcaption>
   </div>
-</div>
-<hr>
-</div>
-
-<div class="col bookelements bestSellerBook">
-<div class="row">
-  <div class="col-3">
-
-    <figure>
-      <a href="#BookPage" style="display: block" data-trackcontent>
-        <img class="ourFavoritesImage" src="assets/img/fotoHP.jpg" alt="Favorite 1">
-      </a>
-    </figure>
   </div>
-  <div class="col-9">
-    <figcaption>
-      <a href="#BookPage">
-        <h6 class="bookTitle">
-          TITOLO
-        </h6>
-        <h6 class="bookAuthor">
-          NOME AUTORE
-        </h6>
-        <h6 class="bookPrice">
-          PREZZO
-        </h6>
-      </pre>
-    </a>
-  </figcaption>
-</div>
-</div>
-<hr>
-</div>
-</div>
-</div>
-</div>
-<br>
-<div id="events" class="col-3">
-  <!--Events-->
-  <p>Events</p>
   <hr>
-  <div class="container">
-    <div id="demo" class="carousel slide mx-auto" data-ride="carousel">
-
-      <!-- Indicators -->
-      <ul class="carousel-indicators">
-        <li data-target="#demo" data-slide-to="0" class="active"></li>
-        <li data-target="#demo" data-slide-to="1"></li>
-        <li data-target="#demo" data-slide-to="2"></li>
-      </ul>
-
-      <!-- The slideshow -->
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="assets/img/fotoHP.jpg" alt="Los Angeles">
-          <div class="carousel-caption">
-            <h3>Nome Libro</h3><br>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="assets/img/fotoHP.jpg" alt="Chicago">
-          <div class="carousel-caption">
-            <h3>Nome Libro</h3><br>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="assets/img/fotoHP.jpg" alt="New York">
-          <div class="carousel-caption">
-            <h3>Nome Libro</h3><br>
-          </div>
-        </div>
-      </div>
-      <!-- Left and right controls -->
-      <a class="carousel-control-prev" href="#demo" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </a>
-      <a class="carousel-control-next" href="#demo" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </a>
-    </div>
   </div>
-</div>
-</div>
-</div>
+  </div>
+  <br>
+  </div>
 
+
+</div>
+</div>
+</div>
+<br><br>
 
 </body>
 </html>
