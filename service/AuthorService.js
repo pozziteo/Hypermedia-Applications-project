@@ -1,5 +1,7 @@
 'use strict';
 
+const lodash = require("lodash");
+let sqlDb = require("./DataLayer.js").database;
 
 /**
  * Authors who wrote a book available in the store
@@ -10,23 +12,18 @@
  * book Integer Filter authors who wrote the given book. (optional)
  * returns List
  **/
-exports.authorsGET = function(offset,limit,book) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "id" : 0,
-  "name" : "Dino Buzzati"
-}, {
-  "id" : 0,
-  "name" : "Dino Buzzati"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
+exports.authorsGET = function(offset, limit, book) {
+    let subQuery = sqlDb("books")
+        .where("id", book);
+
+    return sqlDb("authors")
+      .offset(offset)
+      .limit(limit)
+      .modify(builder => {
+          if (!lodash.isUndefined(book))
+              return builder.whereIn("id", subQuery)
+      })
+};
 
 
 /**
@@ -37,17 +34,9 @@ exports.authorsGET = function(offset,limit,book) {
  * returns Author
  **/
 exports.getAuthorById = function(authorId) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "id" : 0,
-  "name" : "Dino Buzzati"
+  return sqlDb("authors")
+      .where({
+          id: authorId
+      })
 };
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
 

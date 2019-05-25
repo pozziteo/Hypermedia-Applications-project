@@ -1,5 +1,7 @@
 'use strict';
 
+const lodash = require("lodash");
+let sqlDb = require("./DataLayer.js").database;
 
 /**
  * Books available in the inventory
@@ -12,41 +14,24 @@
  * theme String Filter list of books which treat the same theme (optional)
  * returns List
  **/
-exports.booksGET = function(offset,limit,author,genre,theme) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "id" : 0,
-  "title" : "Il deserto dei tartari",
-  "authors" : [ "Dino Buzzati" ],
-  "genres" : [ "fiction" ],
-  "themes" : [ "self-deception" ],
-  "copies" : 3,
-  "price" : {
-    "value" : 10,
-    "currency" : "eur"
-  },
-  "status" : "available"
-}, {
-  "id" : 0,
-  "title" : "Il deserto dei tartari",
-  "authors" : [ "Dino Buzzati" ],
-  "genres" : [ "fiction" ],
-  "themes" : [ "self-deception" ],
-  "copies" : 3,
-  "price" : {
-    "value" : 10,
-    "currency" : "eur"
-  },
-  "status" : "available"
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
+exports.booksGET = function(offset, limit, author, genre, theme) {
+  return sqlDb("books")
+      .offset(offset)
+      .limit(limit)
+      .where(builder => {
+        if (!lodash.isUndefined(author))
+          builder.where("author", author);
+        if (!lodash.isUndefined(genre))
+          builder.where("genre", genre);
+        if (!lodash.isUndefined(theme))
+          builder.where("theme", theme);
+      }).then(data => {
+        return data.map(e => {
+          e.price = {value: e.value, currency: e.currency};
+          return e;
+        })
+      })
+};
 
 
 /**
@@ -57,26 +42,14 @@ exports.booksGET = function(offset,limit,author,genre,theme) {
  * returns Book
  **/
 exports.getBookById = function(bookId) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "id" : 0,
-  "title" : "Il deserto dei tartari",
-  "authors" : [ "Dino Buzzati" ],
-  "genres" : [ "fiction" ],
-  "themes" : [ "self-deception" ],
-  "copies" : 3,
-  "price" : {
-    "value" : 10,
-    "currency" : "eur"
-  },
-  "status" : "available"
+  return sqlDb("books")
+      .where( {
+        id: bookId
+      })
+      .then(data => {
+        return data.map(e => {
+          e.price = {value: e.value, currency: e.currency};
+          return e;
+        })
+      })
 };
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
-
