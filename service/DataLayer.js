@@ -9,7 +9,7 @@ let local = {
 
 let database = knex({
     client: "pg",
-    connection: process.env.PATH || local,
+    connection: local,
     ssl: true,
     debug: true
 });

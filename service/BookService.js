@@ -16,8 +16,8 @@ let sqlDb = require("./DataLayer.js").database;
  **/
 exports.booksGET = function(offset, limit, author, genre, theme) {
   return sqlDb("books")
-      .offset(offset)
       .limit(limit)
+      .offset(offset)
       .where(builder => {
         if (!lodash.isUndefined(author))
           builder.where("author", author);
