@@ -184,6 +184,7 @@ paths:
         in: "formData"
         required: true
         type: "string"
+        format: "password"
       responses:
         200:
           description: "successful login"
@@ -370,8 +371,14 @@ definitions:
     properties:
       id:
         type: "integer"
-      name:
+      username:
         type: "string"
+      email:
+        type: "string"
+        format: "email"
+      password:
+        type: "string"
+        format: "password"
       address:
         type: "string"
       creditcard:
@@ -380,7 +387,9 @@ definitions:
     description: "A user"
     example:
       id: 1
-      name: "Matteo"
+      username: "Matteo"
+      email: "pinco.pallino@gmail.com"
+      password: "mimmo"
       address: "PoliMi"
       creditcard: "xyzabc"
   Cart:

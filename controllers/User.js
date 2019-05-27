@@ -6,8 +6,15 @@ var User = require('../service/UserService');
 module.exports.userLoginPOST = function userLoginPOST (req, res, next) {
   var username = req.swagger.params['username'].value;
   var password = req.swagger.params['password'].value;
-  User.userLoginPOST(username,password)
+  User.userLoginPOST(username, password)
     .then(function (response) {
+      if (!req.session.loggedin)
+        req.session = {
+          loggedin: true,
+          sessionId: response.id
+        };
+      else
+        req.session = null;
       utils.writeJson(res, response);
     })
     .catch(function (response) {
