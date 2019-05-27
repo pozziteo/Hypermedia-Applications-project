@@ -1,5 +1,7 @@
 'use strict';
 
+const lodash = require("lodash");
+let sqlDb = require("./DataLayer.js").database;
 
 /**
  * Events organized by the store
@@ -11,47 +13,22 @@
  * author Integer Filter events presented by an author (optional)
  * returns List
  **/
-exports.eventsGET = function(offset,limit,book,author) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ {
-  "id" : 0,
-  "title" : "Buzzati Grand Tour",
-  "date" : "2019-24-10T10:00:00Z",
-  "place" : "Piazza Leonardo da Vinci 1 Milano",
-  "book" : {
-    "id" : 0,
-    "title" : "Il deserto dei tartari",
-    "author" : "Dino Buzzati",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  }
-}, {
-  "id" : 0,
-  "title" : "Buzzati Grand Tour",
-  "date" : "2019-24-10T10:00:00Z",
-  "place" : "Piazza Leonardo da Vinci 1 Milano",
-  "book" : {
-    "id" : 0,
-    "title" : "Il deserto dei tartari",
-    "author" : "Dino Buzzati",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  }
-} ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
+exports.eventsGET = function(offset, limit, book, author) {
+
+  return sqlDb("events")
+      .offset(offset)
+      .limit(limit)
+      .where(builder => {
+        if (!lodash.isUndefined(book))
+          builder.where("book_id", book);
+        if (!lodash.isUndefined(author))
+          builder.whereIn("book_id", () => {
+            return sqlDb("books")
+                .select("code")
+                .where("author_ID", author);
+          });
+      })
+};
 
 
 /**
@@ -62,29 +39,10 @@ exports.eventsGET = function(offset,limit,book,author) {
  * returns Event
  **/
 exports.getEventById = function(eventId) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = {
-  "id" : 0,
-  "title" : "Buzzati Grand Tour",
-  "date" : "2019-24-10T10:00:00Z",
-  "place" : "Piazza Leonardo da Vinci 1 Milano",
-  "book" : {
-    "id" : 0,
-    "title" : "Il deserto dei tartari",
-    "author" : "Dino Buzzati",
-    "price" : {
-      "value" : 10,
-      "currency" : "eur"
-    },
-    "status" : "available"
-  }
+
+  return sqlDb("events")
+      .where({
+        id: eventId
+      });
 };
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
 

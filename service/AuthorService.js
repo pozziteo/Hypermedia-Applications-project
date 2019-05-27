@@ -14,7 +14,8 @@ let sqlDb = require("./DataLayer.js").database;
  **/
 exports.authorsGET = function(offset, limit, book) {
     let subQuery = sqlDb("books")
-        .where("id", book);
+        .where("code", book)
+        .select("author_ID");
 
     return sqlDb("authors")
       .offset(offset)

@@ -8,6 +8,8 @@ var app = require('connect')();
 var swaggerTools = require('swagger-tools');
 var jsyaml = require('js-yaml');
 var serverPort = process.env.PORT || 8080;
+let cookieSession = require("cookie-session");
+let cookieParser = require("cookie-parser");
 let serveStatic = require("serve-static");
 
 // swaggerRouter configuration
@@ -20,6 +22,9 @@ var options = {
 // The Swagger document (require it, build it programmatically, fetch it from a URL, ...)
 var spec = fs.readFileSync(path.join(__dirname,'api/swagger.yaml'), 'utf8');
 var swaggerDoc = jsyaml.safeLoad(spec);
+
+app.use(cookieParser());
+app.use(cookieSession({ name: "session", keys: ["ILikeThisKey"] }));
 
 // Initialize the Swagger middleware
 swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {

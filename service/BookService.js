@@ -20,7 +20,7 @@ exports.booksGET = function(offset, limit, author, genre, theme) {
       .offset(offset)
       .where(builder => {
         if (!lodash.isUndefined(author))
-          builder.where("author", author);
+          builder.where("author_ID", author);
         if (!lodash.isUndefined(genre))
           builder.where("genre", genre);
         if (!lodash.isUndefined(theme))
@@ -44,7 +44,7 @@ exports.booksGET = function(offset, limit, author, genre, theme) {
 exports.getBookById = function(bookId) {
   return sqlDb("books")
       .where( {
-        id: bookId
+        code: bookId
       })
       .then(data => {
         return data.map(e => {
