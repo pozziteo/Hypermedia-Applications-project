@@ -203,11 +203,20 @@ paths:
       produces:
       - "application/json"
       parameters:
-      - in: "body"
-        name: "body"
-        required: true
-        schema:
-          $ref: "#/definitions/User"
+        - name: "email"
+          in: "formData"
+          required: true
+          type: "string"
+          format: "email"
+        - name: "username"
+          in: "formData"
+          required: true
+          type: "string"
+        - name: "password"
+          in: "formData"
+          required: true
+          type: "string"
+          format: "password"
       responses:
         200:
           description: "successful registration"

@@ -2,9 +2,9 @@ const knex = require("knex");
 
 let local = {
     host: 'localhost',
-    user: 'postgres',
+    user: 'Matteo',
     password: 'password',
-    database: 'postgres'
+    database: 'BookStore'
 };
 
 let database = knex({

@@ -15,7 +15,7 @@ let sqlDb = require("./DataLayer.js").database;
  **/
 exports.eventsGET = function(offset, limit, book, author) {
 
-  return sqlDb("events")
+  return sqlDb("event")
       .offset(offset)
       .limit(limit)
       .where(builder => {
@@ -40,9 +40,9 @@ exports.eventsGET = function(offset, limit, book, author) {
  **/
 exports.getEventById = function(eventId) {
 
-  return sqlDb("events")
+  return sqlDb("event")
       .where({
-        id: eventId
+        event_id: eventId
       });
 };
 

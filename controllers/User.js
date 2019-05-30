@@ -23,8 +23,10 @@ module.exports.userLoginPOST = function userLoginPOST (req, res, next) {
 };
 
 module.exports.userRegisterPOST = function userRegisterPOST (req, res, next) {
-  var body = req.swagger.params['body'].value;
-  User.userRegisterPOST(body)
+  var email = req.swagger.params['email'].value;
+  var username = req.swagger.params['username'].value;
+  var password = req.swagger.params['password'].value;
+  User.userRegisterPOST(email, username, password)
     .then(function (response) {
       utils.writeJson(res, response);
     })

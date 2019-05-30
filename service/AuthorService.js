@@ -17,7 +17,7 @@ exports.authorsGET = function(offset, limit, book) {
         .where("code", book)
         .select("author_ID");
 
-    return sqlDb("authors")
+    return sqlDb("author")
       .offset(offset)
       .limit(limit)
       .modify(builder => {
@@ -35,9 +35,9 @@ exports.authorsGET = function(offset, limit, book) {
  * returns Author
  **/
 exports.getAuthorById = function(authorId) {
-  return sqlDb("authors")
+  return sqlDb("author")
       .where({
-          id: authorId
+          author_id: authorId
       })
 };
 
