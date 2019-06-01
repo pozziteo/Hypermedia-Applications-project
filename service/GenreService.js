@@ -1,5 +1,6 @@
 'use strict';
 
+let sqlDb = require("./DataLayer").database;
 
 /**
  * Literary genres of books
@@ -10,14 +11,9 @@
  * returns List
  **/
 exports.genresGET = function(offset,limit) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    examples['application/json'] = [ { }, { } ];
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
+  return sqlDb("genre")
+    .limit(limit)
+    .offset(offset);
+
+};
 

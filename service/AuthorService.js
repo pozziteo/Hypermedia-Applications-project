@@ -13,17 +13,17 @@ let sqlDb = require("./DataLayer.js").database;
  * returns List
  **/
 exports.authorsGET = function(offset, limit, book) {
-    let subQuery = sqlDb("books")
-        .where("code", book)
-        .select("author_ID");
+  let subQuery = sqlDb("books")
+    .where("code", book)
+    .select("author_ID");
 
-    return sqlDb("author")
-      .offset(offset)
-      .limit(limit)
-      .modify(builder => {
-          if (!lodash.isUndefined(book))
-              return builder.whereIn("id", subQuery)
-      })
+  return sqlDb("author")
+    .offset(offset)
+    .limit(limit)
+    .modify(builder => {
+      if (!lodash.isUndefined(book))
+        return builder.whereIn("id", subQuery)
+    })
 };
 
 
@@ -36,8 +36,8 @@ exports.authorsGET = function(offset, limit, book) {
  **/
 exports.getAuthorById = function(authorId) {
   return sqlDb("author")
-      .where({
-          author_id: authorId
-      })
+    .where({
+      author_id: authorId
+    })
 };
 

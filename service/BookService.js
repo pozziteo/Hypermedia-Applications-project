@@ -15,24 +15,30 @@ let sqlDb = require("./DataLayer.js").database;
  * returns List
  **/
 exports.booksGET = function(offset, limit, author, genre, theme) {
-  let authorsQuery = sqlDb("written").where("author_id", author);
+  let authorsQuery = sqlDb("written")
+    .where("author_id", author)
+    .select("book_id");
 
   return sqlDb("book")
-      .limit(limit)
-      .offset(offset)
-      .where(builder => {
-        if (!lodash.isUndefined(author))
-          builder.whereIn("code", authorsQuery.select("book_id"));
-        if (!lodash.isUndefined(genre))
-          builder.where("genre", genre);
-        if (!lodash.isUndefined(theme))
-          builder.where("theme", theme);
-      }).then(data => {
-        return data.map(e => {
-          e.price = {value: e.value, currency: e.currency};
-          return e;
-        })
+    .limit(limit)
+    .offset(offset)
+    .where(builder => {
+      if (!lodash.isUndefined(author))
+        builder.whereIn("code", authorsQuery);
+      if (!lodash.isUndefined(genre))
+        builder.where("genre", genre);
+      if (!lodash.isUndefined(theme))
+        builder.where("theme", theme);
+    }).then(data => {
+      return data.map(e => {
+        e.price = {value: e.value, currency: e.currency};
+        e.status = e.available === true ? "available": "out of stock";
+        delete e.value;
+        delete e.currency;
+        delete e.available;
+        return e;
       })
+    })
 };
 
 
@@ -45,13 +51,15 @@ exports.booksGET = function(offset, limit, author, genre, theme) {
  **/
 exports.getBookById = function(bookId) {
   return sqlDb("book")
-      .where( {
-        code: bookId
-      })
-      .then(data => {
-        return data.map(e => {
-          e.price = {value: e.value, currency: e.currency};
-          return e;
-        })
-      })
+    .where( {
+      code: bookId
+    }).first()
+    .then(book => {
+      book.price = {value: book.value, currency: book.currency};
+      book.status = book.available === true ? "available": "out of stock";
+      delete book.value;
+      delete book.currency;
+      delete book.available;
+      return book;
+    })
 };

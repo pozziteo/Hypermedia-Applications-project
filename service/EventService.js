@@ -1,6 +1,7 @@
 'use strict';
 
 const lodash = require("lodash");
+let booksFind = require("./BookService.js");
 let sqlDb = require("./DataLayer.js").database;
 
 /**
@@ -24,8 +25,8 @@ exports.eventsGET = function(offset, limit, book, author) {
         if (!lodash.isUndefined(author))
           builder.whereIn("book_id", () => {
             return sqlDb("books")
-                .select("code")
-                .where("author_ID", author);
+              .select("code")
+              .where("author_ID", author);
           });
       })
 };
