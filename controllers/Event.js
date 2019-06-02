@@ -21,7 +21,11 @@ module.exports.getEventById = function getEventById (req, res, next) {
   var eventId = req.swagger.params['eventId'].value;
   Event.getEventById(eventId)
     .then(function (response) {
-      utils.writeJson(res, response);
+      if (response instanceof Error) {
+        utils.writeJson(res, { error: response.message }. response.code);
+      } else {
+        utils.writeJson(res, response);
+      }
     })
     .catch(function (response) {
       utils.writeJson(res, response);

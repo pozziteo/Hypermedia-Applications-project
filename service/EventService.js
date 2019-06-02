@@ -17,18 +17,18 @@ let sqlDb = require("./DataLayer.js").database;
 exports.eventsGET = function(offset, limit, book, author) {
 
   return sqlDb("event")
-      .offset(offset)
-      .limit(limit)
-      .where(builder => {
-        if (!lodash.isUndefined(book))
-          builder.where("book_id", book);
-        if (!lodash.isUndefined(author))
-          builder.whereIn("book_id", () => {
-            return sqlDb("books")
-              .select("code")
-              .where("author_ID", author);
-          });
-      })
+    .offset(offset)
+    .limit(limit)
+    .where(builder => {
+      if (!lodash.isUndefined(book))
+        builder.where("book_id", book);
+      if (!lodash.isUndefined(author))
+        builder.whereIn("book_id", () => {
+          return sqlDb("books")
+            .select("code")
+            .where("author_ID", author);
+        });
+    })
 };
 
 
@@ -40,10 +40,27 @@ exports.eventsGET = function(offset, limit, book, author) {
  * returns Event
  **/
 exports.getEventById = function(eventId) {
+  if (!Number.isInteger(eventId)) {
+    let error = new Error("Bad request: invalid ID supplied");
+    error.code = 400;
+    throw error;
+  }
 
   return sqlDb("event")
-      .where({
-        event_id: eventId
-      });
+    .where({
+      event_id: eventId
+    }).first()
+    .then(event => {
+      if (event.length === 0) {
+        let error = new Error("Event not found");
+        error.code = 404;
+        throw error;
+      }
+      else
+        return event;
+    })
+    .catch(error => {
+      return error;
+    })
 };
 

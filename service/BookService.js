@@ -50,6 +50,12 @@ exports.booksGET = function(offset, limit, author, genre, theme) {
  * returns Book
  **/
 exports.getBookById = function(bookId) {
+  if (!Number.isInteger(bookId)) {
+    let error = new Error("Bad request: invalid ID supplied");
+    error.code = 400;
+    throw error;
+  }
+
   return sqlDb("book")
     .where( {
       code: bookId
@@ -61,5 +67,17 @@ exports.getBookById = function(bookId) {
       delete book.currency;
       delete book.available;
       return book;
+    })
+    .then(book => {
+      if (book.length === 0) {
+        let error = new Error("Book not found");
+        error.code = 404;
+        throw error;
+      }
+      else
+        return book;
+    })
+    .catch(error => {
+      return error;
     })
 };

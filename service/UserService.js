@@ -20,9 +20,10 @@ exports.userLoginPOST = function(username, password) {
 
   return sqlDb("customer")
     .where("username", username)
+    .first()
     .then(user => {
       if (user.length !== 0) {
-        fetchedUser = user[0];
+        fetchedUser = user;
         return sqlDb("customer").select("password").where("username", username).first()
       }
       else throw new Error("Wrong username or password");

@@ -35,9 +35,27 @@ exports.authorsGET = function(offset, limit, book) {
  * returns Author
  **/
 exports.getAuthorById = function(authorId) {
+  if (!Number.isInteger(authorId)) {
+    let error = new Error("Bad request: invalid ID supplied");
+    error.code = 400;
+    throw error;
+  }
+
   return sqlDb("author")
     .where({
       author_id: authorId
+    }).first()
+    .then(author => {
+      if (author.length === 0) {
+        let error = new Error("Author not found");
+        error.code = 404;
+        throw error;
+      }
+      else
+        return author;
+    })
+    .catch(error => {
+      return error;
     })
 };
 
