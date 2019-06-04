@@ -15,22 +15,30 @@ let sqlDb = require("./DataLayer.js").database;
  * returns List
  **/
 exports.booksGET = function(offset, limit, author, genre, theme) {
-  return sqlDb("books")
-      .limit(limit)
-      .offset(offset)
-      .where(builder => {
-        if (!lodash.isUndefined(author))
-          builder.where("author_ID", author);
-        if (!lodash.isUndefined(genre))
-          builder.where("genre", genre);
-        if (!lodash.isUndefined(theme))
-          builder.where("theme", theme);
-      }).then(data => {
-        return data.map(e => {
-          e.price = {value: e.value, currency: e.currency};
-          return e;
-        })
+  let authorsQuery = sqlDb("written")
+    .where("author_id", author)
+    .select("book_id");
+
+  return sqlDb("book")
+    .limit(limit)
+    .offset(offset)
+    .where(builder => {
+      if (!lodash.isUndefined(author))
+        builder.whereIn("code", authorsQuery);
+      if (!lodash.isUndefined(genre))
+        builder.where("genre", genre);
+      if (!lodash.isUndefined(theme))
+        builder.where("theme", theme);
+    }).then(data => {
+      return data.map(e => {
+        e.price = {value: e.value, currency: e.currency};
+        e.status = e.available === true ? "available": "out of stock";
+        delete e.value;
+        delete e.currency;
+        delete e.available;
+        return e;
       })
+    })
 };
 
 
@@ -42,14 +50,34 @@ exports.booksGET = function(offset, limit, author, genre, theme) {
  * returns Book
  **/
 exports.getBookById = function(bookId) {
-  return sqlDb("books")
-      .where( {
-        code: bookId
-      })
-      .then(data => {
-        return data.map(e => {
-          e.price = {value: e.value, currency: e.currency};
-          return e;
-        })
-      })
+  if (!Number.isInteger(bookId)) {
+    let error = new Error("Bad request: invalid ID supplied");
+    error.code = 400;
+    throw error;
+  }
+
+  return sqlDb("book")
+    .where( {
+      code: bookId
+    }).first()
+    .then(book => {
+      book.price = {value: book.value, currency: book.currency};
+      book.status = book.available === true ? "available": "out of stock";
+      delete book.value;
+      delete book.currency;
+      delete book.available;
+      return book;
+    })
+    .then(book => {
+      if (book.length === 0) {
+        let error = new Error("Book not found");
+        error.code = 404;
+        throw error;
+      }
+      else
+        return book;
+    })
+    .catch(error => {
+      return error;
+    })
 };

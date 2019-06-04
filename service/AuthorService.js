@@ -13,17 +13,17 @@ let sqlDb = require("./DataLayer.js").database;
  * returns List
  **/
 exports.authorsGET = function(offset, limit, book) {
-    let subQuery = sqlDb("books")
-        .where("code", book)
-        .select("author_ID");
+  let subQuery = sqlDb("books")
+    .where("code", book)
+    .select("author_ID");
 
-    return sqlDb("authors")
-      .offset(offset)
-      .limit(limit)
-      .modify(builder => {
-          if (!lodash.isUndefined(book))
-              return builder.whereIn("id", subQuery)
-      })
+  return sqlDb("author")
+    .offset(offset)
+    .limit(limit)
+    .modify(builder => {
+      if (!lodash.isUndefined(book))
+        return builder.whereIn("id", subQuery)
+    })
 };
 
 
@@ -35,9 +35,27 @@ exports.authorsGET = function(offset, limit, book) {
  * returns Author
  **/
 exports.getAuthorById = function(authorId) {
-  return sqlDb("authors")
-      .where({
-          id: authorId
-      })
+  if (!Number.isInteger(authorId)) {
+    let error = new Error("Bad request: invalid ID supplied");
+    error.code = 400;
+    throw error;
+  }
+
+  return sqlDb("author")
+    .where({
+      author_id: authorId
+    }).first()
+    .then(author => {
+      if (author.length === 0) {
+        let error = new Error("Author not found");
+        error.code = 404;
+        throw error;
+      }
+      else
+        return author;
+    })
+    .catch(error => {
+      return error;
+    })
 };
 
