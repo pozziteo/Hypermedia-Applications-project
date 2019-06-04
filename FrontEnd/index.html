@@ -1,315 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Home</title>
-  <link rel="icon" type="image/png" href="GTA.png">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/css/CSS.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</head>
-
-<body>
-  <!--navbar-->
-  <div class="container-fluid dark_color">
-    <h2 class="nav_text_color">Titolo e Logo del  sito</h2>
-
-    <!--navbar-->
-    <nav id="navbar" class="navbar navbar-expand-sm dark_color sticky-top">
-      <button id="navbarButton" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsCollapse" aria-controls="navbarsCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarsCollapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link nav_text_color" href="#">Home</a>
-          </li>
-
-          <li class="nav-item">
-            <a href="#"><i class="fas fa-cart-plus"></i></a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle nav_text_color" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Books</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown03">
-              <a class="dropdown-item" href="#">Themes</a>
-              <a class="dropdown-item" href="#">Genres</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link nav_text_color" href="#">Authors</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link nav_text_color" href="#">Events</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link nav_text_color" href="#">Contact Us</a>
-          </li>
-        </ul>
-        <form class="form-inline" action="">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search">
-          <button class="btn btn-success" type="submit">Submit</button>
-          <a class="nav-link nav_text_color" href="pages/Log_In.html">Log In</a>
-        </form>
-      </div>
-    </nav>
-  </div>
-  <br>
-
-  <!--______________________________END NAVBAR______________________________-->
-  <!--Slide carousel-->
-
-  <div class="container">
-    <div id="demo" class="carousel slide mx-auto" data-ride="carousel">
-    <div class="container ourFavorite">
-      Our Favorite
-    </div>
-      <!-- Indicators -->
-      <ul class="carousel-indicators">
-        <li data-target="#demo" data-slide-to="0" class="active"></li>
-        <li data-target="#demo" data-slide-to="1"></li>
-        <li data-target="#demo" data-slide-to="2"></li>
-      </ul>
-
-      <!-- The slideshow -->
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="row">
-            <div class="col">
-              <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
-              <div class="container carouselPrice">
-                <p>15.50</p>
-              </div>
-            </div>
-            <div class="col">
-              <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
-              <div class="container carouselPrice">
-                <p class="text-center">15.50</p>
-              </div>
-            </div>
-            <div class="col">
-              <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
-              <div class="container carouselPrice">
-                <p class="text-center">15.50</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="row">
-            <div class="col">
-              <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
-              <div class="container carouselPrice">
-                <p class="text-center">15.50</p>
-              </div>
-            </div>
-            <div class="col">
-              <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
-              <div class="container carouselPrice">
-                <p class="text-center">15.50</p>
-              </div>
-            </div>
-            <div class="col">
-              <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
-              <div class="container carouselPrice">
-                <p class="text-center">15.50</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <div class="row">
-            <div class="col">
-              <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
-              <div class="container carouselPrice">
-                <p class="text-center">15.50</p>
-              </div>
-            </div>
-            <div class="col">
-              <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
-              <div class="container carouselPrice">
-                <p class="text-center">15.50</p>
-              </div>
-            </div>
-            <div class="col">
-              <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
-              <div class="container carouselPrice">
-                <p class="text-center">15.50</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Left and right controls -->
-      <a class="carousel-control-prev" href="#demo" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </a>
-      <a class="carousel-control-next" href="#demo" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </a>
-    </div>
-  </div>
-
-  <!--__________________________END Slide carousel__________________________-->
-
-  <div id="bestSeller" class="container">
-    <div id="bestSellerTitle" class="container-fluid">
-      <br>
-      <p>Best Seller</p>
-      <hr>
-    </div>
-    <div class="row">
-      <div id="firstBestSeller" class="col">
-        <p>1°</p>
-        <div class="row">
-          <div class="col-5">
-            <figure>
-              <a href="#BookPage" style="display: block" data-trackcontent>
-                <img class="bestSellerImage" src="assets/img/fotoHP.jpg" alt="Favorite 1">
-              </a>
-            </figure>
-          </div>
-          <div class="col-7">
-            <figcaption>
-              <a href="#BookPage">
-                <h6 class="bookTitle">
-                  TITOLO
-                </h6>
-                <h6 class="bookAuthor">
-                  NOME AUTORE
-                </h6>
-                <h6 class="bookPrice">
-                  15.50
-                </h6>
-              </pre>
-            </a>
-          </figcaption>
-        </div>
-      </div>
-    </div>
-
-    <div class="col">
-      <p>2°</p>
-      <div class="row">
-        <div class="col-3">
-          <figure>
-            <a href="#BookPage" style="display: block" data-trackcontent>
-              <img class="bestSellerImage" src="assets/img/fotoHP.jpg" alt="Favorite 1">
-            </a>
-          </figure>
-        </div>
-        <div class="col-9">
-          <figcaption>
-            <a href="#BookPage">
-              <h6 class="bookTitle">
-                TITOLO
-              </h6>
-              <h6 class="bookAuthor">
-                NOME AUTORE
-              </h6>
-              <h6 class="bookPrice">
-                15.50
-              </h6>
-            </pre>
-          </a>
-        </figcaption>
-      </div>
-    </div>
-    <hr>
-    <p>4°</p>
-    <div class="row">
-      <div class="col-3">
-        <figure>
-          <a href="#BookPage" style="display: block" data-trackcontent>
-            <img class="bestSellerImage" src="assets/img/fotoHP.jpg" alt="Favorite 1">
-          </a>
-        </figure>
-      </div>
-      <div class="col-9">
-        <figcaption>
-          <a href="#BookPage">
-            <h6 class="bookTitle">
-              TITOLO
-            </h6>
-            <h6 class="bookAuthor">
-              NOME AUTORE
-            </h6>
-            <h6 class="bookPrice">
-              15.50
-            </h6>
-          </pre>
-        </a>
-      </figcaption>
-    </div>
-  </div>
-  <hr>
-  </div>
-  <div class="col">
-    <p>3°</p>
-    <div class="row">
-      <div class="col-3">
-        <figure>
-          <a href="#BookPage" style="display: block" data-trackcontent>
-            <img class="bestSellerImage" src="assets/img/fotoHP.jpg" alt="Favorite 1">
-          </a>
-        </figure>
-      </div>
-      <div class="col-9">
-        <figcaption>
-          <a href="#BookPage">
-            <h6 class="bookTitle">
-              TITOLO
-            </h6>
-            <h6 class="bookAuthor">
-              NOME AUTORE
-            </h6>
-            <h6 class="bookPrice">
-              15.50
-            </h6>
-          </pre>
-        </a>
-      </figcaption>
-    </div>
-  </div>
-  <hr>
-  <p>5°</p>
-  <div class="row">
-    <div class="col-3">
-      <figure>
-        <a href="#BookPage" style="display: block" data-trackcontent>
-          <img class="bestSellerImage" src="assets/img/fotoHP.jpg" alt="Favorite 1">
-        </a>
-      </figure>
-    </div>
-    <div class="col-9">
-      <figcaption>
-        <a href="#BookPage">
-          <h6 class="bookTitle">
-            TITOLO
-          </h6>
-          <h6 class="bookAuthor">
-            NOME AUTORE
-          </h6>
-          <h6 class="bookPrice">
-            15.50
-          </h6>
-        </pre>
-      </a>
-    </figcaption>
-  </div>
-  </div>
-  <hr>
-  </div>
-  </div>
-  <br>
-  </div>
+    <head>
+        <title>Home</title>
+        <link rel="icon" type="image/png" href="GTA.png">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Montserrat&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 
+        <link rel="stylesheet" href="assets/css/my-icons-collection/font/flaticon.css">
+
+        <link rel="stylesheet" href="assets/css/CSS.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </head>
+
+    <body>
+        <!--upper navbar-->
+        <div class="container-fluid ">
+            <div class="upper-nav navbar">
+                <!--div class="container"--> 
+
+                <div class="col-3"><h2>Titolo e Logo del  sito</h2></div>
+                <div class="col-6"><form class="header-search-form" action="">
+
+
+                    <!--div class="input-group mb-3">
+<div class="input-group-prepend">
+<button type="button" class="btn btn-outline-secondary">Action</button>
+<button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<span class="sr-only">Toggle Dropdown</span>
+</button>
+<div class="dropdown-menu">
+<a class="dropdown-item" href="#">Action</a>
+<a class="dropdown-item" href="#">Another action</a>
+<a class="dropdown-item" href="#">Something else here</a>
+<div role="separator" class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">Separated link</a>
 </div>
 </div>
-</div>
+<input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
+</div-->
+                    <input  type="text" placeholder="Search for books, events and authors">
+                    <button class="btn btn-outline-success my-2 my-sm-0  " type="submit"><i class="flaticon-search"></i></button>      
+                    </form></div>
+
+                <div class="col-3">
+
+                    <a class="nav-link " href="pages/Log_In.html"><i class="flaticon-user"></i>Log In</a>
+
+                    <div class="cart" >
+
+                        <a class="nav-link" href="pages/Log_In.html"><i class="flaticon-shopping-cart"></i>
+                        </a> <span>0</span>
+                    </div>
+                    <!--/div-->
+
+                </div>
+
+
+            </div>
+
+
+            <!--lower navbar-->
+            <nav id="navbar" class=" lower-nav navbar navbar-expand-sm dark_color sticky-top">
+
+                <!--div class="container"-->   
+
+                <button id="navbarButton" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsCollapse" aria-controls="navbarsCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarsCollapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link nav_text_color" href="#">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#"><i class="fas fa-cart-plus"></i></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle nav_text_color" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Books</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown03">
+                                <a class="dropdown-item" href="#">Themes</a>
+                                <a class="dropdown-item" href="#">Genres</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav_text_color" href="#">Authors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav_text_color" href="#">Events</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav_text_color" href="#">Contact Us</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <!--/div-->
+            </nav>
+        </div>
+        <br>
+
+        <!--___________END NAVBAR_____________-->
+
+        <!--Slide carousel-->
+
+
+
+
+        <!--Slide carousel-->
+
+        <div class="container">
+            <div id="demo" class="carousel slide mx-auto" data-ride="carousel">
+                <div class="container ourFavorite">
+                    Our Favorite
+                </div>
+                <!-- Indicators -->
+                <ul class="carousel-indicators">
+                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+                    <li data-target="#demo" data-slide-to="1"></li>
+                    <li data-target="#demo" data-slide-to="2"></li>
+                </ul>
+
+                <!-- The slideshow -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <div class="col">
+                                <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
+                                <div class="container carouselPrice">
+                                    <p>15.50</p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
+                                <div class="container carouselPrice">
+                                    <p class="text-center">15.50</p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
+                                <div class="container carouselPrice">
+                                    <p class="text-center">15.50</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col">
+                                <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
+                                <div class="container carouselPrice">
+                                    <p class="text-center">15.50</p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
+                                <div class="container carouselPrice">
+                                    <p class="text-center">15.50</p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
+                                <div class="container carouselPrice">
+                                    <p class="text-center">15.50</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col">
+                                <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
+                                <div class="container carouselPrice">
+                                    <p class="text-center">15.50</p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
+                                <div class="container carouselPrice">
+                                    <p class="text-center">15.50</p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <img class="carouselImg" src="assets/img/fotoHP.jpg" alt="Los Angeles">
+                                <div class="container carouselPrice">
+                                    <p class="text-center">15.50</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Left and right controls -->
+                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+            </div>
+        </div>
+
+        <!--__________________________END Slide carousel__________________________-->
+
+        <div id="bestSeller" class="container">
+            <div id="bestSellerTitle" class="container-fluid">
+                <br>
+                <p>Best Seller</p>
+                <hr>
+            </div>
+            <div class="row">
+                <div id="firstBestSeller" class="col">
+                    <p>1°</p>
+                    <div class="row">
+                        <div class="col-5">
+                            <figure>
+                                <a href="#BookPage" style="display: block" data-trackcontent>
+                                    <img class="bestSellerImage" src="assets/img/fotoHP.jpg" alt="Favorite 1">
+                                </a>
+                            </figure>
+                        </div>
+                        <div class="col-7">
+                            <figcaption>
+                                <a href="#BookPage">
+                                    <h6 class="bookTitle">
+                                        TITOLO
+                                    </h6>
+                                    <h6 class="bookAuthor">
+                                        NOME AUTORE
+                                    </h6>
+                                    <h6 class="bookPrice">
+                                        15.50
+                                    </h6>
+
+                                </a>
+                            </figcaption>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <p>2°</p>
+                    <div class="row">
+                        <div class="col-3">
+                            <figure>
+                                <a href="#BookPage" style="display: block" data-trackcontent>
+                                    <img class="bestSellerImage" src="assets/img/fotoHP.jpg" alt="Favorite 1">
+                                </a>
+                            </figure>
+                        </div>
+                        <div class="col-9">
+                            <figcaption>
+                                <a href="#BookPage">
+                                    <h6 class="bookTitle">
+                                        TITOLO
+                                    </h6>
+                                    <h6 class="bookAuthor">
+                                        NOME AUTORE
+                                    </h6>
+                                    <h6 class="bookPrice">
+                                        15.50
+                                    </h6>
+                                    
+                                </a>
+                            </figcaption>
+                    </div>
+                </div>
+                <hr>
+                <p>4°</p>
+                <div class="row">
+                    <div class="col-3">
+                        <figure>
+                            <a href="#BookPage" style="display: block" data-trackcontent>
+                                <img class="bestSellerImage" src="assets/img/fotoHP.jpg" alt="Favorite 1">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="col-9">
+                        <figcaption>
+                            <a href="#BookPage">
+                                <h6 class="bookTitle">
+                                    TITOLO
+                                </h6>
+                                <h6 class="bookAuthor">
+                                    NOME AUTORE
+                                </h6>
+                                <h6 class="bookPrice">
+                                    15.50
+                                </h6>
+                                
+                            </a>
+                        </figcaption>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="col">
+            <p>3°</p>
+            <div class="row">
+                <div class="col-3">
+                    <figure>
+                        <a href="#BookPage" style="display: block" data-trackcontent>
+                            <img class="bestSellerImage" src="assets/img/fotoHP.jpg" alt="Favorite 1">
+                        </a>
+                    </figure>
+                </div>
+                <div class="col-9">
+                    <figcaption>
+                        <a href="#BookPage">
+                            <h6 class="bookTitle">
+                                TITOLO
+                            </h6>
+                            <h6 class="bookAuthor">
+                                NOME AUTORE
+                            </h6>
+                            <h6 class="bookPrice">
+                                15.50
+                            </h6>
+
+                        </a>
+                    </figcaption>
+                </div>
+            </div>
+            <hr>
+            <p>5°</p>
+            <div class="row">
+                <div class="col-3">
+                    <figure>
+                        <a href="#BookPage" style="display: block" data-trackcontent>
+                            <img class="bestSellerImage" src="assets/img/fotoHP.jpg" alt="Favorite 1">
+                        </a>
+                    </figure>
+                </div>
+                <div class="col-9">
+                    <figcaption>
+                        <a href="#BookPage">
+                            <h6 class="bookTitle">
+                                TITOLO
+                            </h6>
+                            <h6 class="bookAuthor">
+                                NOME AUTORE
+                            </h6>
+                            <h6 class="bookPrice">
+                                15.50
+                            </h6>
+
+                        </a>
+                    </figcaption>
+                </div>
+            </div>
+            <hr>
+        </div>
+        </div>
+
+    </div>
+
+
+
 <br><br>
 
 </body>

@@ -3,15 +3,50 @@
   --input-padding-y: .75rem;
 }
 body{
-  background: #ddd;
+  background-color: white;
+    font-family: 'Montserrat', sans-serif;
+    color: grey;
 }
 img {
   max-width: 100%;
   max-height: inherit;
   vertical-align: middle;
 }
+
+.col-3{
+    display:  -webkit-inline-box;
+    text-align: center;
+}
+
+.col-3 i{
+    font-weight: 500;
+}
+
+.navbar{
+    padding: .6rem 1.5rem;
+}
+
+.upper-nav h2{
+    font-family: 'Josefin Sans', sans-serif;
+     color: dimgray;
+    font-size: 1.5em;
+    font-weight:700;
+    margin-bottom: 0;
+}
+
+.upper-nav a:link{
+    color: gray;
+
+}
+
+a{
+    color: gray;    
+}
+
 a:link {
-  color: #lightblue;
+  color: gray;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1.1em;
   background-color: transparent;
   text-decoration: none;
 }
@@ -20,17 +55,31 @@ a:hover {
   background-color: transparent;
   text-decoration: underline;
 }
+
+.breads{
+    margin-top: inherit;
+    background: #f8f7f7;
+    padding: 15px 100px 15px ;
+}
+#pageContainer{
+    height: 100%;
+    padding-right: 100px;
+    padding-left: 100px;
+    padding-top: 2em;
+    padding-bottom: 5em;
+}
+
 #bookImage{
-  position: relative;
-  top: 2em;
-  left: 100px;
+  position: absolute;
+  
+ // left: 100px;
   border: 3px solid #000;
   padding: 5px;
 }
 #bookData{
   position: relative;
-  left: 20px;
-  top: 80px;
+  
+  
 }
 #addToCartButton {
   position: relative;
@@ -45,11 +94,90 @@ a:hover {
   display: inline-block;
   font-size: 16px;
 }
-.nav_text_color{
-  color: #ddd;
+.description p{
+    margin-left: 2%;
+    margin-top: 4%;
+    font-size: 0.9em;
+    text-align: justify;
 }
+
+.container-fluid{
+    
+    padding-left:0px;
+    padding-right:0px;
+}
+.upper-nav{
+     line-height: 1.5;
+    height: 70px; 
+}
+
+
+.lower-nav{
+ 
+    height: 50px; 
+}
+
+.header-search-form{
+    width: 100%;
+    position: relative;
+    padding: 0 10px;
+    margin: auto; 
+}
+
+.header-search-form input{
+    
+    width: 100%;
+    height:44px;
+    font-size: 14px;
+    border-radius: 50px;
+    border: none;
+       
+    padding: 0 19px;
+    background: #f0f0f0;
+}
+
+.header-search-form button{
+    position: absolute; 
+    height: 100%;
+    width: 44px;
+    right: 10px;
+    padding-right: 6px;
+     padding-left: 6px;
+    border-radius: 50%;
+    top: 0;
+    font-size: 1em;
+    font-weight: 700;
+    
+   
+    cursor: pointer;
+    background-color: transparent;
+
+}
+
+.cart span {
+    position: absolute;
+    top: 5px;
+    left: 52%;
+    height: 16px;
+    min-width: 16px;
+    color: #fff;
+    font-size: 13px;
+    background: green;
+    text-align: center;
+    border-radius: 30px;
+    padding: 0 2px;
+    margin-left: -7px;
+}
+
+.nav_text_white{
+    color: white;
+}
+
 .dark_color{
   background: #333;
+}
+.bright_color{
+  background color: white;
 }
 .carousel, .carousel-inner{
   width: 50em;
@@ -193,8 +321,7 @@ a:hover {
     }
   }
 }
-
-// non-related styling:
+ non-related styling:
 body{
   background: #333;
   color: #ddd;
@@ -226,4 +353,158 @@ border-right:1px solid #bbb;
 .ourFavorite{
   background: #f3f;
   border: 1px solid #000;
+}
+
+
+.row{
+    margin-bottom: 2%;
+}
+
+#titoloLibro{
+    color: #414141;
+    font-weight: 700;
+    font-size: 2em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+}
+
+.rev{
+    margin-bottom: 3%;
+    margin-top: 3%;
+   color:purple;
+}
+.off{
+    color: gainsboro; 
+}
+
+.rBox{
+    width: 50%;
+   border: 0.8px solid purple;
+    border-radius: 5px;
+    margin-left: 2%;
+    box-shadow: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    
+}
+
+/* Accordion */
+
+.accordion-area {
+	margin-top: 20px;
+	border-top: 2px solid #e1e1e1;
+    margin-bottom: 10px;
+    
+}
+
+
+.accordion-area .panel-link {
+	border-bottom: 2px solid #e1e1e1;
+	background-repeat: no-repeat;
+	background-position: right 10px top 30px;
+}
+
+
+
+
+.accordion-area .panel-link.active {
+	background-color: transparent;
+}
+
+.accordion-area .panel-link,
+.accordion-area .panel-link.active.collapsed {
+	text-align: left;
+	position: relative;
+	width: 100%;
+	font-size: 14px;
+	font-weight: 700;
+	color: #414141;
+	padding-top:20px;;
+	text-transform: uppercase;
+	line-height: 1;
+	cursor: pointer;
+	border: none;
+	
+	background-color: transparent;
+	border-radius: 0;
+}
+
+.panel-body {
+	padding-top: 10px;
+    padding-left: 2%;
+}
+
+.accordion-area .panel-body p {
+	color: #8f8f8f;
+	margin-bottom: 25px;
+	line-height: 1.8;
+}
+
+
+.user{
+    border-bottom: 1px solid #e1e1e1;
+    
+}
+
+.comment{
+    margin-top: 1.5%;
+    padding-left: 2%;
+}
+
+.comment p{
+    margin-bottom: 0px;
+}
+
+
+.bookD{
+    min-height: 550px;
+
+}
+
+
+
+#authorPic{
+    position: relative;
+    
+    object-fit: cover;
+
+  width: 100%;
+  height: auto;
+    
+}
+
+#bio{
+    width: 80%;
+    margin-top: 2%;
+    padding-left: 2%;
+}
+
+#name{
+    
+    margin-top: 3%;
+    text-transform: uppercase;
+}
+
+.inlineBooks{
+    margin-left: 2%;
+    display: block;
+}
+
+.inlineBooks img{
+    margin-right: 2%;
+    width: 150px;
+    height: 200px;
+    object-fit: fill;
+}
+
+.section{
+    padding: 0;
+    margin-bottom: 3.5%;
+}
+
+.section h4{
+    margin-bottom: 1.8%;
+    font-family: 'Josefin Sans', sans-serif;
 }
