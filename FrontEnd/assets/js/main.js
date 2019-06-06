@@ -1,10 +1,19 @@
 
 
-$('.panel-link').on('click', function (e) {
-		$('.panel-link').removeClass('active');
-		var $this = $(this);
-		if (!$this.hasClass('active')) {
-			$this.addClass('active');
-		}
-		e.preventDefault();
-	});
+$(function(){
+    
+    var $genres = $('#genres');
+    
+    $.ajax({
+        type:'GET',
+        url:'/genre',
+        success: function(data){
+        $.each(data, function(i,genre){
+        
+        $genres.append('<div> name:'+genre.name+'</div>');
+    });
+    }
+    });
+    
+    
+});
