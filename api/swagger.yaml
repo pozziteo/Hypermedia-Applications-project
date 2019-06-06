@@ -13,59 +13,59 @@ info:
 host: "localhost:8080"
 basePath: "/v2"
 tags:
-- name: "book"
-  description: "Available book"
-- name: "genre"
-  description: "Literary genre"
-- name: "theme"
-  description: "Literary theme"
-- name: "author"
-  description: "Author of a book"
-- name: "event"
-  description: "Event to present a book"
-- name: "cart"
-  description: "Access to the cart"
-- name: "user"
-  description: "Operations about user"
+  - name: "book"
+    description: "Available book"
+  - name: "genre"
+    description: "Literary genre"
+  - name: "theme"
+    description: "Literary theme"
+  - name: "author"
+    description: "Author of a book"
+  - name: "event"
+    description: "Event to present a book"
+  - name: "cart"
+    description: "Access to the cart"
+  - name: "user"
+    description: "Operations about user"
 schemes:
-- "http"
+  - "http"
 paths:
   /books:
     get:
       tags:
-      - "book"
+        - "book"
       summary: "Books available in the inventory"
       description: "List of books available in the inventory"
       operationId: "booksGET"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "offset"
-        in: "query"
-        description: "Pagination offset. Default is 0."
-        required: false
-        type: "integer"
-      - name: "limit"
-        in: "query"
-        description: "Maximum number of items per page. Default is 20 and cannot exceed\
+        - name: "offset"
+          in: "query"
+          description: "Pagination offset. Default is 0."
+          required: false
+          type: "integer"
+        - name: "limit"
+          in: "query"
+          description: "Maximum number of items per page. Default is 20 and cannot exceed\
           \ 500."
-        required: false
-        type: "integer"
-      - name: "author"
-        in: "query"
-        description: "Filter list of books by author"
-        required: false
-        type: "integer"
-      - name: "genre"
-        in: "query"
-        description: "Filter list of books about the same genre"
-        required: false
-        type: "string"
-      - name: "theme"
-        in: "query"
-        description: "Filter list of books which treat the same theme"
-        required: false
-        type: "string"
+          required: false
+          type: "integer"
+        - name: "author"
+          in: "query"
+          description: "Filter list of books by author"
+          required: false
+          type: "integer"
+        - name: "genre"
+          in: "query"
+          description: "Filter list of books about the same genre"
+          required: false
+          type: "string"
+        - name: "theme"
+          in: "query"
+          description: "Filter list of books which treat the same theme"
+          required: false
+          type: "string"
       responses:
         200:
           description: "A collection of Books"
@@ -73,25 +73,25 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/Book"
-        404:
+        400:
           description: "Unexpected error"
       x-swagger-router-controller: "Book"
   /books/{bookId}:
     get:
       tags:
-      - "book"
+        - "book"
       summary: "Find book by ID"
       description: "Returns a book"
       operationId: "getBookById"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "bookId"
-        in: "path"
-        description: "ID of book to return"
-        required: true
-        type: "integer"
-        format: "int64"
+        - name: "bookId"
+          in: "path"
+          description: "ID of book to return"
+          required: true
+          type: "integer"
+          format: "int64"
       responses:
         200:
           description: "successful operation"
@@ -102,27 +102,83 @@ paths:
         404:
           description: "Book not found"
       x-swagger-router-controller: "Book"
+  /books/{bookId}/review:
+    get:
+      tags:
+        - "book"
+      summary: "Find reviews of a book"
+      description: "Returns all reviews of the book with id bookId"
+      operationId: "bookReviewsGET"
+      produces:
+        - "applications/json"
+      parameters:
+        - name: "bookId"
+          in: "path"
+          description: "ID of the book to find reviews about"
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Review"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Reviews not found"
+      x-swagger-router-controller: "Book"
+  /books/{bookId}/similar:
+    get:
+      tags:
+        - "book"
+      summary: "Find books similar to bookId"
+      description: "Returns a list of books"
+      operationId: "getSimilarBooks"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "bookId"
+          in: "path"
+          description: "ID of book to find similars"
+          required: true
+          type: "integer"
+          format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Book"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "Book not found"
+      x-swagger-router-controller: "Book"
   /books/genres:
     get:
       tags:
-      - "genre"
+        - "genre"
       summary: "Literary genres of books"
       description: "List of literary genres the books belong to"
       operationId: "genresGET"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "offset"
-        in: "query"
-        description: "Pagination offset. Default is 0."
-        required: false
-        type: "integer"
-      - name: "limit"
-        in: "query"
-        description: "Maximum number of items per page. Default is 20 and cannot exceed\
+        - name: "offset"
+          in: "query"
+          description: "Pagination offset. Default is 0."
+          required: false
+          type: "integer"
+        - name: "limit"
+          in: "query"
+          description: "Maximum number of items per page. Default is 20 and cannot exceed\
           \ 500."
-        required: false
-        type: "integer"
+          required: false
+          type: "integer"
       responses:
         200:
           description: "A collection of Genres"
@@ -136,24 +192,24 @@ paths:
   /books/themes:
     get:
       tags:
-      - "theme"
+        - "theme"
       summary: "Themes treated by books"
       description: "List of themes the books treat"
       operationId: "themesGET"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "offset"
-        in: "query"
-        description: "Pagination offset. Default is 0."
-        required: false
-        type: "integer"
-      - name: "limit"
-        in: "query"
-        description: "Maximum number of items per page. Default is 20 and cannot exceed\
+        - name: "offset"
+          in: "query"
+          description: "Pagination offset. Default is 0."
+          required: false
+          type: "integer"
+        - name: "limit"
+          in: "query"
+          description: "Maximum number of items per page. Default is 20 and cannot exceed\
           \ 500."
-        required: false
-        type: "integer"
+          required: false
+          type: "integer"
       responses:
         200:
           description: "A collection of Themes"
@@ -167,41 +223,43 @@ paths:
   /user/login:
     post:
       tags:
-      - "user"
+        - "user"
       summary: "Login"
       description: "Login with a form"
       operationId: "userLoginPOST"
       consumes:
-      - "application/x-www-form-urlencoded"
+        - "application/x-www-form-urlencoded"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "username"
-        in: "formData"
-        required: true
-        type: "string"
-      - name: "password"
-        in: "formData"
-        required: true
-        type: "string"
-        format: "password"
+        - name: "username"
+          in: "formData"
+          required: true
+          type: "string"
+        - name: "password"
+          in: "formData"
+          required: true
+          type: "string"
+          format: "password"
       responses:
         200:
-          description: "successful login"
+          description: "Login successful"
+          schema:
+            $ref: "#/definitions/User"
         401:
-          description: "authentication failed"
+          description: "Authentication Failed"
       x-swagger-router-controller: "User"
   /user/register:
     post:
       tags:
-      - "user"
+        - "user"
       summary: "Register"
       description: "Register into the store"
       operationId: "userRegisterPOST"
       consumes:
-      - "application/x-www-form-urlencoded"
+        - "application/x-www-form-urlencoded"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
         - name: "email"
           in: "formData"
@@ -219,58 +277,125 @@ paths:
           format: "password"
       responses:
         200:
-          description: "successful registration"
+          description: "Registration successful"
         409:
-          description: "registration failed due to duplicate"
+          description: "Registration failed due to duplicate"
       x-swagger-router-controller: "User"
-  /cart/{cartId}:
+  /user/logout:
+    post:
+      tags:
+        - "user"
+      summary: "Logout"
+      description: "Logout from the store"
+      operationId: "userLogoutPOST"
+      responses:
+        200:
+          description: "Logout successful"
+        400:
+          description: "Not logged in"
+      x-swagger-router-controller: "User"
+  /cart:
     get:
       tags:
-      - "cart"
+        - "cart"
       summary: "View the content of the cart"
-      operationId: "cartCartIdGET"
+      description: "View the list of books in the cart and total price"
+      operationId: "userCartGET"
       produces:
-      - "application/json"
-      parameters:
-      - name: "cartId"
-        in: "path"
-        required: true
-        type: "integer"
-        format: "int64"
+        - "application/json"
       responses:
         200:
           description: "successful operation"
           schema:
             $ref: "#/definitions/Cart"
-        404:
-          description: "unauthorized"
+        401:
+          description: "authentication needed"
+      x-swagger-router-controller: "Cart"
+  /cart/items:
+    post:
+      tags:
+        - "cart"
+      summary: "Insert a book into the cart"
+      operationId: "cartBookPOST"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "book"
+          in: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/Book"
+      responses:
+        200:
+          description: "Book inserted into cart"
+        400:
+          description: "Book not available"
+        401:
+          description: "Not logged in"
+      x-swagger-router-controller: "Cart"
+    put:
+      tags:
+        - "cart"
+      summary: "Empty the cart"
+      operationId: "cartEmptyPUT"
+      responses:
+        200:
+          description: "Successful operation"
+        401:
+          description: "Unauthorized"
+      x-swagger-router-controller: "Cart"
+  /cart/items/{itemID}:
+    delete:
+      tags:
+        - "cart"
+      summary: "Delete an item from the cart"
+      description: "Delete the item itemId from the cart"
+      operationId: "cartBookDELETE"
+      consumes:
+        - "application/json"
+      parameters:
+        - name: "itemID"
+          in: "path"
+          required: true
+          description: "ID of the item to remove"
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: "Item removed"
+        400:
+          description: "Item wasn't in cart"
+        401:
+          description: "Unauthorized"
       x-swagger-router-controller: "Cart"
   /authors:
     get:
       tags:
-      - "author"
+        - "author"
       summary: "Authors who wrote a book available in the store"
       description: "List of authors of books available in the inventory"
       operationId: "authorsGET"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "offset"
-        in: "query"
-        description: "Pagination offset. Default is 0."
-        required: false
-        type: "integer"
-      - name: "limit"
-        in: "query"
-        description: "Maximum number of items per page. Default is 20 and cannot exceed\
+        - name: "offset"
+          in: "query"
+          description: "Pagination offset. Default is 0."
+          required: false
+          type: "integer"
+        - name: "limit"
+          in: "query"
+          description: "Maximum number of items per page. Default is 20 and cannot exceed\
           \ 500."
-        required: false
-        type: "integer"
-      - name: "book"
-        in: "query"
-        description: "Filter authors who wrote the given book."
-        required: false
-        type: "integer"
+          required: false
+          type: "integer"
+        - name: "book"
+          in: "query"
+          description: "Filter authors who wrote the given book."
+          required: false
+          type: "integer"
       responses:
         200:
           description: "A collection of Authors"
@@ -284,19 +409,19 @@ paths:
   /authors/{authorId}:
     get:
       tags:
-      - "author"
+        - "author"
       summary: "Find author by ID"
       description: "Returns an author"
       operationId: "getAuthorById"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "authorId"
-        in: "path"
-        description: "ID of author to return"
-        required: true
-        type: "integer"
-        format: "int64"
+        - name: "authorId"
+          in: "path"
+          description: "ID of author to return"
+          required: true
+          type: "integer"
+          format: "int64"
       responses:
         200:
           description: "successful operation"
@@ -310,34 +435,34 @@ paths:
   /events:
     get:
       tags:
-      - "event"
+        - "event"
       summary: "Events organized by the store"
       description: "List of events organized by the store"
       operationId: "eventsGET"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "offset"
-        in: "query"
-        description: "Pagination offset. Default is 0."
-        required: false
-        type: "integer"
-      - name: "limit"
-        in: "query"
-        description: "Maximum number of items per page. Default is 20 and cannot exceed\
+        - name: "offset"
+          in: "query"
+          description: "Pagination offset. Default is 0."
+          required: false
+          type: "integer"
+        - name: "limit"
+          in: "query"
+          description: "Maximum number of items per page. Default is 20 and cannot exceed\
           \ 500."
-        required: false
-        type: "integer"
-      - name: "book"
-        in: "query"
-        description: "Filter events where given book is presented"
-        required: false
-        type: "integer"
-      - name: "author"
-        in: "query"
-        description: "Filter events presented by an author"
-        required: false
-        type: "integer"
+          required: false
+          type: "integer"
+        - name: "book"
+          in: "query"
+          description: "Filter events where given book is presented"
+          required: false
+          type: "integer"
+        - name: "author"
+          in: "query"
+          description: "Filter events presented by an author"
+          required: false
+          type: "integer"
       responses:
         200:
           description: "A collection of Events"
@@ -351,19 +476,19 @@ paths:
   /events/{eventId}:
     get:
       tags:
-      - "event"
+        - "event"
       summary: "Find event by ID"
       description: "Returns an event"
       operationId: "getEventById"
       produces:
-      - "application/json"
+        - "application/json"
       parameters:
-      - name: "eventId"
-        in: "path"
-        description: "ID of event to return"
-        required: true
-        type: "integer"
-        format: "int64"
+        - name: "eventId"
+          in: "path"
+          description: "ID of event to return"
+          required: true
+          type: "integer"
+          format: "int64"
       responses:
         200:
           description: "successful operation"
@@ -417,23 +542,23 @@ definitions:
         currency: "eur"
         value: 80082819046101.171875
       books:
-      - id: 0
-        title: "Il deserto dei tartari"
-        author: "Dino Buzzati"
-        price:
-          value: 10
-          currency: "eur"
-      - id: 0
-        title: "Il deserto dei tartari"
-        author: "Dino Buzzati"
-        price:
-          value: 10
-          currency: "eur"
+        - id: 0
+          title: "Il deserto dei tartari"
+          author: "Dino Buzzati"
+          price:
+            value: 10
+            currency: "eur"
+        - id: 0
+          title: "Il deserto dei tartari"
+          author: "Dino Buzzati"
+          price:
+            value: 10
+            currency: "eur"
   Book:
     type: "object"
     required:
-    - "price"
-    - "title"
+      - "price"
+      - "title"
     properties:
       id:
         type: "integer"
@@ -467,27 +592,51 @@ definitions:
         type: "string"
         description: "book availability in the inventory"
         enum:
-        - "available"
-        - "out of stock"
+          - "available"
+          - "out of stock"
     title: "Book"
     description: "A book for sale in the store"
     example:
       id: 0
       title: "Il deserto dei tartari"
       authors:
-      - "Dino Buzzati"
+        - "Dino Buzzati"
       genres:
-      - "fiction"
+        - "fiction"
       themes:
-      - "self-deception"
+        - "self-deception"
       price:
         value: 10
         currency: "eur"
       status: "available"
+  Review:
+    type: "object"
+    required:
+      - "username"
+      - "bookId"
+      - "rate"
+    properties:
+      username:
+        type: "string"
+      bookId:
+        type: "integer"
+        format: "int64"
+      date:
+        type: "string"
+        format: "date"
+      rate:
+        type: "integer"
+        minimum: 1
+        maximum: 5
+      comment:
+        type: "string"
+        maxLength: 500
+    title: "Review"
+    description: "Review of a book in the store"
   Author:
     type: "object"
     required:
-    - "name"
+      - "name"
     properties:
       id:
         type: "integer"
@@ -503,49 +652,51 @@ definitions:
     type: "string"
     description: "A genre of a book"
     enum:
-    - "fantasy"
-    - "science fiction"
-    - "adventure"
-    - "action"
-    - "biography"
-    - "autobiography"
-    - "thriller"
-    - "romance"
-    - "fiction"
-    - "horror"
-    - "poetry"
-    - "drama"
-    - "historical fiction"
-    - "fairytale"
-    - "scientific paper"
+      - "Fantasy"
+      - "Science fiction"
+      - "Adventure"
+      - "Action"
+      - "Biography"
+      - "Autobiography"
+      - "Thriller"
+      - "Romance"
+      - "Fiction"
+      - "Horror"
+      - "Poetry"
+      - "Drama"
+      - "Historical fiction"
+      - "Fairytale"
+      - "Scientific paper"
+      - "Crime"
   Theme:
     type: "string"
     description: "A theme treated by a book"
     enum:
-    - "war"
-    - "love"
-    - "death"
-    - "exile"
-    - "travel"
-    - "friendship"
-    - "family"
-    - "immortality"
-    - "chaos"
-    - "coming of age"
-    - "survival"
-    - "self-deception"
-    - "courage"
-    - "good vs evil"
-    - "corruption"
-    - "racism"
-    - "fear of failure"
-    - "betrayal"
+      - "War"
+      - "Love"
+      - "Death"
+      - "Exile"
+      - "Travel"
+      - "Friendship"
+      - "Family"
+      - "Immortality"
+      - "Chaos"
+      - "Coming of age"
+      - "Survival"
+      - "Self-deception"
+      - "Courage"
+      - "Good vs Evil"
+      - "Corruption"
+      - "Racism"
+      - "Fear of failure"
+      - "Betrayal"
+      - "Killer Hounting"
   Event:
     type: "object"
     required:
-    - "book"
-    - "date"
-    - "place"
+      - "book"
+      - "date"
+      - "place"
     properties:
       id:
         type: "integer"
@@ -577,8 +728,8 @@ definitions:
   Amount:
     type: "object"
     required:
-    - "currency"
-    - "value"
+      - "currency"
+      - "value"
     properties:
       value:
         type: "number"

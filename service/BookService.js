@@ -61,14 +61,6 @@ exports.getBookById = function(bookId) {
       code: bookId
     }).first()
     .then(book => {
-      book.price = {value: book.value, currency: book.currency};
-      book.status = book.available === true ? "available": "out of stock";
-      delete book.value;
-      delete book.currency;
-      delete book.available;
-      return book;
-    })
-    .then(book => {
       if (book.length === 0) {
         let error = new Error("Book not found");
         error.code = 404;
@@ -76,8 +68,39 @@ exports.getBookById = function(bookId) {
       }
       else
         return book;
-    })
-    .catch(error => {
+    }).then(book => {
+      book.price = {value: book.value, currency: book.currency};
+      book.status = book.available === true ? "available": "out of stock";
+      delete book.value;
+      delete book.currency;
+      delete book.available;
+      return book;
+    }).catch(error => {
       return error;
+    })
+};
+
+/**
+ * Find books similar to bookId
+ * Returns a list of book
+ *
+ * bookId Long ID of book to find similars
+ * returns List
+ */
+exports.getSimilarBooks = function(bookId) {
+  if (!Number.isInteger(bookId)) {
+    let error = new Error("Bad request. invalid ID supplied");
+    error.code = 400;
+    throw error;
+  }
+
+  return exports.getBookById(bookId)
+    .then(book => {
+      return exports.booksGET(undefined, undefined, undefined, book.genre, book.theme)
+    })
+    .then(similars => {
+      return similars.filter(similar => {
+        return Number(similar.code) !== Number(bookId)
+      })
     })
 };

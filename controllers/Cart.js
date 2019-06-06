@@ -3,12 +3,12 @@
 var utils = require('../utils/writer.js');
 var Cart = require('../service/CartService');
 
-module.exports.cartCartIdGET = function cartCartIdGET (req, res, next) {
-  var cartId = req.swagger.params['cartId'].value;
+module.exports.userCartGET = function userCartGET (req, res, next) {
+  var cartId = req.session.sessionId;
   if (!req.session || !req.session.loggedin) {
-    utils.writeJson(res, {error: "sorry, you must be authorized"}, 404);
+    utils.writeJson(res, {error: "Access denied: authentication needed to proceed."}, 401);
   } else {
-    Cart.cartCartIdGET(cartId)
+    Cart.userCartGET(cartId)
       .then(function (response) {
         utils.writeJson(res, response);
       })
