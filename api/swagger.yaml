@@ -102,7 +102,7 @@ paths:
         404:
           description: "Book not found"
       x-swagger-router-controller: "Book"
-  /books/{bookId}/review:
+  /books/{bookId}/reviews:
     get:
       tags:
         - "book"
@@ -502,6 +502,10 @@ paths:
 definitions:
   User:
     type: "object"
+    required:
+      - "username"
+      - "email"
+      - "password"
     properties:
       id:
         type: "integer"
@@ -513,10 +517,6 @@ definitions:
       password:
         type: "string"
         format: "password"
-      address:
-        type: "string"
-      creditcard:
-        type: "string"
     title: "User"
     description: "A user"
     example:
@@ -559,6 +559,7 @@ definitions:
     required:
       - "price"
       - "title"
+      - "authors"
     properties:
       id:
         type: "integer"
@@ -572,20 +573,10 @@ definitions:
           $ref: "#/definitions/Author"
         maxItems: 4
         minItems: 1
-      genres:
-        type: "array"
-        uniqueItems: true
-        items:
-          $ref: "#/definitions/Genre"
-        maxItems: 3
-        minItems: 1
-      themes:
-        type: "array"
-        uniqueItems: true
-        items:
-          $ref: "#/definitions/Theme"
-        maxItems: 6
-        minItems: 1
+      genre:
+        $ref: "#/definitions/Genre"
+      theme:
+        $ref: "#/definitions/Theme"
       price:
         $ref: "#/definitions/Amount"
       status:
@@ -642,6 +633,8 @@ definitions:
         type: "integer"
         format: "int64"
       name:
+        type: "string"
+      biography:
         type: "string"
     title: "Author"
     description: "An author who wrote a book in the store"

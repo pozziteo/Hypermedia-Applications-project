@@ -11,15 +11,15 @@ let sqlDb = require("./DataLayer.js").database;
  * returns List
  **/
 exports.bookReviewsGET = function(bookId) {
-  return new Promise(function(resolve, reject) {
-    var examples = {};
-    if (Object.keys(examples).length > 0) {
-      resolve(examples[Object.keys(examples)[0]]);
-    } else {
-      resolve();
-    }
-  });
-}
+  if (!Number.isInteger(bookId)) {
+    let error = new Error("Bad request: invalid ID supplied");
+    error.code = 400;
+    throw error;
+  }
+
+  return sqlDb("review")
+    .where("book_id", bookId)
+};
 
 
 /**
@@ -34,21 +34,18 @@ exports.bookReviewsGET = function(bookId) {
  * returns List
  **/
 exports.booksGET = function(offset, limit, author, genre, theme) {
-  let authorsQuery = sqlDb("written")
-    .where("author_id", author)
-    .select("book_id");
-
-  return sqlDb("book")
-    .limit(limit)
-    .offset(offset)
+  return sqlDb("written")
+    .join("book", "written.book_id", "book.code")
+    .join("author", "written.author_id", "author.author_id")
     .where(builder => {
       if (!lodash.isUndefined(author))
-        builder.whereIn("code", authorsQuery);
+        builder.where("author.author_id", author);
       if (!lodash.isUndefined(genre))
-        builder.where("genre", genre);
+        builder.where("book.genre", genre);
       if (!lodash.isUndefined(theme))
-        builder.where("theme", theme);
-    }).then(data => {
+        builder.where("book.theme", theme);
+    })
+    .then(data => {
       return data.map(e => {
         return bookMapping(e);
       })
@@ -70,7 +67,9 @@ exports.getBookById = function(bookId) {
     throw error;
   }
 
-  return sqlDb("book")
+  return sqlDb("written")
+    .join("book", "written.book_id", "book.code")
+    .join("author", "written.author_id", "author.author_id")
     .where( {
       code: bookId
     }).first()
@@ -106,12 +105,14 @@ exports.getSimilarBooks = function(bookId) {
 
   return exports.getBookById(bookId)
     .then(book => {
-      return sqlDb("book")
+      return sqlDb("written")
+        .join("book", "written.book_id", "book.code")
+        .join("author", "written.author_id", "author.author_id")
         .where({
           genre: book.genre,
           theme: book.theme
         })
-        .andWhereNot("code", book.code)
+        .andWhereNot("book.code", book.code)
     }).then(similar => {
       return similar.map(book => {
         return bookMapping(book);
@@ -123,8 +124,12 @@ exports.getSimilarBooks = function(bookId) {
 
 
 function bookMapping(book) {
+  book.author = {name: book.name, biography: book.biography};
   book.price = {value: book.value, currency: book.currency};
   book.status = book.available === true ? "available": "out of stock";
+  delete book.name;
+  delete book.biography;
+  delete book.author_id;
   delete book.value;
   delete book.currency;
   delete book.available;

@@ -7,7 +7,11 @@ module.exports.bookReviewsGET = function bookReviewsGET (req, res, next) {
   var bookId = req.swagger.params['bookId'].value;
   Book.bookReviewsGET(bookId)
     .then(function (response) {
-      utils.writeJson(res, response);
+      if (response instanceof Error) {
+        utils.writeJson(res, { error: response.message }, response.code);
+      } else {
+        utils.writeJson(res, response);
+      }
     })
     .catch(function (response) {
       utils.writeJson(res, response);
