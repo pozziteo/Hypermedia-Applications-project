@@ -142,7 +142,7 @@ paths:
       parameters:
         - name: "bookId"
           in: "path"
-          description: "ID of book to find similars"
+          description: "ID of book to find similar"
           required: true
           type: "integer"
           format: "int64"
@@ -339,7 +339,7 @@ paths:
       tags:
         - "cart"
       summary: "Empty the cart"
-      operationId: "cartEmptyPUT"
+      operationId: "emptyCartPUT"
       responses:
         200:
           description: "Successful operation"

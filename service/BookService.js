@@ -4,6 +4,25 @@ const lodash = require("lodash");
 let sqlDb = require("./DataLayer.js").database;
 
 /**
+ * Find reviews of a book
+ * Returns all reviews of the book with id bookId
+ *
+ * bookId Long ID of the book to find reviews about
+ * returns List
+ **/
+exports.bookReviewsGET = function(bookId) {
+  return new Promise(function(resolve, reject) {
+    var examples = {};
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+  });
+}
+
+
+/**
  * Books available in the inventory
  * List of books available in the inventory
  *
@@ -31,12 +50,7 @@ exports.booksGET = function(offset, limit, author, genre, theme) {
         builder.where("theme", theme);
     }).then(data => {
       return data.map(e => {
-        e.price = {value: e.value, currency: e.currency};
-        e.status = e.available === true ? "available": "out of stock";
-        delete e.value;
-        delete e.currency;
-        delete e.available;
-        return e;
+        return bookMapping(e);
       })
     })
 };
@@ -69,22 +83,18 @@ exports.getBookById = function(bookId) {
       else
         return book;
     }).then(book => {
-      book.price = {value: book.value, currency: book.currency};
-      book.status = book.available === true ? "available": "out of stock";
-      delete book.value;
-      delete book.currency;
-      delete book.available;
-      return book;
+      return bookMapping(book);
     }).catch(error => {
       return error;
     })
 };
 
+
 /**
  * Find books similar to bookId
  * Returns a list of book
  *
- * bookId Long ID of book to find similars
+ * bookId Long ID of book to find similar
  * returns List
  */
 exports.getSimilarBooks = function(bookId) {
@@ -96,11 +106,27 @@ exports.getSimilarBooks = function(bookId) {
 
   return exports.getBookById(bookId)
     .then(book => {
-      return exports.booksGET(undefined, undefined, undefined, book.genre, book.theme)
-    })
-    .then(similars => {
-      return similars.filter(similar => {
-        return Number(similar.code) !== Number(bookId)
+      return sqlDb("book")
+        .where({
+          genre: book.genre,
+          theme: book.theme
+        })
+        .andWhereNot("code", book.code)
+    }).then(similar => {
+      return similar.map(book => {
+        return bookMapping(book);
       })
+    }).catch(error => {
+      return error;
     })
 };
+
+
+function bookMapping(book) {
+  book.price = {value: book.value, currency: book.currency};
+  book.status = book.available === true ? "available": "out of stock";
+  delete book.value;
+  delete book.currency;
+  delete book.available;
+  return book;
+}

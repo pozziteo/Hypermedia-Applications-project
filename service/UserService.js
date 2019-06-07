@@ -43,6 +43,19 @@ exports.userLoginPOST = function(username, password) {
 
 
 /**
+ * Logout
+ * Logout from the store
+ *
+ * no response value expected for this operation
+ **/
+exports.userLogoutPOST = function() {
+  return new Promise(function(resolve, reject) {
+    resolve();
+  });
+}
+
+
+/**
  * Register
  * Register into the store
  *

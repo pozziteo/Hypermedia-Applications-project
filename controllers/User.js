@@ -28,6 +28,16 @@ module.exports.userLoginPOST = function userLoginPOST (req, res, next) {
     });
 };
 
+module.exports.userLogoutPOST = function userLogoutPOST (req, res, next) {
+  User.userLogoutPOST()
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.userRegisterPOST = function userRegisterPOST (req, res, next) {
   var email = req.swagger.params['email'].value;
   var username = req.swagger.params['username'].value;
