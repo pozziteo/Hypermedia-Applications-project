@@ -248,6 +248,8 @@ paths:
             $ref: "#/definitions/User"
         401:
           description: "Authentication Failed"
+        409:
+          description: "Already logged in"
       x-swagger-router-controller: "User"
   /user/register:
     post:
@@ -276,7 +278,7 @@ paths:
           type: "string"
           format: "password"
       responses:
-        200:
+        201:
           description: "Registration successful"
         409:
           description: "Registration failed due to duplicate"
@@ -291,7 +293,7 @@ paths:
       responses:
         200:
           description: "Logout successful"
-        400:
+        409:
           description: "Not logged in"
       x-swagger-router-controller: "User"
   /cart:

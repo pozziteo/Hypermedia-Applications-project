@@ -6,36 +6,40 @@ var User = require('../service/UserService');
 module.exports.userLoginPOST = function userLoginPOST (req, res, next) {
   var username = req.swagger.params['username'].value;
   var password = req.swagger.params['password'].value;
-  User.userLoginPOST(username, password)
-    .then(function (response) {
-      if (response instanceof Error) {
-        utils.writeJson(res, { error: response.message }, response.code);
-      }
-      else {
-        if (!req.session.loggedin)
+  if (req.session.loggedin) {
+    utils.writeJson(res, { error: "You are already logged in" }, 409);
+  } else {
+    User.userLoginPOST(username, password)
+      .then(function (response) {
+        if (response instanceof Error) {
+          utils.writeJson(res, {error: response.message}, response.code);
+        } else {
           req.session = {
             loggedin: true,
             sessionId: response.id
           };
-        else
-          req.session = null;
-        console.log(req.session);
-        utils.writeJson(res, response);
-      }})
-    .catch(function (response) {
-      console.log("found error");
+          utils.writeJson(res, response);
+        }
+      }).catch(function (response) {
       utils.writeJson(res, response);
     });
+  }
 };
 
 module.exports.userLogoutPOST = function userLogoutPOST (req, res, next) {
-  User.userLogoutPOST()
-    .then(function (response) {
-      utils.writeJson(res, response);
-    })
-    .catch(function (response) {
-      utils.writeJson(res, response);
-    });
+  if (!req.session.loggedin) {
+    utils.writeJson(res, { error: "You are not logged in" }, 409)
+  }
+  else {
+    req.session = null;
+    User.userLogoutPOST()
+      .then(function (response) {
+        utils.writeJson(res, response);
+      })
+      .catch(function (response) {
+        utils.writeJson(res, response);
+      });
+  }
 };
 
 module.exports.userRegisterPOST = function userRegisterPOST (req, res, next) {

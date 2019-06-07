@@ -16,14 +16,11 @@ let sqlDb = require("./DataLayer.js").database;
  * no response value expected for this operation
  **/
 exports.userLoginPOST = function(username, password) {
-  let fetchedUser;
-
   return sqlDb("customer")
     .where("username", username)
     .first()
     .then(user => {
       if (user.length !== 0) {
-        fetchedUser = user;
         return sqlDb("customer").select("password").where("username", username).first()
       }
       else throw new Error("Wrong username or password");
@@ -32,7 +29,7 @@ exports.userLoginPOST = function(username, password) {
       return bcrypt.compare(password, pw.password)
     }).then(check => {
       if (check === true)
-        return fetchedUser;
+        return { success: "Successful login" };
       else throw new Error("Wrong username or password");
     })
     .catch(error => {
@@ -49,10 +46,8 @@ exports.userLoginPOST = function(username, password) {
  * no response value expected for this operation
  **/
 exports.userLogoutPOST = function() {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
-}
+  return { success: "Logout successful" };
+};
 
 
 /**
@@ -94,7 +89,7 @@ exports.userRegisterPOST = function(email, username, password) {
       }
     }).then(() => {
       return {
-        success: "registration successful"
+        success: "Registration successful"
       }
     })
     .catch(error => {
