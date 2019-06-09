@@ -67,7 +67,8 @@ exports.booksGET = function(offset, limit, author, genre, theme) {
         builder.where("book.genre", genre);
       if (!lodash.isUndefined(theme))
         builder.where("book.theme", theme);
-    })
+    }).distinct("code", "title", "description", "value", "publisher",
+      "binding", "genre", "theme", "available", "series", "currency")
     .then(data => {
       let map = data.map(e => {
         return bookMapping(e);
@@ -136,6 +137,8 @@ exports.getSimilarBooks = function(bookId) {
           theme: book.theme
         })
         .andWhereNot("book.code", book.code)
+        .distinct("code", "title", "description", "value", "publisher",
+          "binding", "genre", "theme", "available", "series", "currency")
     }).then(similar => {
       let map = similar.map(book => {
         return bookMapping(book);
