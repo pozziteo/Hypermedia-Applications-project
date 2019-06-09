@@ -620,7 +620,7 @@ definitions:
       - "title"
       - "authors"
     properties:
-      id:
+      code:
         type: "integer"
         format: "int64"
       title:
@@ -632,6 +632,14 @@ definitions:
           $ref: "#/definitions/Author"
         maxItems: 4
         minItems: 1
+      description:
+        type: "string"
+      publisher:
+        type: "string"
+      binding:
+        type: "string"
+      series:
+        type: "string"
       genre:
         $ref: "#/definitions/Genre"
       theme:
@@ -750,10 +758,12 @@ definitions:
       - "date"
       - "place"
     properties:
-      id:
+      event_id:
         type: "integer"
         format: "int64"
       title:
+        type: "string"
+      description:
         type: "string"
       date:
         type: "string"

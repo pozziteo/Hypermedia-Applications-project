@@ -3,6 +3,7 @@
 const lodash = require("lodash");
 let booksFind = require("./BookService.js");
 let sqlDb = require("./DataLayer.js").database;
+let moment = require("moment");
 
 /**
  * Events organized by the store
@@ -24,10 +25,16 @@ exports.eventsGET = function(offset, limit, book, author) {
         builder.where("book_id", book);
       if (!lodash.isUndefined(author))
         builder.whereIn("book_id", () => {
-          return sqlDb("books")
+          return sqlDb("book")
             .select("code")
             .where("author_ID", author);
         });
+    }).then(events => {
+      let map = events.map(event => {
+        return insertBook(event);
+      });
+
+      return Promise.all(map);
     })
 };
 
@@ -37,10 +44,17 @@ exports.eventsGET = function(offset, limit, book, author) {
  *
  * returns List
  */
-exports.eventsThisMonthGET= function() {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+exports.eventsThisMonthGET = function() {
+  return sqlDb("event")
+    .whereBetween("date",
+      [ moment().startOf("month"), moment().endOf("month") ])
+    .then(events => {
+      let map = events.map(event => {
+        return insertBook(event);
+      });
+
+      return Promise.all(map);
+    })
 };
 
 
@@ -70,9 +84,24 @@ exports.getEventById = function(eventId) {
       }
       else
         return event;
+    }).then(event => {
+      return insertBook(event);
     })
     .catch(error => {
       return error;
     })
 };
+
+
+function insertBook(event) {
+  let gettingBook = booksFind.getBookById(Number(event.book_id));
+
+  return Promise.all([ gettingBook ])
+    .then(result => {
+      event.book = result[0];
+      delete event.book_id
+
+      return event;
+    })
+}
 
