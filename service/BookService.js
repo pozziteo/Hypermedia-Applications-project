@@ -60,19 +60,20 @@ exports.bookReviewsGET = function(bookId) {
 exports.booksGET = function(offset, limit, author, genre, theme) {
   return sqlDb("written")
     .join("book", "written.book_id", "book.code")
-    .join("author", "written.author_id", "author.author_id")
     .where(builder => {
       if (!lodash.isUndefined(author))
-        builder.where("author.author_id", author);
+        builder.where("written.author_id", author);
       if (!lodash.isUndefined(genre))
         builder.where("book.genre", genre);
       if (!lodash.isUndefined(theme))
         builder.where("book.theme", theme);
     })
     .then(data => {
-      return data.map(e => {
+      let map = data.map(e => {
         return bookMapping(e);
-      })
+      });
+
+      return Promise.all(map);
     })
 };
 
@@ -93,7 +94,6 @@ exports.getBookById = function(bookId) {
 
   return sqlDb("written")
     .join("book", "written.book_id", "book.code")
-    .join("author", "written.author_id", "author.author_id")
     .where( {
       code: bookId
     }).first()
@@ -131,16 +131,17 @@ exports.getSimilarBooks = function(bookId) {
     .then(book => {
       return sqlDb("written")
         .join("book", "written.book_id", "book.code")
-        .join("author", "written.author_id", "author.author_id")
         .where({
           genre: book.genre,
           theme: book.theme
         })
         .andWhereNot("book.code", book.code)
     }).then(similar => {
-      return similar.map(book => {
+      let map = similar.map(book => {
         return bookMapping(book);
-      })
+      });
+
+      return Promise.all(map);
     }).catch(error => {
       return error;
     })
@@ -148,14 +149,31 @@ exports.getSimilarBooks = function(bookId) {
 
 
 function bookMapping(book) {
-  book.author = {name: book.name, biography: book.biography};
-  book.price = {value: book.value, currency: book.currency};
-  book.status = book.available === true ? "available": "out of stock";
-  delete book.name;
-  delete book.biography;
-  delete book.author_id;
-  delete book.value;
-  delete book.currency;
-  delete book.available;
-  return book;
+  let bookAuthors = sqlDb("author")
+    .join("written", "author.author_id", "written.author_id")
+    .where("written.book_id", book.code)
+    .then(authors => {
+      return authors.map(author => {
+        return { name: author.name, biography: author.biography }
+      })
+    });
+
+  let price = {value: book.value, currency: book.currency};
+  let status = book.available === true ? "available": "out of stock";
+
+  return Promise.all([ bookAuthors, price, status ])
+    .then(results => {
+      book.authors = results[0];
+      book.price = results[1];
+      book.status = results[2];
+      delete book.book_id;
+      delete book.name;
+      delete book.biography;
+      delete book.author_id;
+      delete book.value;
+      delete book.currency;
+      delete book.available;
+
+      return book;
+    })
 }
