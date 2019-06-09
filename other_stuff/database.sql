@@ -5,7 +5,7 @@
 -- Dumped from database version 11.2
 -- Dumped by pg_dump version 11.2
 
--- Started on 2019-06-05 16:16:24
+-- Started on 2019-06-09 19:43:50
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -29,8 +29,17 @@ SET default_with_oids = false;
 CREATE TABLE public.author (
     name character varying(50) NOT NULL,
     author_id character varying(20) NOT NULL,
-    biography character varying(200) NOT NULL,
-    picture character varying(50)
+    biography character varying(200) NOT NULL
+);
+
+
+--
+-- TOC entry 209 (class 1259 OID 24660)
+-- Name: best-sellers; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public."best-sellers" (
+    book_id character varying(25) NOT NULL
 );
 
 
@@ -41,7 +50,7 @@ CREATE TABLE public.author (
 
 CREATE TABLE public.book (
     title character varying(80) NOT NULL,
-    description character varying(200) NOT NULL,
+    description character varying(500) NOT NULL,
     value numeric(5,2) NOT NULL,
     code character varying(25) NOT NULL,
     publisher character varying(50),
@@ -49,7 +58,6 @@ CREATE TABLE public.book (
     genre character varying(20) NOT NULL,
     theme character varying(20) NOT NULL,
     available boolean NOT NULL,
-    picture character varying(50)[],
     series character varying(50),
     currency character varying(6) NOT NULL
 );
@@ -62,8 +70,6 @@ CREATE TABLE public.book (
 
 CREATE TABLE public.cart (
     book_id character varying(20) NOT NULL,
-    quantity integer NOT NULL,
-    book_price numeric(5,2) NOT NULL,
     owner_id integer NOT NULL
 );
 
@@ -83,7 +89,7 @@ CREATE SEQUENCE public.cart_owner_id_seq
 
 
 --
--- TOC entry 2895 (class 0 OID 0)
+-- TOC entry 2912 (class 0 OID 0)
 -- Dependencies: 206
 -- Name: cart_owner_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
@@ -123,7 +129,7 @@ CREATE SEQUENCE public.customer_user_id_seq
 
 
 --
--- TOC entry 2896 (class 0 OID 0)
+-- TOC entry 2913 (class 0 OID 0)
 -- Dependencies: 207
 -- Name: customer_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
@@ -137,11 +143,10 @@ ALTER SEQUENCE public.customer_user_id_seq OWNED BY public.customer.user_id;
 --
 
 CREATE TABLE public.event (
-    book_id character varying(20) NOT NULL,
+    book_id character varying(25) NOT NULL,
     title character varying(80) NOT NULL,
     place character varying(80) NOT NULL,
     description character varying(500) NOT NULL,
-    picture character varying(80),
     event_id integer NOT NULL,
     date timestamp with time zone
 );
@@ -161,12 +166,22 @@ CREATE SEQUENCE public.event_event_id_seq
 
 
 --
--- TOC entry 2897 (class 0 OID 0)
+-- TOC entry 2914 (class 0 OID 0)
 -- Dependencies: 201
 -- Name: event_event_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
 ALTER SEQUENCE public.event_event_id_seq OWNED BY public.event.event_id;
+
+
+--
+-- TOC entry 208 (class 1259 OID 24637)
+-- Name: favourites; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.favourites (
+    book_id character varying(25) NOT NULL
+);
 
 
 --
@@ -215,7 +230,7 @@ CREATE TABLE public.written (
 
 
 --
--- TOC entry 2724 (class 2604 OID 24614)
+-- TOC entry 2733 (class 2604 OID 24614)
 -- Name: cart owner_id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -223,7 +238,7 @@ ALTER TABLE ONLY public.cart ALTER COLUMN owner_id SET DEFAULT nextval('public.c
 
 
 --
--- TOC entry 2725 (class 2604 OID 24624)
+-- TOC entry 2734 (class 2604 OID 24624)
 -- Name: customer user_id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -231,7 +246,7 @@ ALTER TABLE ONLY public.customer ALTER COLUMN user_id SET DEFAULT nextval('publi
 
 
 --
--- TOC entry 2726 (class 2604 OID 16555)
+-- TOC entry 2735 (class 2604 OID 16555)
 -- Name: event event_id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -239,44 +254,57 @@ ALTER TABLE ONLY public.event ALTER COLUMN event_id SET DEFAULT nextval('public.
 
 
 --
--- TOC entry 2878 (class 0 OID 16514)
+-- TOC entry 2893 (class 0 OID 16514)
 -- Dependencies: 196
 -- Data for Name: author; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.author (name, author_id, biography, picture) FROM stdin;
-Patricia Cornwell	11	Cornwell began work on her first novel in 1984, about a male detective named Joe Constable and met Dr. Marcella Farinelli Fierro, a medical examiner in Richmond, and subsequent inspiration for the cha	\N
-J. K. Rowling	12	J.K. Rowling was living in Edinburgh, Scotland, and struggling to get by as a single mom before her first book, Harry Potter and the Sorcerer's Stone, was published. The children's fantasy novel becam	\N
-Arthur Conan Doyle	13	Sir Arthur Ignatius Conan Doyle KStJ DL (22 May 1859 – 7 July 1930) was a British writer best known for his detective fiction featuring the character Sherlock Holmes. Originally a physician, in 1887 h	\N
+COPY public.author (name, author_id, biography) FROM stdin;
+Patricia Cornwell	11	Cornwell began work on her first novel in 1984, about a male detective named Joe Constable and met Dr. Marcella Farinelli Fierro, a medical examiner in Richmond, and subsequent inspiration for the cha
+J. K. Rowling	12	J.K. Rowling was living in Edinburgh, Scotland, and struggling to get by as a single mom before her first book, Harry Potter and the Sorcerer's Stone, was published. The children's fantasy novel becam
+Arthur Conan Doyle	13	Sir Arthur Ignatius Conan Doyle KStJ DL (22 May 1859 – 7 July 1930) was a British writer best known for his detective fiction featuring the character Sherlock Holmes. Originally a physician, in 1887 h
 \.
 
 
 --
--- TOC entry 2879 (class 0 OID 16517)
+-- TOC entry 2906 (class 0 OID 24660)
+-- Dependencies: 209
+-- Data for Name: best-sellers; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public."best-sellers" (book_id) FROM stdin;
+9780439358064
+9780743477154
+\.
+
+
+--
+-- TOC entry 2894 (class 0 OID 16517)
 -- Dependencies: 197
 -- Data for Name: book; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.book (title, description, value, code, publisher, binding, genre, theme, available, picture, series, currency) FROM stdin;
-Postmortem	Four women with nothing in common, united only in death. Four brutalized victims of a brilliant monster - a "Mr. Nobody", moving undetected through a paralyzed city, leaving behind a gruesome trail of	25.00	9780743477154	Pocket Books, December 30th 2003	Hardcover - 350 pages	Crime	Killer Hounting	t	\N	Kay Scarpetta #1	eur
-Harry Potter and the Order of the Phoenix	Dark times have come to Hogwarts. After the Dementors' attack on his cousin Dudley, Harry Potter knows that Voldemort will stop at nothing to find him. There are many who deny the Dark Lord's return, 	17.50	9780439358064	Arthur A. Levine Books; 1st edition (July 1, 2003)	Hardcover - 870 pages	Fantasy	Good vs Evil	t	\N	\N	eur
-Body of Evidence	After months of menacing phone calls and feeling that her every move is being watched, successful writer Beryl Madison flees Key West when a terrifying message is scratched on her car. But the very ni	20.00	9780743493918	Pocket Books, November 30th 2004	Hardcover - 300 pages	Crime	Killer Hounting	t	\N	Kay Scarpetta #2	eur
-Harry Potter and the Sorcerer's Stone	Harry Potter has no idea how famous he is. That's because he's being raised by his miserable aunt and uncle who are terrified Harry will learn that he's really a wizard, just as his parents were. But 	10.00	9780439708180	Scholastic; 1st Edition edition September 1998	Paperback - 309 pages	Fantasy	Good vs Evil	t	\N	Harry Potter #1	eur
+COPY public.book (title, description, value, code, publisher, binding, genre, theme, available, series, currency) FROM stdin;
+Postmortem	Four women with nothing in common, united only in death. Four brutalized victims of a brilliant monster - a "Mr. Nobody", moving undetected through a paralyzed city, leaving behind a gruesome trail of	25.00	9780743477154	Pocket Books, December 30th 2003	Hardcover - 350 pages	Crime	Killer Hounting	t	Kay Scarpetta #1	eur
+Harry Potter and the Order of the Phoenix	Dark times have come to Hogwarts. After the Dementors' attack on his cousin Dudley, Harry Potter knows that Voldemort will stop at nothing to find him. There are many who deny the Dark Lord's return, 	17.50	9780439358064	Arthur A. Levine Books; 1st edition (July 1, 2003)	Hardcover - 870 pages	Fantasy	Good vs Evil	t	\N	eur
+Body of Evidence	After months of menacing phone calls and feeling that her every move is being watched, successful writer Beryl Madison flees Key West when a terrifying message is scratched on her car. But the very ni	20.00	9780743493918	Pocket Books, November 30th 2004	Hardcover - 300 pages	Crime	Killer Hounting	t	Kay Scarpetta #2	eur
+Harry Potter and the Sorcerer's Stone	Harry Potter has no idea how famous he is. That's because he's being raised by his miserable aunt and uncle who are terrified Harry will learn that he's really a wizard, just as his parents were. But 	10.00	9780439708180	Scholastic; 1st Edition edition September 1998	Paperback - 309 pages	Fantasy	Good vs Evil	t	Harry Potter #1	eur
 \.
 
 
 --
--- TOC entry 2880 (class 0 OID 16523)
+-- TOC entry 2895 (class 0 OID 16523)
 -- Dependencies: 198
 -- Data for Name: cart; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.cart (book_id, quantity, book_price, owner_id) FROM stdin;
+COPY public.cart (book_id, owner_id) FROM stdin;
+9780439358064	1
 \.
 
 
 --
--- TOC entry 2881 (class 0 OID 16526)
+-- TOC entry 2896 (class 0 OID 16526)
 -- Dependencies: 199
 -- Data for Name: customer; Type: TABLE DATA; Schema: public; Owner: -
 --
@@ -287,18 +315,30 @@ giovanni@mail.it	Milano	Via verdi, 23	20035	Lombardia	naani	$2b$10$l0njbpqbGEzAo
 
 
 --
--- TOC entry 2882 (class 0 OID 16531)
+-- TOC entry 2897 (class 0 OID 16531)
 -- Dependencies: 200
 -- Data for Name: event; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.event (book_id, title, place, description, picture, event_id, date) FROM stdin;
-9780743477154	Crime and summer	Milan via pascoli 5	Reading  of the book postmortem	\N	1	2019-12-07 15:00:00+01
+COPY public.event (book_id, title, place, description, event_id, date) FROM stdin;
+9780743477154	Crime and summer	Milan via pascoli 5	Reading  of the book postmortem	1	2019-12-07 15:00:00+01
 \.
 
 
 --
--- TOC entry 2884 (class 0 OID 16539)
+-- TOC entry 2905 (class 0 OID 24637)
+-- Dependencies: 208
+-- Data for Name: favourites; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.favourites (book_id) FROM stdin;
+9780743477154
+9780439708180
+\.
+
+
+--
+-- TOC entry 2899 (class 0 OID 16539)
 -- Dependencies: 202
 -- Data for Name: genre; Type: TABLE DATA; Schema: public; Owner: -
 --
@@ -324,7 +364,7 @@ Crime
 
 
 --
--- TOC entry 2885 (class 0 OID 16542)
+-- TOC entry 2900 (class 0 OID 16542)
 -- Dependencies: 203
 -- Data for Name: review; Type: TABLE DATA; Schema: public; Owner: -
 --
@@ -335,7 +375,7 @@ COPY public.review (book_id, date, rate, comment, username) FROM stdin;
 
 
 --
--- TOC entry 2886 (class 0 OID 16548)
+-- TOC entry 2901 (class 0 OID 16548)
 -- Dependencies: 204
 -- Data for Name: theme; Type: TABLE DATA; Schema: public; Owner: -
 --
@@ -364,7 +404,7 @@ Killer Hounting
 
 
 --
--- TOC entry 2887 (class 0 OID 16551)
+-- TOC entry 2902 (class 0 OID 16551)
 -- Dependencies: 205
 -- Data for Name: written; Type: TABLE DATA; Schema: public; Owner: -
 --
@@ -378,16 +418,16 @@ COPY public.written (book_id, author_id) FROM stdin;
 
 
 --
--- TOC entry 2898 (class 0 OID 0)
+-- TOC entry 2915 (class 0 OID 0)
 -- Dependencies: 206
 -- Name: cart_owner_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.cart_owner_id_seq', 1, false);
+SELECT pg_catalog.setval('public.cart_owner_id_seq', 3, true);
 
 
 --
--- TOC entry 2899 (class 0 OID 0)
+-- TOC entry 2916 (class 0 OID 0)
 -- Dependencies: 207
 -- Name: customer_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
@@ -396,7 +436,7 @@ SELECT pg_catalog.setval('public.customer_user_id_seq', 1, true);
 
 
 --
--- TOC entry 2900 (class 0 OID 0)
+-- TOC entry 2917 (class 0 OID 0)
 -- Dependencies: 201
 -- Name: event_event_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
@@ -405,7 +445,7 @@ SELECT pg_catalog.setval('public.event_event_id_seq', 1, true);
 
 
 --
--- TOC entry 2728 (class 2606 OID 16557)
+-- TOC entry 2737 (class 2606 OID 16557)
 -- Name: author author_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -414,7 +454,25 @@ ALTER TABLE ONLY public.author
 
 
 --
--- TOC entry 2730 (class 2606 OID 16559)
+-- TOC entry 2761 (class 2606 OID 24664)
+-- Name: best-sellers book_bestseller_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."best-sellers"
+    ADD CONSTRAINT book_bestseller_pkey PRIMARY KEY (book_id);
+
+
+--
+-- TOC entry 2759 (class 2606 OID 24654)
+-- Name: favourites book_favourites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.favourites
+    ADD CONSTRAINT book_favourites_pkey PRIMARY KEY (book_id);
+
+
+--
+-- TOC entry 2739 (class 2606 OID 16559)
 -- Name: book book_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -423,7 +481,7 @@ ALTER TABLE ONLY public.book
 
 
 --
--- TOC entry 2732 (class 2606 OID 24619)
+-- TOC entry 2741 (class 2606 OID 24619)
 -- Name: cart cart_content_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -432,7 +490,7 @@ ALTER TABLE ONLY public.cart
 
 
 --
--- TOC entry 2734 (class 2606 OID 16565)
+-- TOC entry 2743 (class 2606 OID 16565)
 -- Name: customer customer_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -441,7 +499,7 @@ ALTER TABLE ONLY public.customer
 
 
 --
--- TOC entry 2736 (class 2606 OID 24631)
+-- TOC entry 2745 (class 2606 OID 24631)
 -- Name: customer customer_userid_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -450,7 +508,7 @@ ALTER TABLE ONLY public.customer
 
 
 --
--- TOC entry 2738 (class 2606 OID 16567)
+-- TOC entry 2747 (class 2606 OID 16567)
 -- Name: customer customers_email_key; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -459,7 +517,7 @@ ALTER TABLE ONLY public.customer
 
 
 --
--- TOC entry 2740 (class 2606 OID 16569)
+-- TOC entry 2749 (class 2606 OID 16569)
 -- Name: event event_pk; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -468,7 +526,7 @@ ALTER TABLE ONLY public.event
 
 
 --
--- TOC entry 2742 (class 2606 OID 16573)
+-- TOC entry 2751 (class 2606 OID 16573)
 -- Name: genre genre_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -477,7 +535,7 @@ ALTER TABLE ONLY public.genre
 
 
 --
--- TOC entry 2744 (class 2606 OID 16575)
+-- TOC entry 2753 (class 2606 OID 16575)
 -- Name: review review_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -486,7 +544,7 @@ ALTER TABLE ONLY public.review
 
 
 --
--- TOC entry 2746 (class 2606 OID 16577)
+-- TOC entry 2755 (class 2606 OID 16577)
 -- Name: theme theme_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -495,7 +553,7 @@ ALTER TABLE ONLY public.theme
 
 
 --
--- TOC entry 2748 (class 2606 OID 16579)
+-- TOC entry 2757 (class 2606 OID 16579)
 -- Name: written written_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -504,7 +562,25 @@ ALTER TABLE ONLY public.written
 
 
 --
--- TOC entry 2749 (class 2606 OID 16580)
+-- TOC entry 2771 (class 2606 OID 24665)
+-- Name: best-sellers book_bestseller_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public."best-sellers"
+    ADD CONSTRAINT book_bestseller_fkey FOREIGN KEY (book_id) REFERENCES public.book(code);
+
+
+--
+-- TOC entry 2770 (class 2606 OID 24655)
+-- Name: favourites book_favourites_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.favourites
+    ADD CONSTRAINT book_favourites_fkey FOREIGN KEY (book_id) REFERENCES public.book(code);
+
+
+--
+-- TOC entry 2762 (class 2606 OID 16580)
 -- Name: book book_genre_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -513,7 +589,7 @@ ALTER TABLE ONLY public.book
 
 
 --
--- TOC entry 2750 (class 2606 OID 16585)
+-- TOC entry 2763 (class 2606 OID 16585)
 -- Name: book book_theme_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -522,7 +598,7 @@ ALTER TABLE ONLY public.book
 
 
 --
--- TOC entry 2751 (class 2606 OID 16640)
+-- TOC entry 2764 (class 2606 OID 16640)
 -- Name: cart cart_bookid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -531,7 +607,7 @@ ALTER TABLE ONLY public.cart
 
 
 --
--- TOC entry 2752 (class 2606 OID 16635)
+-- TOC entry 2765 (class 2606 OID 24632)
 -- Name: event event_bookid_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -540,7 +616,7 @@ ALTER TABLE ONLY public.event
 
 
 --
--- TOC entry 2753 (class 2606 OID 16600)
+-- TOC entry 2766 (class 2606 OID 16600)
 -- Name: review review_book_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -549,7 +625,7 @@ ALTER TABLE ONLY public.review
 
 
 --
--- TOC entry 2754 (class 2606 OID 16605)
+-- TOC entry 2767 (class 2606 OID 16605)
 -- Name: review review_usrename_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -558,7 +634,7 @@ ALTER TABLE ONLY public.review
 
 
 --
--- TOC entry 2756 (class 2606 OID 16630)
+-- TOC entry 2769 (class 2606 OID 16630)
 -- Name: written written_author_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -567,7 +643,7 @@ ALTER TABLE ONLY public.written
 
 
 --
--- TOC entry 2755 (class 2606 OID 16625)
+-- TOC entry 2768 (class 2606 OID 16625)
 -- Name: written written_book_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -575,7 +651,7 @@ ALTER TABLE ONLY public.written
     ADD CONSTRAINT written_book_fkey FOREIGN KEY (book_id) REFERENCES public.book(code) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
--- Completed on 2019-06-05 16:16:28
+-- Completed on 2019-06-09 19:43:53
 
 --
 -- PostgreSQL database dump complete

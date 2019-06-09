@@ -10,9 +10,15 @@ let sqlDb = require("./DataLayer.js").database;
  * returns List
  */
 exports.bookBestSellersGET = function() {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+  return sqlDb("best-sellers")
+    .join("book", "best-sellers.book_id", "book.code")
+    .then(books => {
+      let map = books.map(book => {
+        return exports.bookMapping(book);
+      });
+
+      return Promise.all(map);
+    })
 };
 
 /**
@@ -22,9 +28,15 @@ exports.bookBestSellersGET = function() {
  * returns List
  */
 exports.bookFavouritesGET = function() {
-  return new Promise(function(resolve, reject) {
-    resolve();
-  });
+  return sqlDb("favourites")
+    .join("book", "favourites.book_id", "book.code")
+    .then(books => {
+      let map = books.map(book => {
+        return exports.bookMapping(book);
+      });
+
+      return Promise.all(map);
+    })
 };
 
 /**
