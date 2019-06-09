@@ -76,6 +76,44 @@ paths:
         400:
           description: "Unexpected error"
       x-swagger-router-controller: "Book"
+  /books/best-sellers:
+    get:
+      tags:
+        - "book"
+      summary: "Find best-sellers books"
+      description: "Returns all books which are best-sellers"
+      operationId: "bookBestSellersGET"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Book"
+        400:
+          description: "Unexpected error"
+      x-swagger-router-controller: "Book"
+  /books/our-favourites:
+    get:
+      tags:
+        - "book"
+      summary: "Find our favourites books"
+      description: "Returns all books which are our favourites"
+      operationId: "bookFavouritesGET"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Book"
+        400:
+          description: "Unexpected error"
+      x-swagger-router-controller: "Book"
   /books/{bookId}:
     get:
       tags:
@@ -467,12 +505,31 @@ paths:
           type: "integer"
       responses:
         200:
-          description: "A collection of Events"
+          description: "Successful operation"
           schema:
             type: "array"
             items:
               $ref: "#/definitions/Event"
-        404:
+        400:
+          description: "Unexpected error"
+      x-swagger-router-controller: "Event"
+  /events/this-month:
+    get:
+      tags:
+        - "event"
+      summary: "Events in this month"
+      description: "Returns events scheduled in this month"
+      operationId: "eventsThisMonthGET"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Event"
+        400:
           description: "Unexpected error"
       x-swagger-router-controller: "Event"
   /events/{eventId}:
@@ -493,7 +550,7 @@ paths:
           format: "int64"
       responses:
         200:
-          description: "successful operation"
+          description: "Successful operation"
           schema:
             $ref: "#/definitions/Event"
         400:

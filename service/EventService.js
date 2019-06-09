@@ -31,6 +31,18 @@ exports.eventsGET = function(offset, limit, book, author) {
     })
 };
 
+/**
+ * Events in this month
+ * Returns events scheduled in this month
+ *
+ * returns List
+ */
+exports.eventsThisMonthGET= function() {
+  return new Promise(function(resolve, reject) {
+    resolve();
+  });
+};
+
 
 /**
  * Find event by ID

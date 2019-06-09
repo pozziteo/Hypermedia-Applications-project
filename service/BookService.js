@@ -4,6 +4,30 @@ const lodash = require("lodash");
 let sqlDb = require("./DataLayer.js").database;
 
 /**
+ * Find best-sellers books
+ * Returns all books which are best-sellers
+ *
+ * returns List
+ */
+exports.bookBestSellersGET = function() {
+  return new Promise(function(resolve, reject) {
+    resolve();
+  });
+};
+
+/**
+ * Find our favourites books
+ * Returns all books which are our favourites
+ *
+ * returns List
+ */
+exports.bookFavouritesGET = function() {
+  return new Promise(function(resolve, reject) {
+    resolve();
+  });
+};
+
+/**
  * Find reviews of a book
  * Returns all reviews of the book with id bookId
  *
