@@ -99,7 +99,7 @@ function insertBook(event) {
   return Promise.all([ gettingBook ])
     .then(result => {
       event.book = result[0];
-      delete event.book_id
+      delete event.book_id;
 
       return event;
     })

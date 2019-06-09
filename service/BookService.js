@@ -71,7 +71,7 @@ exports.booksGET = function(offset, limit, author, genre, theme) {
       "binding", "genre", "theme", "available", "series", "currency")
     .then(data => {
       let map = data.map(e => {
-        return bookMapping(e);
+        return exports.bookMapping(e);
       });
 
       return Promise.all(map);
@@ -107,7 +107,7 @@ exports.getBookById = function(bookId) {
       else
         return book;
     }).then(book => {
-      return bookMapping(book);
+      return exports.bookMapping(book);
     }).catch(error => {
       return error;
     })
@@ -141,7 +141,7 @@ exports.getSimilarBooks = function(bookId) {
           "binding", "genre", "theme", "available", "series", "currency")
     }).then(similar => {
       let map = similar.map(book => {
-        return bookMapping(book);
+        return exports.bookMapping(book);
       });
 
       return Promise.all(map);
@@ -151,7 +151,7 @@ exports.getSimilarBooks = function(bookId) {
 };
 
 
-function bookMapping(book) {
+exports.bookMapping = function (book) {
   let bookAuthors = sqlDb("author")
     .join("written", "author.author_id", "written.author_id")
     .where("written.book_id", book.code)
@@ -179,4 +179,4 @@ function bookMapping(book) {
 
       return book;
     })
-}
+};

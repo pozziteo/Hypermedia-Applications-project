@@ -368,20 +368,23 @@ paths:
           schema:
             $ref: "#/definitions/Book"
       responses:
-        200:
+        201:
           description: "Book inserted into cart"
         400:
           description: "Book not available"
         401:
           description: "Not logged in"
+        409:
+          description: "Conflict with book in database"
       x-swagger-router-controller: "Cart"
     put:
       tags:
         - "cart"
       summary: "Empty the cart"
+      description: "Replace the content of the cart with an empty content"
       operationId: "emptyCartPUT"
       responses:
-        200:
+        204:
           description: "Successful operation"
         401:
           description: "Unauthorized"
@@ -403,7 +406,7 @@ paths:
           type: integer
           format: int64
       responses:
-        200:
+        204:
           description: "Item removed"
         400:
           description: "Item wasn't in cart"
