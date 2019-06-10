@@ -11,8 +11,10 @@ info:
     name: "Apache-2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
 host: "localhost:8080"
-basePath: "/v2"
+basePath: "/"
 tags:
+  - name: "backend"
+    description: "Operation to download source files"
   - name: "book"
     description: "Available book"
   - name: "genre"
@@ -29,7 +31,26 @@ tags:
     description: "Operations about user"
 schemes:
   - "http"
+  - "https"
 paths:
+  /backend/app.zip:
+    get:
+      tags:
+        - "backend"
+      summary: "Zip file with source code"
+      description: "Returns a zip file containing the source code of the application"
+      operationId: "sourceGET"
+      produces:
+        - "application/zip"
+      parameters: []
+      responses:
+        200:
+          description: "Zip file"
+          schema:
+            type: "file"
+        400:
+          description: "Unexpected error"
+      x-swagger-router-controller: "Backend"
   /books:
     get:
       tags:
