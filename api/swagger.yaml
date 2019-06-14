@@ -13,8 +13,6 @@ info:
 host: "localhost:8080"
 basePath: "/"
 tags:
-  - name: "backend"
-    description: "Operation to download source files"
   - name: "book"
     description: "Available book"
   - name: "genre"
@@ -33,24 +31,6 @@ schemes:
   - "http"
   - "https"
 paths:
-  /backend/app.zip:
-    get:
-      tags:
-        - "backend"
-      summary: "Zip file with source code"
-      description: "Returns a zip file containing the source code of the application"
-      operationId: "sourceGET"
-      produces:
-        - "application/zip"
-      parameters: []
-      responses:
-        200:
-          description: "Zip file"
-          schema:
-            type: "file"
-        400:
-          description: "Unexpected error"
-      x-swagger-router-controller: "Backend"
   /books:
     get:
       tags:

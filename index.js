@@ -44,6 +44,21 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   // Link index.js to front end index.html
   app.use(serveStatic(__dirname + "/FrontEnd"));
 
+  // Serve static files as backend documentation and source code
+  app.use("/backend", function (req, res, next) {
+    if (req.url === "/main.html") {
+      fs.createReadStream("./static/main.html")
+        .on("close", () => res.end())
+        .pipe(res);
+    }
+    else if (req.url === "/app.zip") {
+      fs.createReadStream("./static/app.zip")
+        .on("close", () => res.end())
+        .pipe(res);
+    }
+    else next()
+  });
+
   // Start the server
   http.createServer(app).listen(serverPort, function () {
     console.log('Your server is listening on port %d (http://localhost:%d)', serverPort, serverPort);
