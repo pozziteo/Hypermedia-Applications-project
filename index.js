@@ -39,7 +39,10 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   app.use(middleware.swaggerRouter(options));
 
   // Serve the Swagger documents and Swagger UI
-  app.use(middleware.swaggerUi());
+  app.use(middleware.swaggerUi({
+    apiDocs: "/backend/spec.yaml",
+    swaggerUi: "/backend/swaggerui"
+  }));
 
   // Link index.js to front end index.html
   app.use(serveStatic(__dirname + "/FrontEnd"));
