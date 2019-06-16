@@ -509,3 +509,52 @@ border-right:1px solid #bbb;
     margin-bottom: 1.8%;
     font-family: 'Josefin Sans', sans-serif;
 }
+
+.singleI{
+    
+     width: 250px;
+    height: 180px;
+    object-fit:cover;
+}
+#genres{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.genre{
+   
+    height: 200px;
+}
+.genre img{
+    position: relative;
+    right: 50%:
+    bottom: auto;
+    right: auto;
+    opacity: 0.8;
+}
+
+.genre a{
+   color: white;
+    float: left;
+    position: absolute;
+    display:block;
+}
+
+.genre a span{
+    display: block;
+   
+    background: rgb(0, 0, 0, 8); 
+}
+
+.singleBook{
+       margin: 2%;
+    background-color:ghostwhite;
+    width: 100%;
+    height: min-content;
+    padding: 0px;
+}
+
+.singleBook h6{
+    margin-top: 5%;
+    font-weight: 600;
+}
