@@ -17,6 +17,16 @@ module.exports.eventsGET = function eventsGET (req, res, next) {
     });
 };
 
+module.exports.eventsThisMonthGET = function eventsThisMonthGET (req, res, next) {
+  Event.eventsThisMonthGET()
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.getEventById = function getEventById (req, res, next) {
   var eventId = req.swagger.params['eventId'].value;
   Event.getEventById(eventId)

@@ -6,7 +6,7 @@ $(function(){
 
     $.ajax({
         type:'GET',
-        url:'/v2/books/genres',
+        url:'/books/genres',
         success: function(data){
             $.each(data, function(i,genre){
 
@@ -55,7 +55,7 @@ $(function(){
 
     $.ajax({
         type:'GET',
-        url:'/v2/authors/11',
+        url:'/authors/11',
         success: function(author){
 
             console.log(author);
@@ -80,7 +80,7 @@ $(function(){
    var $list = $('#books')
     $.ajax({
         type:'GET',
-        url:'/v2/books',
+        url:'/books',
         success: function(data){
 
             $.each(data, function(i,book){

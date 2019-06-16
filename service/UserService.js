@@ -32,13 +32,26 @@ exports.userLoginPOST = function(username, password) {
       return bcrypt.compare(password, pw.password)
     }).then(check => {
       if (check === true)
-        return fetchedUser;
+        return { success: "Successful login", id: fetchedUser.user_id };
       else throw new Error("Wrong username or password");
     })
     .catch(error => {
       error.code = 401;
       return error;
     })
+};
+
+
+/**
+ * Logout
+ * Logout from the store
+ *
+ * no response value expected for this operation
+ **/
+exports.userLogoutPOST = function() {
+  return new Promise((resolve, reject) => {
+    resolve({ success: "Logout successful" });
+  });
 };
 
 
@@ -81,7 +94,7 @@ exports.userRegisterPOST = function(email, username, password) {
       }
     }).then(() => {
       return {
-        success: "registration successful"
+        success: "Registration successful"
       }
     })
     .catch(error => {

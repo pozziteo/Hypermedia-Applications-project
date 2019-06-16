@@ -19,7 +19,7 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        
+
         <script src="../assets/js/main.js"></script>
     </head>
 
@@ -123,7 +123,7 @@
                 <div  class="col-4">
                     <img id="bookImage" src="" alt="">
                 </div>
-                <div id="bookData" class="col-6">
+                <div id="bookData" class="col-8">
                     <h4 id="titoloLibro"> </h4>
                     <h6> <a id="autoreLibro" href="#autoreLibro" >Autore libro</a></h6>
 
@@ -138,8 +138,13 @@
                         </a>
                     </div>
 
-                    <h6 id="prezzoLibro">Prezzo:</h6>
-
+                    
+                    <div class="buy">
+                       <h6 id="prezzoLibro">Prezzo:</h6>
+                        <a id="addToCartButton" href="#" class="btn addtoCart">
+                            <i class="flaticon-shopping-cart"></i> Add to Cart
+                        </a>
+                    </div>
 
                     <div class="accordion-area description">
                         <div class="panel-link">DESCRIPTION </div>
@@ -179,11 +184,7 @@
 
 
                 </div>
-                <div class="col-2">
-                    <a id="addToCartButton" href="#" class="btn btn-info btn-lg">
-                        <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
-                    </a>
-                </div>
+
             </div>
 
 
@@ -212,7 +213,7 @@
 
 
 
-        
+
 
 
 
