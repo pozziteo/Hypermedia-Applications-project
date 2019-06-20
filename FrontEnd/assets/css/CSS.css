@@ -1,8 +1,17 @@
 :root {
+  --input-padding-x: 1.5rem;
+  --input-padding-y: .75rem;
 }
 body{
+  background-color: white;
+  font-family: 'Montserrat', sans-serif;
+  color: grey;
+  overflow-x: hidden;
 }
 img {
+  max-width: 100%;
+  max-height: inherit;
+  vertical-align: middle;
 }
 
 h6{
@@ -10,27 +19,46 @@ h6{
 }
 
 .col-3{
+  display:  -webkit-inline-box;
+  text-align: center;
 }
 
 .col-3 i{
+  font-weight: 500;
 }
 
 .navbar{
+  padding: .6rem 1.5rem;
 }
 
 .upper-nav h2{
+  font-family: 'Josefin Sans', sans-serif;
+  color: dimgray;
+  font-size: 1.5em;
+  font-weight:700;
+  margin-bottom: 0;
 }
 
 .upper-nav a:link{
+  color: gray;
 
 }
 
 a{
+  color: gray;
 }
 
 a:link {
+  color: gray;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.1em;
+  background-color: transparent;
+  text-decoration: none;
 }
 a:hover {
+  color: green;
+  background-color: transparent;
+  text-decoration: underline;
 }
 
 .breads{
@@ -46,20 +74,40 @@ a:hover {
     padding-top: 2em;
     padding-bottom: 5em;
 =======
+  margin-top: inherit;
+  background: #f8f7f7;
+  padding: 15px 100px 15px ;
+}
+#pageContainer{
+  height: 100%;
+  padding-right: 100px;
+  padding-left: 100px;
+  padding-top: 2em;
+  padding-bottom: 5em;
 >>>>>>> 37e906766d1470c1b4604dffa9380567be192279
 }
 
 #bookImage{
+  position: absolute;
 
+  // left: 100px;
+  border: 3px solid #000;
+  padding: 5px;
 }
 #bookData{
+  position: relative;
+  padding-right: 5%;
+  padding-left: 5%;
 
 }
 
 .buy{
+  width: 100%;
+  display: inline;
 }
 
 .addtoCart {
+<<<<<<< HEAD
     position: relative;
     border: 1.5px solid blue;
     background-color: #0072d4h !important;
@@ -71,291 +119,420 @@ a:hover {
     font-size: 16px;
     height: 50px;
     width: fit-content;
+=======
+  position: relative;
+  border: 1.5px solid blue;
+  background-color: #0072d4 !important;
+  color: white !important;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  height: 50px;
+  width: fit-content;
+>>>>>>> 37e906766d1470c1b4604dffa9380567be192279
 
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 
 }
 
 .addtoCart:hover {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.25), 0 10px 15px rgba(0,0,0,0.25);
 }
 
 .description p{
+  margin-left: 2%;
+  margin-top: 4%;
+  font-size: 0.9em;
+  text-align: justify;
 }
 
 .container-fluid{
 
+  padding-left:0px;
+  padding-right:0px;
 }
 .upper-nav{
+  line-height: 1.5;
+  height: 70px;
 }
 
 
 .lower-nav{
 
+  height: 50px;
 }
 
 .header-search-form{
+  width: 100%;
+  position: relative;
+  padding: 0 10px;
+  margin: auto;
 }
 
 .header-search-form input{
 
+  width: 100%;
+  height:44px;
+  font-size: 14px;
+  border-radius: 50px;
+  border: none;
 
+  padding: 0 19px;
+  background: #f0f0f0;
 }
 
 .header-search-form button{
+  position: absolute;
+  height: 100%;
+  width: 44px;
+  right: 10px;
+  padding-right: 6px;
+  padding-left: 6px;
+  border-radius: 50%;
+  top: 0;
+  font-size: 1em;
+  font-weight: 700;
 
 
+  cursor: pointer;
+  background-color: transparent;
 
 }
 
 .cart span {
+  position: absolute;
+  top: 5px;
+  left: 52%;
+  height: 16px;
+  min-width: 16px;
+  color: #fff;
+  font-size: 13px;
+  background: green;
+  text-align: center;
+  border-radius: 30px;
+  padding: 0 2px;
+  margin-left: -7px;
 }
 
 .nav_text_white{
+  color: white;
 }
 
 .dark_color{
+  background: #333;
 }
 .bright_color{
+  background color: white;
 }
 .footer {
+  height: 4%;
+  width: 100%;
+  background-color: #333;
+  color: #333;
+  text-align: center;
 }
 .funny_color {
+  background: #33AEFF;
 }
 
 .card-signin {
+  border: 0;
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.5);
 }
 
 .card-signin .card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
 }
 
 .card-signin .card-body {
+  padding: 2rem;
 }
 
 .form-signin {
+  width: 100%;
 }
 
 .form-signin .btn {
+  font-size: 80%;
+  border-radius: 5rem;
+  letter-spacing: .1rem;
+  font-weight: bold;
+  padding: 1rem;
+  transition: all 0.2s;
 }
 
 .form-label-group {
+  position: relative;
+  margin-bottom: 1rem;
 }
 
 .form-label-group>input,
 .form-label-group>label {
+  padding: var(--input-padding-y) var(--input-padding-x);
 }
 
 .form-label-group input {
+  height: auto;
+  border-radius: 2rem;
 }
 
 .form-label-group>label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  /* Override default `<label>` margin */
+  line-height: 1.5;
+  color: #495057;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  transition: all .1s ease-in-out;
 }
 
 .form-label-group input:not(:placeholder-shown) {
+  padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+  padding-bottom: calc(var(--input-padding-y) / 3);
 }
 
 .form-label-group input:not(:placeholder-shown)~label {
+  padding-top: calc(var(--input-padding-y) / 3);
+  padding-bottom: calc(var(--input-padding-y) / 3);
+  font-size: 12px;
+  color: #777;
 }
 
 .signup-text{
-    position: relative;
-    top: -15px;
-}
-#ourFavorites, #bestSeller{
-    border-style: outset;
-    border: 2px groove ;
-    background: #fff;
-    height: auto;
-    max-width: auto;
-    position: relative;
-    top: 1em;
-
-}
-.ourFavoritesImage{
-    max-height: 100%;
-    max-width: 100%;
-}
-.multi-item-carousel{
-    .carousel-inner{
-        > .item{
-            transition: 500ms ease-in-out left;
-        }
-        .active{
-            &.left{
-                left:-33%;
-            }
-            &.right{
-                left:33%;
-            }
-        }
-        .next{
-            left: 33%;
-        }
-        .prev{
-            left: -33%;
-        }
-        @media all and (transform-3d), (-webkit-transform-3d) {
-            > .item{
-                // use your favourite prefixer here
-                transition: 500ms ease-in-out left;
-                transition: 500ms ease-in-out all;
-                backface-visibility: visible;
-                transform: none!important;
-            }
-        }
-    }
-    .carouse-control{
-        &.left, &.right{
-            background-image: none;
-        }
-    }
+  position: relative;
+  top: -15px;
 }
 
 
 non-related styling:
 body{
+  background: #333;
+  color: #ddd;
 }
 h1{
-    color: white;
-    font-size: 2.25em;
-    text-align: center;
-    margin-top: 1em;
-    margin-bottom: 2em;
-    text-shadow: 0px 2px 0px rgba(0, 0, 0, 1);
+  color: white;
+  font-size: 2.25em;
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 2em;
+  text-shadow: 0px 2px 0px rgba(0, 0, 0, 1);
 }
-.carouselImg{
-    width: auto;
-}
-#firstBestSeller{
-    padding:1em;
-    border-right:1px solid #bbb;
-}
-.carouselPrice{
-    background: #ff2;
-    border: 1px solid #bbb;
-    height: 1.5em;
-    width: 4em;
-    position: relative;
-    top: -1.5em;
-    left: 5.7em;
-}
-.ourFavorite{
-    background: #f3f;
-    border: 1px solid #000;
-}
-
 
 .row{
+  margin-bottom: 2%;
 }
 
 #titoloLibro{
+  color: #414141;
+  font-weight: 700;
+  font-size: 2em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
 }
 
 .rev{
+  margin-bottom: 3%;
+  margin-top: 3%;
+  color:purple;
 }
 .off{
+  color: gainsboro;
 }
 
 .rBox{
+  width: 50%;
+  border: 0.8px solid purple;
+  border-radius: 5px;
+  margin-left: 2%;
+  box-shadow: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
 
 }
 
 /* Accordion */
 
 .accordion-area {
+  margin-top: 20px;
+  border-top: 2px solid #e1e1e1;
+  margin-bottom: 10px;
 
 }
 
 
 .accordion-area .panel-link {
+  border-bottom: 2px solid #e1e1e1;
+  background-repeat: no-repeat;
+  background-position: right 10px top 30px;
 }
 
 
 
 
 .accordion-area .panel-link.active {
+  background-color: transparent;
 }
 
 .accordion-area .panel-link,
 .accordion-area .panel-link.active.collapsed {
+  text-align: left;
+  position: relative;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 700;
+  color: #414141;
+  padding-top:20px;;
+  text-transform: uppercase;
+  line-height: 1;
+  cursor: pointer;
+  border: none;
+
+  background-color: transparent;
+  border-radius: 0;
 }
 
 .panel-body {
+  padding-top: 10px;
+  padding-left: 2%;
 }
 
 .accordion-area .panel-body p {
+  color: #8f8f8f;
+  margin-bottom: 25px;
+  line-height: 1.8;
 }
 
 
 .user{
+  border-bottom: 1px solid #e1e1e1;
 
 }
 
 .comment{
-    margin-top: 1.5%;
-    padding-left: 2%;
+  margin-top: 1.5%;
+  padding-left: 2%;
 }
 
 .comment p{
+  margin-bottom: 0px;
 }
 
 
 .bookD{
+  min-height: 550px;
 
 }
 
 
 /*author page*/
 #authorPic{
+  position: relative;
 
+  object-fit: cover;
 
+  width: 100%;
+  height: auto;
 
 }
 
 #bio{
+  width: 80%;
+  margin-top: 2%;
+  padding-left: 2%;
 }
 
 #name{
 
+  margin-top: 3%;
+  text-transform: uppercase;
 }
 
 
 .inlineBooks{
+  margin-left: 2%;
+  display: block;
 }
 
 .inlineBooks img{
+  margin-right: 2%;
+  width: 150px;
+  height: 200px;
+  object-fit: fill;
 }
 
 .section{
+  padding: 0;
+  margin-bottom: 3.5%;
 }
 
 .section h4{
+  margin-bottom: 1.8%;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 
 .singleI{
 
+  width: 250px;
+  height: 180px;
+  object-fit:cover;
 }
 
 #genres{
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
 .genre{
 
+  height: 200px;
 }
 .genre img{
+  position: relative;
+  right: 50%:
+  bottom: auto;
+  right: auto;
+  opacity: 0.8;
 }
 
 .genre a{
+  color: white;
+  float: left;
+  position: absolute;
+  display:block;
 }
 
 .genre a span{
+  display: block;
 
+  background: rgb(0, 0, 0, 8);
 }
 
 /*allbooks page*/
 .singleBook{
+  margin: 2%;
+  background-color:ghostwhite;
+  width: 100%;
+  height: min-content;
+  padding: 0px;
 }
 
 .singleBook h6{
+  margin-top: 5%;
+  font-weight: 600;
 }
 
 .bookFilters{
@@ -434,17 +611,191 @@ ContactUs page
 ---------------------*/
 
 .ContactUsText{
+  margin-top: 15px;
 }
 
 .form-field{
+  position: relative;
+  display: block;
+  padding-bottom: 10px;
 }
 
 .contactUsForm{
+  border: 1px solid #777;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 5px;
+  border-radius: 3px;
 }
 
 .form-field .long {
+  width: 415px;
 }
 
 /*---------------------
 END ContactUs page
 ---------------------*/
+
+
+
+/*-------Book Author Event------*/
+
+#bookLink, #writerLink, #eventLink{
+  text-align: center;
+  height: 15em;
+  position: relative;
+  vertical-align: middle;
+}
+
+#bookLink{
+  background-image: url("../img/Book.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain, contain;
+}
+
+#writerLink{
+  padding-right: 1em;
+  padding-left: 1em;
+  background-image: url("../img/Writer.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain, contain;
+}
+
+#eventLink{
+  background-image: url("../img/Book.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain, contain;
+}
+
+
+.Link{
+  position: relative;
+  height: 33.33%;
+  display: block;
+}
+
+.Link a{
+  position: absolute;
+  top: 37%;
+  left: 45%;
+  background-color: white;
+  color: black;
+}
+/*-------END Book Author Event------*/
+
+/*-------Bestseller------*/
+
+.bestSellerContainer{
+  position: relative;
+  border: 1px solid red;
+}
+
+#bestSellerContainerTitle{
+  text-align: center;
+}
+
+.bestSeller{
+  position: relative;
+  border: 1px solid red;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-bottom: 0.5em; 
+}
+
+.bestSeller span{
+  display: inline-block;
+  padding-top: 0.5em;
+  padding-bottom: 0;
+  padding-left: 2em;
+  padding-right: 1em;
+}
+
+.bestSellerNumber{
+  position: absolute;
+  border: 1px solid red;
+  margin: 0.5em;
+  right: 0;
+  top: 0;
+}
+
+#firstBestSeller{
+  position: relative;
+}
+
+#firstBestSellerNumber{
+  position: absolute;
+  border: 1px solid red;
+  margin: 0.5em;
+  right: 0;
+  top: 0;
+}
+
+#firstBestSeller img{
+  display: inline-block;
+  position: relative;
+  margin: 1em;
+  max-width: 40%;
+}
+
+#firstBestSeller span{
+  display: inline-block;
+  margin: 0.2em;
+}
+
+/*-------END Bestseller------*/
+/*-------OurFavorite------*/
+
+
+.ourFavoriteContainer{
+  position: relative;
+  border: 1px solid red;
+}
+
+#ourFavoriteTitle{
+  text-align: center;
+}
+
+.ourFavorite{
+  margin: 1em;
+  display: inline-block;
+  position: relative;
+  border: 1px solid red;
+}
+
+.ourFavorite img{
+    display: inline-block;
+    position: relative;
+    margin: 1em;
+    max-width: 40%;
+}
+
+.ourFavorite span{
+  display: inline-block;
+  border: 1px solid red;
+}
+
+/*-------END OurFavorite------*/
+
+
+/*----------------------------
+TABLET
+-----------------------------*/
+@media (max-width: 1024px) {
+
+  body{
+  }
+}
+
+/*----------------------------
+SMARTPHONE
+-----------------------------*/
+
+@media (max-width: 767px) {
+
+  body{
+  }
+}
