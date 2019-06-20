@@ -19,7 +19,7 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        
+
         <script src="../assets/js/main.js"></script>
     </head>
 
@@ -114,42 +114,66 @@
 
         <div id="breads" class="breads">
             <a href=""><b>All Books </b></a>
-            
+
         </div>
 
         <div id="pageContainer" >
 
             <div class="row ">
-            <div class="col-3"></div>
-            <div class="col-9">
-                <div id="books" class="row"> 
-                <!--div class="col-2 singleBook"><a href=""><img src="../assets/img/fotoHP.jpg" alt="nnndnd">
-                    <h6> Titolo libro</h6>
-                    <h7> autore</h7></a>
-                    
+
+                <div class="col-10">
+                    <div id="books" class="row"> 
+                        <!--div class="col-2 singleBook"><a href=""><img src="../assets/img/fotoHP.jpg" alt="nnndnd">
+<h6> Titolo libro</h6>
+<h7> autore</h7></a>
+
+</div>
+<div class="col-2 singleBook">
+<img src="../assets/img/fotoHP.jpg" alt="nnndnd">
+<h6> Titolo libro</h6>
+<h7> autore</h7>
+</div-->
+                    </div>
+
                 </div>
-                <div class="col-2 singleBook">
-                    <img src="../assets/img/fotoHP.jpg" alt="nnndnd">
-                    <h6> Titolo libro</h6>
-                    <h7> autore</h7>
-                </div-->
+
+                <div class="col-2 bookFilters">
+                    <h6><b>FILTER BY</b></h6>
+                    <div class="filters">
+                        <button class="" type="button" data-toggle="collapse" data-target="#collapseG" aria-expanded="false" aria-controls="collapseExample">
+                            Genre  <i class="flaticon-down-arrow"></i>
+                        </button>
+
+                        <div class="collapse" id="collapseG">
+                            <div id="gFilters" class="filterBody">
+                                <button class="btn" onclick="filterSelection('Fantasy')"> Fantasy</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="filters">
+                        <button class="" type="button" data-toggle="collapse" data-target="#collapseT" aria-expanded="false" aria-controls="collapseExample">
+                            Theme  <i class="flaticon-down-arrow"></i>
+                        </button>
+
+                        <div class="collapse" id="collapseT">
+                            <div id="tFilters" class="filterBody">
+                                <button class="btn" onclick="filterSelection('Fantasy')"> <span></span>love</button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-                
-            </div>
-            
+
+
 
             </div>
 
 
-           
+
         </div>
 
-
-
-
-
-
-    
 
     </body>
 </html>

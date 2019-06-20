@@ -74,10 +74,57 @@ $(function(){
 });
 
 
+$(function(){
+
+    var $list = $('#gFilters')
+    $.ajax({
+        type:'GET',
+        url:'/books/genres',
+        success: function(data){
+
+            $.each(data, function(i,genre){
+
+                console.log(genre);
+
+                $list.append('<button class="btn" onclick="filterSelection('+genre.name+')">'+genre.name+'</button>');
+
+            });                   
+
+        }
+
+    });
+
+
+});
 
 $(function(){
 
-   var $list = $('#books')
+    var $list = $('#tFilters')
+    $.ajax({
+        type:'GET',
+        url:'/books/themes',
+        success: function(data){
+
+            $.each(data, function(i,theme){
+
+                console.log(theme);
+
+                $list.append('<button class="btn" onclick="filterSelection('+theme.name+')">'+theme.name+'</button>');
+
+            });                   
+
+        }
+
+    });
+
+
+});
+
+
+
+$(function(){
+
+    var $list = $('#books')
     $.ajax({
         type:'GET',
         url:'/books',
@@ -89,14 +136,45 @@ $(function(){
 
                 $list.append('<div class="col-2 singleBook"><a href=""><img src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.author +'</h7></a></div>');
 
-              });                   
+            });                   
 
-            }
-                  
-        });
-
+        }
 
     });
+
+
+});
+
+
+
+
+$(function filterSelection(filter){
+    var $filter=filter;
+    
+    console.log("ilfiltro è" + $filter);
+    var $list = $('#books')
+    $.ajax({
+        type:'GET',
+        url:'/books?genre='+filter,
+        success: function(data){
+
+            $.each(data, function(i,book){
+                
+
+                console.log(books);
+
+                $list.append('<div class="col-2 singleBook"><a href=""><img src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.author +'</h7></a></div>');
+
+            });                   
+
+        }
+
+    });
+
+
+});
+
+
 
 
 
