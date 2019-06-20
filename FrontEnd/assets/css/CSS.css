@@ -31,6 +31,12 @@ h6{
     padding: .6rem 1.5rem;
 }
 
+.upper-nav{
+  border-bottom: 0.2em solid #333;
+  border-bottom-left-radius: 2em;
+  border-bottom-right-radius: 2em;
+}
+
 .upper-nav h2{
     font-family: 'Josefin Sans', sans-serif;
     color: dimgray;
@@ -693,7 +699,7 @@ END ContactUs page
     border: 1px solid red;
     margin-left: 1em;
     margin-right: 1em;
-    margin-bottom: 0.5em; 
+    margin-bottom: 0.5em;
 }
 
 .bestSeller span{
@@ -770,6 +776,21 @@ END ContactUs page
 
 /*-------END OurFavorite------*/
 
+/*-------Footer------*/
+
+footer{
+  position: relative;
+  text-align: center;
+  background-color: #333;
+  margin-bottom: 0.5em;
+}
+
+footer a{
+  padding-right: 3em;
+  padding-left: 3em;
+}
+
+/*-------END Footer------*/
 
 /*----------------------------
 TABLET
