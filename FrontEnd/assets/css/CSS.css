@@ -685,7 +685,7 @@ END ContactUs page
 
 /*-------Bestseller------*/
 
-.bestSellerContainer{
+#bestSellerContainer{
     position: relative;
     border: 1px solid red;
 }
@@ -703,11 +703,11 @@ END ContactUs page
 }
 
 .bestSeller span{
-    display: inline-block;
-    padding-top: 0.5em;
-    padding-bottom: 0;
-    padding-left: 2em;
-    padding-right: 1em;
+  display: inline-block;
+  padding-top: 0.5em;
+  padding-bottom: 0;
+  padding-left: 2em;
+  padding-right: 1em;
 }
 
 .bestSellerNumber{
@@ -723,58 +723,70 @@ END ContactUs page
 }
 
 #firstBestSellerNumber{
-    position: absolute;
+    position: relative;
     border: 1px solid red;
     margin: 0.5em;
-    right: 0;
-    top: 0;
+    left: 0.2em;
+    top: 1em;
 }
 
 #firstBestSeller img{
     display: inline-block;
     position: relative;
     margin: 1em;
-    max-width: 40%;
 }
 
 #firstBestSeller span{
+    position: relative;
     display: inline-block;
     margin: 0.2em;
 }
 
 /*-------END Bestseller------*/
-/*-------OurFavorite------*/
+/*-------ourFavourite------*/
 
 
-.ourFavoriteContainer{
+#ourFavouriteContainer{
     position: relative;
     border: 1px solid red;
 }
 
-#ourFavoriteTitle{
+#ourFavouriteTitle{
     text-align: center;
 }
 
-.ourFavorite{
-    margin: 1em;
-    display: inline-block;
-    position: relative;
-    border: 1px solid red;
+.ourFavourite{
+  position: relative;
+  border: 1px solid red;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-bottom: 0.5em;
 }
 
-.ourFavorite img{
-    display: inline-block;
-    position: relative;
-    margin: 1em;
-    max-width: 40%;
+.ourFavourite img{
+  display: inline-block;
+  position: relative;
+  margin: 1em;
+  margin-left: 0;
 }
 
-.ourFavorite span{
-    display: inline-block;
-    border: 1px solid red;
+.ourFavourite span{
+  position: relative;
+  display: inline-block;
+  margin-top: 2em;
 }
 
-/*-------END OurFavorite------*/
+.ourFavourite p{
+  text-decoration: underline;
+  /*tipizzazione di titolo autore e descrizione*/
+}
+
+.bestSeller p{
+  /*tipizzazione di titolo autore e descrizione*/
+}
+
+
+/*-------END ourFavourite------*/
 
 /*-------Footer------*/
 
