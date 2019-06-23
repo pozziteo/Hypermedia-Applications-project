@@ -3,7 +3,7 @@
     --input-padding-y: .75rem;
 }
 body{
-    background-color: white;
+    background-color: ghostwhite;
     font-family: 'Montserrat', sans-serif;
     color: grey;
     overflow-x: hidden;
@@ -633,7 +633,9 @@ ContactUs page
 END ContactUs page
 ---------------------*/
 
-
+/*---------------------
+Home page
+---------------------*/
 
 /*-------Book Author Event------*/
 
@@ -642,6 +644,7 @@ END ContactUs page
     height: 15em;
     position: relative;
     vertical-align: middle;
+    text-shadow: 1px 1px black;
 }
 
 #bookLink{
@@ -678,8 +681,7 @@ END ContactUs page
     position: absolute;
     top: 37%;
     left: 45%;
-    background-color: white;
-    color: black;
+    color: white;
 }
 /*-------END Book Author Event------*/
 
@@ -687,16 +689,20 @@ END ContactUs page
 
 #bestSellerContainer{
     position: relative;
-    border: 1px solid red;
+    border: 1px solid #80bfff;
+    background-color: white;
 }
 
 #bestSellerContainerTitle{
     text-align: center;
+    text-decoration: underline;
+    padding-top: 1.5em;
+    padding-bottom: 1em;
 }
 
 .bestSeller{
     position: relative;
-    border: 1px solid red;
+    border-top: 1px solid #aaa;
     margin-left: 1em;
     margin-right: 1em;
     margin-bottom: 0.5em;
@@ -706,20 +712,26 @@ END ContactUs page
   display: inline-block;
   padding-top: 0.5em;
   padding-bottom: 0;
-  padding-left: 2em;
-  padding-right: 1em;
+  padding-left: 1em;
+  padding-right: 3em;
 }
 
 .bestSellerNumber{
     position: absolute;
+    right: 0px;
+    top: 0px;
+    background-color: #ff5;
     border: 1px solid red;
-    margin: 0.5em;
-    right: 0;
-    top: 0;
+    border-radius: 10em;
+    padding: 0.2em;
+    margin: 0.2em;
 }
 
 #firstBestSeller{
     position: relative;
+    vertical-align: middle;
+    background-color: #ccf;
+    border-top: none;
 }
 
 #firstBestSellerNumber{
@@ -732,14 +744,24 @@ END ContactUs page
 
 #firstBestSeller img{
     display: inline-block;
-    position: relative;
-    margin: 1em;
+    vertical-align: middle;
+    margin-top: 1em;
+    border: 0.3em solid white;
 }
 
 #firstBestSeller span{
     position: relative;
     display: inline-block;
     margin: 0.2em;
+
+    padding-top: 0.5em;
+    padding-bottom: 0;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.bestSeller p{
+  /*TODO tipizzazione di titolo autore e descrizione */
 }
 
 /*-------END Bestseller------*/
@@ -748,16 +770,23 @@ END ContactUs page
 
 #ourFavouriteContainer{
     position: relative;
-    border: 1px solid red;
+    border: 1px solid #80bfff;
+    background-color: white;
 }
 
 #ourFavouriteTitle{
     text-align: center;
+    text-decoration: underline;
+    padding-top: 1.5em;
+    padding-bottom: 1em;
+}
+
+#leftOurFavourite{
+  border-right: 1px solid #aaa;
 }
 
 .ourFavourite{
   position: relative;
-  border: 1px solid red;
   margin-left: 1em;
   margin-right: 1em;
   margin-bottom: 0.5em;
@@ -781,12 +810,12 @@ END ContactUs page
   /*tipizzazione di titolo autore e descrizione*/
 }
 
-.bestSeller p{
-  /*tipizzazione di titolo autore e descrizione*/
-}
-
-
 /*-------END ourFavourite------*/
+
+/*---------------------
+END Home page
+---------------------*/
+
 
 /*-------Footer------*/
 
