@@ -30,7 +30,7 @@ $(function(){
 
     $.ajax({
         type:'GET',
-        url:'/v2/books/9780743477154',
+        url:'/books/9780743477154',
         success: function(book){
 
           // console.log(book);
@@ -132,7 +132,7 @@ $(function(){
 
             $.each(data, function(i,theme){
 
-                console.log(urlString(theme.name));
+               // console.log(urlString(theme.name));
 
                 $list.append("<button class="+"btn"+" onclick="+"filterSelection('theme','"+urlString(theme.name)+"')"+">"+theme.name+"</button>");
 
@@ -178,9 +178,12 @@ function filterSelection(type, nome){
 };
 
 
+
+
+
+
 function urlString(text){
-
-
+    
     var array = text.split(" ");
     var newString=array[0];
 
@@ -193,6 +196,45 @@ function urlString(text){
     return newString;
 };
 
+
+
+/*----------------
+Function for events page
+----------------*/
+
+
+$(function(){
+
+    var $list = $('#events');
+    $.ajax({
+        type:'GET',
+        url:'/events',
+        success: function(data){
+
+            $.each(data, function(i,event){
+
+                console.log(event.id);
+
+                $list.append("<div class='event'><div class='ribbon'>"+ dateSplit(event.date)+"</div> <div><a href=''><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
+
+            });
+
+        }
+
+    });
+
+
+});
+
+function dateSplit(text){
+    
+    var array = text.split("T");
+    var date=array[0].split("-");
+    var newDate=date[1]+"-"+date[2]+"-"+date[0];
+
+    return newDate;
+    
+};
 
 
 /*----------------

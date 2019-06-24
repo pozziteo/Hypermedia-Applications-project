@@ -80,7 +80,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarsCollapse">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link nav_text_color" href="#">Home</a>
                         </li>
 
@@ -90,19 +90,18 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle nav_text_color" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Books</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown03">
+                                <a class="dropdown-item" href="allBooks.html">All books</a>
                                 <a class="dropdown-item" href="#">Themes</a>
-                                <a class="dropdown-item" href="#">Genres</a>
+                                <a class="dropdown-item" href="allGenre.html">Genres</a>
                             </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link nav_text_color" href="#">Authors</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav_text_color" href="#">Events</a>
+                        <li class="nav-item active">
+                            <a class="nav-link nav_text_color " href="#">Events</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav_text_color" href="#">Contact Us</a>
-                        </li>
+                       
                     </ul>
 
                 </div>
@@ -113,67 +112,47 @@
         <!--end navbar-->
 
         <div id="breads" class="breads">
-            <a href=""><b>All Books </b></a>
+            <a href=""><b>Events </b></a>
 
         </div>
 
         <div id="pageContainer" >
 
-            <div class="row ">
+            <div class="row">
+                <div class="col-3 bookFilters">
+                   <h6><b>FILTER BY</b></h6>
+                    <div> <a href=""> All events</a></div>
+                    <div class="selected"><a href="">Events of the month</a> </div>
+                    <div><a href="">More option...</a></div>
+                </div>
 
-                <div class="col-10">
-                    <div id="books" class="row"> 
-                        <!--div class="col-2 singleBook"><a href=""><img src="../assets/img/fotoHP.jpg" alt="nnndnd">
-<h6> Titolo libro</h6>
-<h7> autore</h7></a>
+                <div id="events" class="col-9"> 
+
+                    <!--div class="event">
+
+
+<div class="ribbon"> Data?</div>
+
+<div class="contents">
+<img src="../assets/img/events/event.jpg" alt="Event Image">
+
+<div class="overlayInfo">
+<h5> <a href=""> Titolo evento </a></h5>
+<h6> <a href="">Titolo libro</a>, by <a href="">nome autore</a></h6> 
+<p> luogo</p>
+</div>
 
 </div>
-<div class="col-2 singleBook">
-<img src="../assets/img/fotoHP.jpg" alt="nnndnd">
-<h6> Titolo libro</h6>
-<h7> autore</h7>
+
 </div-->
-                    </div>
 
                 </div>
-
-                <div class="col-2 bookFilters">
-                    <h6><b>FILTER BY</b></h6>
-                    <div class="filters">
-                        <button class="" type="button" data-toggle="collapse" data-target="#collapseG" aria-expanded="false" aria-controls="collapseExample">
-                            Genre  <i class="flaticon-down-arrow"></i>
-                        </button>
-
-                        <div class="collapse" id="collapseG">
-                            <div id="gFilters" class="filterBody">
-                                
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="filters">
-                        <button class="" type="button" data-toggle="collapse" data-target="#collapseT" aria-expanded="false" aria-controls="collapseExample">
-                            Theme  <i class="flaticon-down-arrow"></i>
-                        </button>
-
-                        <div class="collapse" id="collapseT">
-                            <div id="tFilters" class="filterBody">
-                                
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-
 
             </div>
 
 
 
         </div>
-
 
     </body>
 </html>
