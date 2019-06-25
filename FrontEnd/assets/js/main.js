@@ -215,7 +215,7 @@ $(function(){
 
                 console.log(event.id);
 
-                $list.append("<div class='event'><div class='ribbon'>"+ dateSplit(event.date)+"</div> <div><a href=''><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
+                $list.append("<div class='event'><div class='ribbon'>"+ dateSplit(event.date,'date')+"</div> <div><a href=''><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
 
             });
 
@@ -226,15 +226,57 @@ $(function(){
 
 });
 
-function dateSplit(text){
+function dateSplit(text,t){
     
     var array = text.split("T");
-    var date=array[0].split("-");
-    var newDate=date[1]+"-"+date[2]+"-"+date[0];
-
+    var date;
+    var newDate;
+    if(t=="date"){
+          date=array[0].split("-");
+         newDate=date[1]+"-"+date[2]+"-"+date[0];
+    }else{
+         date=array[1].split(":");
+         newDate=date[0]+":"+date[1];
+    }
+   
     return newDate;
     
 };
+
+
+
+
+$(function(){
+
+    
+   
+    
+
+
+
+    $.ajax({
+        type:'GET',
+        url:'/events/1',
+        success: function(event){
+
+          // console.log(book);
+            $('#breads').append("<b>"+event.title+"</b>");
+           $('#title').html(event.title);
+           $('#book').append("<a href='Book.html'>"+event.book.title+"</a>");
+            $('#eventImg').attr('src', '../assets/img/events/'+event.event_id +'.jpg');
+
+           $('#evDesc').html(event.description);
+            
+            $('#evDate').append(dateSplit(event.date,'date')+" , "+ dateSplit(event.date,'hour'));
+            $('#evPlace').html(event.place);
+            
+            
+
+        }
+    });
+
+
+});
 
 
 /*----------------
