@@ -183,7 +183,7 @@ function filterSelection(type, nome){
 
 
 function urlString(text){
-    
+
     var array = text.split(" ");
     var newString=array[0];
 
@@ -215,7 +215,7 @@ $(function(){
 
                 console.log(event.id);
 
-                $list.append("<div class='event'><div class='ribbon'>"+ dateSplit(event.date,'date')+"</div> <div><a href=''><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
+                $list.append("<div class='event'><div class='ribbon'>"+ dateSplit(event.date)+"</div> <div><a href=''><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
 
             });
 
@@ -226,57 +226,15 @@ $(function(){
 
 });
 
-function dateSplit(text,t){
-    
+function dateSplit(text){
+
     var array = text.split("T");
-    var date;
-    var newDate;
-    if(t=="date"){
-          date=array[0].split("-");
-         newDate=date[1]+"-"+date[2]+"-"+date[0];
-    }else{
-         date=array[1].split(":");
-         newDate=date[0]+":"+date[1];
-    }
-   
+    var date=array[0].split("-");
+    var newDate=date[1]+"-"+date[2]+"-"+date[0];
+
     return newDate;
-    
+
 };
-
-
-
-
-$(function(){
-
-    
-   
-    
-
-
-
-    $.ajax({
-        type:'GET',
-        url:'/events/1',
-        success: function(event){
-
-          // console.log(book);
-            $('#breads').append("<b>"+event.title+"</b>");
-           $('#title').html(event.title);
-           $('#book').append("<a href='Book.html'>"+event.book.title+"</a>");
-            $('#eventImg').attr('src', '../assets/img/events/'+event.event_id +'.jpg');
-
-           $('#evDesc').html(event.description);
-            
-            $('#evDate').append(dateSplit(event.date,'date')+" , "+ dateSplit(event.date,'hour'));
-            $('#evPlace').html(event.place);
-            
-            
-
-        }
-    });
-
-
-});
 
 
 /*----------------
@@ -323,6 +281,78 @@ $(function(){
                     $right.append('<div class="ourFavourite row"><div class="col"><img src="assets/img/'+ ourFavourite.code +'.jpg" alt="'+ ourFavourite.title +'"></div><div class="col"><span><p>'+ ourFavourite.title +'</p><p>'+ ourFavourite.author +'</p><p>'+ ourFavourite.value  +'</p></span></div></div>');
                 }
             });
+        }
+    });
+});
+
+/*----------------
+Function for SignUp in SignUp page
+----------------*/
+
+$(document).ready(function(){
+  var $mail = $('#signUpEmail');
+  var $username = $('#signUpUsername');
+  var $psw = $('#signUpPassword');
+  $("#signUpButton").click(function () {
+    $.ajax({
+      type: "POST",
+      url:'/user/register',
+      data:jQuery.param({email:$mail.val(),username:$username.val(),password:$psw.val()}),
+      success: function () {
+        alert("il Sign Up ha funzionato");
+      },
+      error: function (response) {
+        alert("non funza");
+      }
+    });
+  });
+});
+
+
+/*----------------
+Function for LogIn in LogIn page
+----------------*/
+
+$(document).ready(function(){
+  var $mail = $('#logInEmail');
+  var $psw = $('#logInPassword');
+  $("#logInButton").click(function () {
+    $.ajax({
+      type: "POST",
+      url:'/user/login',
+      data:jQuery.param({username:$mail.val(),password:$psw.val()}),
+      success: function () {
+        alert("Ho funzionato");
+      },
+      error: function (response) {
+        alert("non funza");
+      }
+    });
+  });
+});
+
+
+/*----------------
+Function for User Cart Item in Cart page
+----------------*/
+
+$(function(){
+  var $cart = $('#cartList');
+  var $buy = $('#buyCart');
+    $.ajax({
+        type:'GET',
+        url:'/cart',
+        success: function(data){
+            $.each(data, function(i, cartItem){
+                if(i == 0){
+                  $cart.append('<div class="cartItem"><img src="../assets/img' + cartItem.code + '.jpg" alt="' + cartItem.title + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + cartItem.title + '</a> by <a class="cartItemAuthor" href="">' + cartItem.author + '</a><p class="cartItemPrice">EUR ' + cartItem.price + '</p><a class="cartItemRemove" href="#">remove</a></span></div>');
+                }
+                else{
+                  $cart.append('<div class="cartItem"><hr><img src="../assets/img' + cartItem.code + '.jpg" alt="' + cartItem.title + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + cartItem.title + '</a> by <a class="cartItemAuthor" href="">' + cartItem.author + '</a><p class="cartItemPrice">EUR ' + cartItem.price + '</p><a class="cartItemRemove" href="#">remove</a></span></div>');
+
+                }
+            });
+            $buy.append('<p>Totale Provvisorio (' + data.length + 'articolo)</p><p>EUR ' + data + '</p><button type="button" type="submit">Complete your order</button>');
         }
     });
 });
