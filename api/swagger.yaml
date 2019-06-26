@@ -52,17 +52,20 @@ paths:
           type: "integer"
         - name: "author"
           in: "query"
-          description: "Filter list of books by author"
+          description: "Filter list of books by author.\
+          \ Working example: 12"
           required: false
           type: "integer"
         - name: "genre"
           in: "query"
-          description: "Filter list of books about the same genre"
+          description: "Filter list of books about the same genre.\
+          \ Working example: Fantasy"
           required: false
           type: "string"
         - name: "theme"
           in: "query"
-          description: "Filter list of books which treat the same theme"
+          description: "Filter list of books which treat the same theme.\
+          Working example: Killer Hounting"
           required: false
           type: "string"
       responses:
@@ -125,7 +128,8 @@ paths:
       parameters:
         - name: "bookId"
           in: "path"
-          description: "ID of book to return"
+          description: "ID of book to return.\
+          \ Working example: 9780743477154"
           required: true
           type: "integer"
           format: "int64"
@@ -151,7 +155,8 @@ paths:
       parameters:
         - name: "bookId"
           in: "path"
-          description: "ID of the book to find reviews about"
+          description: "ID of the book to find reviews about.\
+          \ Working example: 9780439358064"
           required: true
           type: integer
           format: int64
@@ -179,7 +184,8 @@ paths:
       parameters:
         - name: "bookId"
           in: "path"
-          description: "ID of book to find similar"
+          description: "ID of book to find similar.\
+          \ Working example: 9780439358064"
           required: true
           type: "integer"
           format: "int64"
@@ -271,10 +277,14 @@ paths:
       parameters:
         - name: "username"
           in: "formData"
+          description: "Username of a registered user to log in.\
+          \ Working example: naani"
           required: true
           type: "string"
         - name: "password"
           in: "formData"
+          description: "Password of the user registered with the provided username.\
+          \ Working example: michiamoGio"
           required: true
           type: "string"
           format: "password"
@@ -302,15 +312,21 @@ paths:
       parameters:
         - name: "email"
           in: "formData"
+          description: "An e-mail for a new user.\
+          \ Must be an e-mail not already used by anybody else"
           required: true
           type: "string"
           format: "email"
         - name: "username"
           in: "formData"
+          description: "A username for a new user.\
+          \ Must be a username not already used by anybody else"
           required: true
           type: "string"
         - name: "password"
           in: "formData"
+          description: "A password for a new user.\
+          \ No characters or complexity constraints for the password"
           required: true
           type: "string"
           format: "password"
@@ -363,6 +379,8 @@ paths:
       parameters:
         - name: "book"
           in: "body"
+          description: "A book to insert into the cart.\
+          \ Must not be already present into the user cart"
           required: true
           schema:
             $ref: "#/definitions/Book"
@@ -401,7 +419,9 @@ paths:
         - name: "itemID"
           in: "path"
           required: true
-          description: "ID of the item to remove"
+          description: "ID of the item to remove.\
+          \ Must be present into the cart.
+          \ Working example for user \"naani\": 9780439358064"
           type: integer
           format: int64
       responses:
@@ -435,7 +455,8 @@ paths:
           type: "integer"
         - name: "book"
           in: "query"
-          description: "Filter authors who wrote the given book."
+          description: "Filter authors who wrote the given book.\
+          \ Working example: 9780439358064"
           required: false
           type: "integer"
       responses:
@@ -460,7 +481,8 @@ paths:
       parameters:
         - name: "authorId"
           in: "path"
-          description: "ID of author to return"
+          description: "ID of author to return.\
+          \ Working example: 12"
           required: true
           type: "integer"
           format: "int64"
@@ -497,12 +519,14 @@ paths:
           type: "integer"
         - name: "book"
           in: "query"
-          description: "Filter events where given book is presented"
+          description: "Filter events where given book is presented.\
+          \ Working example: 9780743477154"
           required: false
           type: "integer"
         - name: "author"
           in: "query"
-          description: "Filter events presented by an author"
+          description: "Filter events presented by an author.\
+          \ Working example: 11"
           required: false
           type: "integer"
       responses:
@@ -546,7 +570,8 @@ paths:
       parameters:
         - name: "eventId"
           in: "path"
-          description: "ID of event to return"
+          description: "ID of event to return.\
+          \ Working example: 1"
           required: true
           type: "integer"
           format: "int64"
@@ -568,7 +593,7 @@ definitions:
       - "email"
       - "password"
     properties:
-      id:
+      user_id:
         type: "integer"
       username:
         type: "string"
@@ -581,12 +606,10 @@ definitions:
     title: "User"
     description: "A user"
     example:
-      id: 1
-      username: "Matteo"
-      email: "pinco.pallino@gmail.com"
-      password: "mimmo"
-      address: "PoliMi"
-      creditcard: "xyzabc"
+      user_id: 1
+      username: "naani"
+      email: "giovanni@gmail.com"
+      password: "michiamoGio"
   Cart:
     type: "object"
     properties:
@@ -601,20 +624,27 @@ definitions:
     example:
       total:
         currency: "eur"
-        value: 80082819046101.171875
+        value: 25.00
       books:
-        - id: 0
-          title: "Il deserto dei tartari"
-          author: "Dino Buzzati"
+        - code: "9780743477154"
+          title: "Postmortem"
+          authors:
+            - author_id: 11
+              name: "Patricia Cornwell"
+              biography: "Cornwell began work on her first novel in 1984, about a male detective named Joe Constable\
+                  \ and met Dr. Marcella Farinelli Fierro, a medical examiner in Richmond, and subsequent inspiration\
+                   \for the..."
+          description: "Four women with nothing in common, united only in death. Four brutalized victims of a brilliant\
+               \ monster - a \"Mr. Nobody\", moving undetected through a paralyzed city, leaving behind a gruesome trail of..."
+          publisher: "Pocket Books, December 30th 2003"
+          binding: "Hardcover - 350 pages"
+          series: "Kay Scarpetta #1"
+          genre: "Crime"
+          theme: "Killer Hounting"
           price:
-            value: 10
+            value: 25.00
             currency: "eur"
-        - id: 0
-          title: "Il deserto dei tartari"
-          author: "Dino Buzzati"
-          price:
-            value: 10
-            currency: "eur"
+          status: "available"
   Book:
     type: "object"
     required:
@@ -657,28 +687,35 @@ definitions:
     title: "Book"
     description: "A book for sale in the store"
     example:
-      id: 0
-      title: "Il deserto dei tartari"
+      code: "9780743477154"
+      title: "Postmortem"
       authors:
-        - "Dino Buzzati"
-      genres:
-        - "fiction"
-      themes:
-        - "self-deception"
+        - author_id: 11
+          name: "Patricia Cornwell"
+          biography: "Cornwell began work on her first novel in 1984, about a male detective named Joe Constable\
+          \ and met Dr. Marcella Farinelli Fierro, a medical examiner in Richmond, and subsequent inspiration\
+           \for the..."
+      description: "Four women with nothing in common, united only in death. Four brutalized victims of a brilliant\
+       \ monster - a \"Mr. Nobody\", moving undetected through a paralyzed city, leaving behind a gruesome trail of..."
+      publisher: "Pocket Books, December 30th 2003"
+      binding: "Hardcover - 350 pages"
+      series: "Kay Scarpetta #1"
+      genre: "Crime"
+      theme: "Killer Hounting"
       price:
-        value: 10
+        value: 25.00
         currency: "eur"
       status: "available"
   Review:
     type: "object"
     required:
       - "username"
-      - "bookId"
+      - "book_id"
       - "rate"
     properties:
       username:
         type: "string"
-      bookId:
+      book_id:
         type: "integer"
         format: "int64"
       date:
@@ -693,12 +730,18 @@ definitions:
         maxLength: 500
     title: "Review"
     description: "Review of a book in the store"
+    example:
+      username: "naani"
+      book_id: "9780439358064"
+      date: "2019-05-30"
+      rate: 4
+      comment: "nice book"
   Author:
     type: "object"
     required:
       - "name"
     properties:
-      id:
+      author_id:
         type: "integer"
         format: "int64"
       name:
@@ -708,8 +751,11 @@ definitions:
     title: "Author"
     description: "An author who wrote a book in the store"
     example:
-      id: 0
-      name: "Dino Buzzati"
+      author_id: 11
+      name: "Patricia Cornwell"
+      biography: "Cornwell began work on her first novel in 1984, about a male detective named Joe Constable\
+      \ and met Dr. Marcella Farinelli Fierro, a medical examiner in Richmond, and subsequent inspiration
+      \for the..."
   Genre:
     type: "string"
     description: "A genre of a book"
@@ -730,6 +776,7 @@ definitions:
       - "Fairytale"
       - "Scientific paper"
       - "Crime"
+    example: "Crime"
   Theme:
     type: "string"
     description: "A theme treated by a book"
@@ -753,6 +800,7 @@ definitions:
       - "Fear of failure"
       - "Betrayal"
       - "Killer Hounting"
+    example: "Good vs Evil"
   Event:
     type: "object"
     required:
@@ -777,16 +825,29 @@ definitions:
     title: "Event"
     description: "An event in which a book will be presented"
     example:
-      id: 0
-      title: "Buzzati Grand Tour"
-      date: "2019-24-10T10:00:00Z"
-      place: "Piazza Leonardo da Vinci 1 Milano"
+      id: 1
+      title: "Crime and summer"
+      description: "Reading of the book postmortem"
+      date: "2019-12-07 15:00:00+01"
+      place: "Milan via pascoli 5"
       book:
-        id: 0
-        title: "Il deserto dei tartari"
-        author: "Dino Buzzati"
+        code: "9780743477154"
+        title: "Postmortem"
+        authors:
+          - author_id: 11
+            name: "Patricia Cornwell"
+            biography: "Cornwell began work on her first novel in 1984, about a male detective named Joe Constable\
+            \ and met Dr. Marcella Farinelli Fierro, a medical examiner in Richmond, and subsequent inspiration\
+            \for the..."
+        description: "Four women with nothing in common, united only in death. Four brutalized victims of a brilliant\
+        \ monster - a \"Mr. Nobody\", moving undetected through a paralyzed city, leaving behind a gruesome trail of..."
+        publisher: "Pocket Books, December 30th 2003"
+        binding: "Hardcover - 350 pages"
+        series: "Kay Scarpetta #1"
+        genre: "Crime"
+        theme: "Killer Hounting"
         price:
-          value: 10
+          value: 25.00
           currency: "eur"
         status: "available"
   Amount:

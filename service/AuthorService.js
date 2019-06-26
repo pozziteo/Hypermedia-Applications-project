@@ -13,16 +13,16 @@ let sqlDb = require("./DataLayer.js").database;
  * returns List
  **/
 exports.authorsGET = function(offset, limit, book) {
-  let subQuery = sqlDb("books")
-    .where("code", book)
-    .select("author_ID");
+  let subQuery = sqlDb("written")
+    .where("book_id", book)
+    .select("author_id");
 
   return sqlDb("author")
     .offset(offset)
     .limit(limit)
     .modify(builder => {
       if (!lodash.isUndefined(book))
-        return builder.whereIn("id", subQuery)
+        return builder.whereIn("author_id", subQuery)
     })
 };
 

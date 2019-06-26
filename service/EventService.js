@@ -17,17 +17,17 @@ let moment = require("moment");
  **/
 exports.eventsGET = function(offset, limit, book, author) {
 
-  return sqlDb("event")
+  return sqlDb.from("event")
     .offset(offset)
     .limit(limit)
     .where(builder => {
       if (!lodash.isUndefined(book))
         builder.where("book_id", book);
       if (!lodash.isUndefined(author))
-        builder.whereIn("book_id", () => {
-          return sqlDb("book")
-            .select("code")
-            .where("author_ID", author);
+        builder.whereIn("book_id", function() {
+          return this.from("written")
+            .select("book_id")
+            .where("author_id", author);
         });
     }).then(events => {
       let map = events.map(event => {

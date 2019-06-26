@@ -32,7 +32,7 @@ exports.userLoginPOST = function(username, password) {
       return bcrypt.compare(password, pw.password)
     }).then(check => {
       if (check === true)
-        return { success: "Successful login", id: fetchedUser.user_id };
+        return fetchedUser;
       else throw new Error("Wrong username or password");
     })
     .catch(error => {

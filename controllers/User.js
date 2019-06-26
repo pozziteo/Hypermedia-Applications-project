@@ -16,7 +16,7 @@ module.exports.userLoginPOST = function userLoginPOST (req, res, next) {
         } else {
           req.session = {
             loggedin: true,
-            sessionId: response.id
+            sessionId: response.user_id
           };
           utils.writeJson(res, response);
         }

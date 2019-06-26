@@ -169,7 +169,7 @@ exports.bookMapping = function (book) {
     .where("written.book_id", book.code)
     .then(authors => {
       return authors.map(author => {
-        return { name: author.name, biography: author.biography }
+        return {author_id: author.author_id, name: author.name, biography: author.biography }
       })
     });
 
