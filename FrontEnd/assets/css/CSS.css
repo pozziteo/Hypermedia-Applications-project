@@ -6,11 +6,16 @@ body{
     background-color: white;
     font-family: 'Montserrat', sans-serif;
     color: grey;
+    overflow-x: hidden;
 }
 img {
     max-width: 100%;
     max-height: inherit;
     vertical-align: middle;
+}
+
+h6{
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 .col-3{
@@ -24,6 +29,10 @@ img {
 
 .navbar{
     padding: .6rem 1.5rem;
+}
+
+.upper-nav{
+    box-shadow: 0 0.2rem 0.5rem 0 rgba(99, 99, 99, 0.37);
 }
 
 .upper-nav h2{
@@ -57,14 +66,15 @@ a:hover {
 }
 
 .breads{
+
     margin-top: inherit;
     background: #f8f7f7;
-    padding: 15px 100px 15px ;
+    padding: 15px 200px 15px ;
 }
 #pageContainer{
     height: 100%;
-    padding-right: 100px;
-    padding-left: 100px;
+    padding-right: 200px;
+    padding-left: 200px;
     padding-top: 2em;
     padding-bottom: 5em;
 }
@@ -89,6 +99,7 @@ a:hover {
 }
 
 .addtoCart {
+
     position: relative;
     border: 1.5px solid blue;
     background-color: #0072d4 !important;
@@ -195,13 +206,6 @@ a:hover {
 .bright_color{
     background color: white;
 }
-.carousel, .carousel-inner{
-    width: 50em;
-    height: auto;
-}
-.carousel-inner{
-    display: inline-block;
-}
 .footer {
     height: 4%;
     width: 100%;
@@ -288,55 +292,7 @@ a:hover {
     position: relative;
     top: -15px;
 }
-#ourFavorites, #bestSeller{
-    border-style: outset;
-    border: 2px groove ;
-    background: #fff;
-    height: auto;
-    max-width: auto;
-    position: relative;
-    top: 1em;
 
-}
-.ourFavoritesImage{
-    max-height: 100%;
-    max-width: 100%;
-}
-.multi-item-carousel{
-    .carousel-inner{
-        > .item{
-            transition: 500ms ease-in-out left;
-        }
-        .active{
-            &.left{
-                left:-33%;
-            }
-            &.right{
-                left:33%;
-            }
-        }
-        .next{
-            left: 33%;
-        }
-        .prev{
-            left: -33%;
-        }
-        @media all and (transform-3d), (-webkit-transform-3d) {
-            > .item{
-                // use your favourite prefixer here
-                transition: 500ms ease-in-out left;
-                transition: 500ms ease-in-out all;
-                backface-visibility: visible;
-                transform: none!important;
-            }
-        }
-    }
-    .carouse-control{
-        &.left, &.right{
-            background-image: none;
-        }
-    }
-}
 
 non-related styling:
 body{
@@ -351,27 +307,6 @@ h1{
     margin-bottom: 2em;
     text-shadow: 0px 2px 0px rgba(0, 0, 0, 1);
 }
-.carouselImg{
-    width: auto;
-}
-#firstBestSeller{
-    padding:1em;
-    border-right:1px solid #bbb;
-}
-.carouselPrice{
-    background: #ff2;
-    border: 1px solid #bbb;
-    height: 1.5em;
-    width: 4em;
-    position: relative;
-    top: -1.5em;
-    left: 5.7em;
-}
-.ourFavorite{
-    background: #f3f;
-    border: 1px solid #000;
-}
-
 
 .row{
     margin-bottom: 2%;
@@ -393,6 +328,11 @@ h1{
 .off{
     color: gainsboro;
 }
+
+
+/*-------------
+book page
+----------------*/
 
 .rBox{
     width: 50%;
@@ -481,7 +421,9 @@ h1{
 }
 
 
-
+/*-------------
+author page
+----------------*/
 #authorPic{
     position: relative;
 
@@ -503,6 +445,7 @@ h1{
     margin-top: 3%;
     text-transform: uppercase;
 }
+
 
 .inlineBooks{
     margin-left: 2%;
@@ -526,12 +469,18 @@ h1{
     font-family: 'Josefin Sans', sans-serif;
 }
 
+
 .singleI{
 
     width: 250px;
     height: 180px;
     object-fit:cover;
 }
+
+
+/*-------------
+genres page
+----------------*/
 #genres{
     padding-left: 5%;
     padding-right: 5%;
@@ -559,9 +508,12 @@ h1{
 .genre a span{
     display: block;
 
-    background: rgb(0, 0, 0, 8); 
+    background: rgb(0, 0, 0, 8);
 }
 
+/*-------------
+All books page
+----------------*/
 .singleBook{
     margin: 2%;
     background-color:ghostwhite;
@@ -574,6 +526,148 @@ h1{
     margin-top: 5%;
     font-weight: 600;
 }
+
+.bookFilters{
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: #f0ffff9c;
+    /* position: fixed;*/
+    border: 1px solid azure;
+    border-radius: 5px;
+    min-height: 500px;
+    text-align: left;
+    display:block;
+    float: left;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.bookFilters h6{
+    font-size: 18px;
+    font-weight: 700;
+    color: #414141;
+    text-transform: uppercase;
+    margin-bottom: 45px;
+}
+
+.filters{
+    margin-top: 1em;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.filters button{
+    font-weight:500;
+    color: darkblue;
+    font-size: 1.2em;
+    text-align: left;
+    background-color: transparent;
+    border:none;
+}
+
+.filters button:hover{
+    color: fuchsia;
+}
+.filters button:focus{
+    text-decoration: underline;
+    outline: none;
+}
+
+.filterBody{
+    font-size: 1em;
+    display: grid;
+}
+
+.filterBody button{
+    color: gray;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.filterBody button:hover>{
+    color: black;
+    font-size: 1em;
+    font-weight: 700;
+}
+
+.filterBody button:active{
+    color: black;
+    font-size: 1em;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+
+
+/*fine allbooks*/
+
+
+
+/*-------------
+All events page
+----------------*/
+
+.selected a{
+    font-weight: 700;
+    color: red !important;
+}
+
+.ribbon{
+    position: absolute;
+    top: 16px;
+    left: -6px;
+    width: 179px;
+    padding: 6px 4px 6px 16px;
+    text-align: left;
+    z-index: 100;
+    background: red;
+    color: white;
+}
+
+.event{
+    color: black;
+    margin-top: 3%;
+    margin-left: 10%;
+     margin-right:0;
+    //width: 60%;
+    padding: 6px 6px 6px 6px;
+    min-height: 200px;
+    border: 0.1em solid gray;
+    max-height: 500px;
+
+    position: relative;
+
+}
+
+
+.event img{
+    width: 100%;
+    height: 280px;
+
+    object-fit: cover;
+    object-position: 100% 0;
+
+}
+
+.event h5{
+    font-family: 'Josefin Sans', sans-serif;
+
+
+}
+.overlayInfo{
+    position: absolute;
+    bottom: 0px;
+    width:100%;
+    background-color: #ffffffd4;
+    height: 35%;
+
+    padding: 8px 20px 8px 20px;
+
+}
+
+
+
+
+
 /*---------------------
 ContactUs page
 ---------------------*/
@@ -604,4 +698,275 @@ ContactUs page
 /*---------------------
 END ContactUs page
 ---------------------*/
->>>>>>> c7861bf6e6c5608072b211584c2d953b9d33e49f
+
+/*---------------------
+Home page
+---------------------*/
+
+/*-------Book Author Event------*/
+
+#bookLink, #writerLink, #eventLink{
+    text-align: center;
+    height: 15em;
+    position: relative;
+    vertical-align: middle;
+    text-shadow: 1px 1px black;
+}
+
+#bookLink{
+    background-image: url("../img/Book.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain, contain;
+}
+
+#writerLink{
+    padding-right: 1em;
+    padding-left: 1em;
+    background-image: url("../img/Writer.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain, contain;
+}
+
+#eventLink{
+    background-image: url("../img/Book.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain, contain;
+}
+
+
+.Link{
+    position: relative;
+    height: 33.33%;
+    display: block;
+}
+
+.Link a{
+    position: absolute;
+    top: 37%;
+    left: 45%;
+    color: white;
+}
+/*-------END Book Author Event------*/
+
+/*-------Bestseller------*/
+
+#bestSellerContainer{
+    position: relative;
+    border: 1px solid #80bfff;
+    background-color: white;
+}
+
+#bestSellerContainerTitle{
+    text-align: center;
+    text-decoration: underline;
+    padding-top: 1.5em;
+    padding-bottom: 1em;
+}
+
+.bestSeller{
+    position: relative;
+    border-top: 1px solid #aaa;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 0.5em;
+}
+
+.bestSeller span{
+    display: inline-block;
+    padding-top: 0.5em;
+    padding-bottom: 0;
+    padding-left: 1em;
+    padding-right: 3em;
+}
+
+.bestSellerNumber{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    background-color: #ff5;
+    border: 1px solid red;
+    border-radius: 10em;
+    padding: 0.2em;
+    margin: 0.2em;
+}
+
+#firstBestSeller{
+    position: relative;
+    vertical-align: middle;
+    background-color: #ccf;
+    border-top: none;
+}
+
+#firstBestSellerNumber{
+    position: relative;
+    border: 1px solid red;
+    margin: 0.5em;
+    left: 0.2em;
+    top: 1em;
+}
+
+#firstBestSeller img{
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 1em;
+    border: 0.3em solid white;
+}
+
+#firstBestSeller span{
+    position: relative;
+    display: inline-block;
+    margin: 0.2em;
+
+    padding-top: 0.5em;
+    padding-bottom: 0;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.bestSeller p{
+    /*TODO tipizzazione di titolo autore e descrizione */
+}
+
+/*-------END Bestseller------*/
+/*-------ourFavourite------*/
+
+
+#ourFavouriteContainer{
+    position: relative;
+    border: 1px solid #80bfff;
+    background-color: white;
+}
+
+#ourFavouriteTitle{
+    text-align: center;
+    text-decoration: underline;
+    padding-top: 1.5em;
+    padding-bottom: 1em;
+}
+
+#leftOurFavourite{
+    border-right: 1px solid #aaa;
+}
+
+.ourFavourite{
+    position: relative;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 0.5em;
+}
+
+.ourFavourite img{
+    display: inline-block;
+    position: relative;
+    margin: 1em;
+    margin-left: 0;
+}
+
+.ourFavourite span{
+    position: relative;
+    display: inline-block;
+    margin-top: 2em;
+}
+
+.ourFavourite p{
+    text-decoration: underline;
+    /*tipizzazione di titolo autore e descrizione*/
+}
+
+/*-------END ourFavourite------*/
+
+/*---------------------
+END Home page
+---------------------*/
+
+/*---------------------
+Cart page
+---------------------*/
+
+#cartTitle{
+  padding-top: 1em;
+}
+
+.cartItem{
+  position: relative;
+}
+
+.cartItem img{
+  position: relative;
+  margin: 1em;
+  display: inline-block;
+  width: 10%;
+
+}
+
+.cartItemInfo{
+  position: absolute;
+  top: 1.5em;
+
+  display: inline-block;
+}
+
+.cartItemPrice{
+  position: relative;
+
+}
+.cartItemRemove{
+  position: relative;
+  top: 1em;
+}
+
+
+#buyCart{
+  position: relative;
+  padding: 1em;
+  border: 1px solid #aaa;
+  border-radius: 0.5em; 
+  background-color: #ccc;
+
+}
+
+#buyCart button{
+  border-radius: 1em;
+}
+
+/*---------------------
+END Cart page
+---------------------*/
+
+/*-------Footer------*/
+
+footer{
+    position: relative;
+    text-align: center;
+    background-color: #333;
+    margin-bottom: 0.5em;
+}
+
+footer a{
+    padding-right: 3em;
+    padding-left: 3em;
+}
+
+/*-------END Footer------*/
+
+/*----------------------------
+TABLET
+-----------------------------*/
+@media (max-width: 1024px) {
+
+    body{
+    }
+}
+
+/*----------------------------
+SMARTPHONE
+-----------------------------*/
+
+@media (max-width: 767px) {
+
+    body{
+    }
+}
