@@ -50,12 +50,12 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   // Serve static files as backend documentation and source code
   app.use("/backend", function (req, res, next) {
     if (req.url === "/main.html") {
-      fs.createReadStream("./static/main.html")
+      fs.createReadStream("./FrontEnd/pages/main.html")
         .on("close", () => res.end())
         .pipe(res);
     }
     else if (req.url === "/app.zip") {
-      fs.createReadStream("./static/app.zip")
+      fs.createReadStream("./app.zip")
         .on("close", () => res.end())
         .pipe(res);
     }

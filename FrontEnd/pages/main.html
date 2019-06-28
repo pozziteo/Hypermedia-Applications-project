@@ -65,7 +65,7 @@ The interaction is also stateless, which means every request is independent from
     A Book can can be reviewed by a User, and the review is contained in the <b>Review</b> resource, which contains the Book and User identifiers and other information as the date when the review was written and the rate given to the book.<br><br>
     <b>Amount</b> and <b>Currency</b> resources are just for utility and are not strictly relevant for the application functionality.</p>
 <h3 id="data-model">Data model</h3>
-<p>The data model used by the data layer of the web application follows this ER diagram:<br><br><img src="BookStore-ER.jpg" alt="ER Diagram"><br><br>
+<p>The data model used by the data layer of the web application follows this ER diagram:<br><br><img src="../assets/img/backend-doc/BookStore-ER.jpg" alt="ER Diagram"><br><br>
     Each entity of the ER diagram is mapped to a corresponding Resource with the same name, while some relations are not mapped to a specific Resource because not necessary and could be easily included in one of the entities.<br>
     For example the "Contains" relation can be easily replaced by an attribute (that is Book identifier) in Cart Resource, and "Presented" and "Owned" relations can be collapsed inside an entity because of their "1-to-1" or "1-to-N" cardinality</p>
 <h2 id="implementation">Implementation</h2>
