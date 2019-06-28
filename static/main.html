@@ -18,68 +18,82 @@
 <tr class="odd">
 <td>1</td>
 <td>administrator</td>
-<td>Foo</td>
-<td>FooL</td>
-<td>123456</td>
-<td>foo@example.com</td>
+<td>Matteo</td>
+<td>Pozzi</td>
+<td>867005</td>
+<td>matteo13.pozzi@mail.polimi.it</td>
 </tr>
 <tr class="even">
 <td>2</td>
 <td>member</td>
-<td>Bar</td>
-<td>BarL</td>
-<td>78982</td>
-<td>bar@example.com</td>
+<td>Francesco</td>
+<td>Vaghi</td>
+<td>870168</td>
+<td>non la so</td>
 </tr>
 <tr class="odd">
-<td>……</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>3</td>
+<td>member</td>
+<td>Cristina</td>
+<td>Sambinelli</td>
+<td>non la so</td>
+<td>non la so</td>
 </tr>
 </tbody>
 </table>
 <h2 id="links-to-other-deliverables">Links to other deliverables</h2>
 <ul>
-<li><p>Deliverable D0: the web application is accessible at <a href="https://example.com">this address</a>.</p></li>
-<li><p>Deliverable D2: the YAML or JSON file containing the specification of the app API can be found at <a href="https://example.com/backend/spec.yaml">this address</a>.</p></li>
-<li><p>Deliverable D3: the SwaggerUI page of the same API is available at <a href="https://example.com/backend/swaggerui">this address</a>.</p></li>
-<li><p>Deliverable D4: the source code of D0 is available as a zip file at <a href="https://example.com/backend/app.zip">this address</a>.</p></li>
-<li><p>Deliverable D5: the address of the online source control repository is available <a href="https://examplegit.com">this address</a>. We hereby declare that this is a private repository and, upon request, we will give access to the instructors.</p></li>
+<li><p>Deliverable D0: the web application is accessible at <a href="https://mimmo.herokuapp.com">this address</a>.</p></li>
+<li><p>Deliverable D2: the YAML or JSON file containing the specification of the app API can be found at <a href="https://mimmo.herokuapp.com/backend/spec.yaml">this address</a>.</p></li>
+<li><p>Deliverable D3: the SwaggerUI page of the same API is available at <a href="https://mimmo.herokuapp.com/backend/swaggerui">this address</a>.</p></li>
+<li><p>Deliverable D4: the source code of D0 is available as a zip file at <a href="https://mimmo.herokuapp.com/backend/app.zip">this address</a>.</p></li>
+<li><p>Deliverable D5: the address of the online source control repository is available <a href="https://github.com/pozziteo/Hypermedia-Applications-project.git">this address</a>. We hereby declare that this is a private repository and, upon request, we will give access to the instructors.</p></li>
 </ul>
 <h2 id="specification">Specification</h2>
-<h3 id="web-architecture">Web Architecture</h3>
+<h3 id="web-architecture">Web Architecture <i>//TODO</i></h3>
 <p>Describe here, with a diagram, the components of your web application and how they interact. Highlight which parts belong to the application layer, data layer or presentation layer. How did you ensure that HTML is not rendered server side?</p>
 <h3 id="api">API</h3>
 <h4 id="rest-compliance">REST compliance</h4>
-<p>Describe here to what extent did you follow REST principles and what are the reasons for which you might have decided to diverge. Note, you must not describe the whole API here, just the design decisions.</p>
+<p>Each Resource described in the OpenAPI specs and operations about them are accessible over relative URIs which are specific for each Resource (that is, it is not possible to fetch different Resources on the same URI); of course a Resource may contain another Resource (for example Books contains information about their Authors) but specific information are obtained from a different URI.<br><br>
+Following the REST principle, Client and Server applications were developed independently, so that each of them could evolve without any dependency to the other one.<br><br>
+The interaction is also stateless, which means every request is independent from other requests and the server doesn't store anything about received requests. For requests where a session state is required, clients include in the request a cookie provided by the server when a login operation is performed.</p>
 <h4 id="openapi-resource-models">OpenAPI Resource models</h4>
-<p>Describe here synthetically, which models you have introduced for resources.</p>
+<p>The Resource models described in the OpenApi specs include the most relevant entities for the application functions as Books, Events, Authors, Customers of the application and their Cart where books are inserted.<br><br>
+    <b>Book</b> is the main resource of the application, and contains all the relevant infos about the book itself, as his <b>Theme</b> and <b>Genre</b> modeled as enumerations to avoid the possibility to assign to books non-existing ones, and about its <b>Author</b>, which include his name, biography and id. Each Book can be similar to other Books.<br><br>
+    <b>Event</b> is a resource which includes the information about where the event will take place and the Book presented for the occasion.<br><br>
+    <b>User</b> is the resource which describes a customer of the service offered by the website, and contains all the attributes to identify and recognize each user, as email, username and password, and each User owns a <b>Cart</b>, uniquely identified by its owner, which contains the Books ordered by a User.<br><br>
+    A Book can can be reviewed by a User, and the review is contained in the <b>Review</b> resource, which contains the Book and User identifiers and other information as the date when the review was written and the rate given to the book.<br><br>
+    <b>Amount</b> and <b>Currency</b> resources are just for utility and are not strictly relevant for the application functionality.</p>
 <h3 id="data-model">Data model</h3>
-<p>Describe with an ER diagram the model used in the data layer of your web application. How these map to the OpenAPI data model?</p>
+<p>The data model used by the data layer of the web application follows this ER diagram:<br><br><img src="BookStore-ER.jpg" alt="ER Diagram"><br><br>
+    Each entity of the ER diagram is mapped to a corresponding Resource with the same name, while some relations are not mapped to a specific Resource because not necessary and could be easily included in one of the entities.<br>
+    For example the "Contains" relation can be easily replaced by an attribute (that is Book identifier) in Cart Resource, and "Presented" and "Owned" relations can be collapsed inside an entity because of their "1-to-1" or "1-to-N" cardinality</p>
 <h2 id="implementation">Implementation</h2>
 <h3 id="tools-used">Tools used</h3>
-<p>Describe here which tools, languages and frameworks did you use for the backend of the application.</p>
+<p>The backend of the application was entirely developed with the JavaScript language and Node.js framework with the support of the Swagger tools and interface.<br><br>
+    The first server stub was generated with the automatic Swagger generator provided in Swagger Editor, while all the logic's implementation was performed with IntelliJ (an IDE), to get a precious help for debugging and finding errors more efficiently.</p>
 <h3 id="discussion">Discussion</h3>
-<p>Describe here:</p>
 <ul>
-<li><p>How did you make sure your web application adheres to the provided OpenAPI specification?</p></li>
-<li><p>Why do you think your web application adheres to common practices to partition the web application (static assets vs. application data)</p></li>
-<li><p>Describe synthetically why and how did you manage session state, what are the state change triggering actions (e.g., POST to login etc..).</p></li>
-<li><p>Which technology did you use (relational or a no-SQL database) for managing the data model?</p></li>
+<li><p>How did you make sure your web application adheres to the provided OpenAPI specification? <i>//TODO</i></p></li>
+<li><p>Why do you think your web application adheres to common practices to partition the web application (static assets vs. application data) <i>//TODO</i></p></li>
+    <li><p><b>Session state and management:</b></p>
+        Session state is managed with cookies to provide access to private pages and operations of specific users, as the cart's content and the possibility to finalize orders.
+Cookie is set by the server when a POST request to /user/login endpoint is received, and the corresponding id memorized in the database (an integer) of the user who sent the request is saved in the cookie and used as parameter when request about cart are received, to provide the right cart owned by the user.
+To end the session user must send a POST request to /user/logout endpoint.
+Obviously, a client can perform only one session per time, that is if a POST request to /user/login is sent when session is already up, the request will fail. Similarly, if a POST request to /user/logout is sent with no session currently running, the request will fail too.</p></li>
+<li><p><b>Data model technology:</b></p>
+<p>Data are stored in a Postgres database, which is a relational database</p></li>
 </ul>
 <h2 id="other-information">Other information</h2>
-<h3 id="task-assignment">Task assignment</h3>
+<h3 id="task-assignment">Task assignment <i>//TODO</i></h3>
 <p>Describe here how development tasks have been subdivided among members of the group, e.g.:</p>
 <ul>
 <li>Foo worked on front end (80%) and OpenAPI Spec (20% of the time)</li>
 <li>Bar worked on ….</li>
 </ul>
 <h3 id="analysis-of-existing-api">Analysis of existing API</h3>
-<p>Describe here if you have found relevant APIs that have inspired the OpenAPI specification and why (at least two).</p>
-<h3 id="learning-outcome">Learning outcome</h3>
+<p>The most relevant APIs analyzed to provide the OpenAPI specs of this site are the example ones provided by Swagger Editor (Simple Petstore) to learn the basic organization and grouping into tags of endpoints, and more complex APIs such as <a href="https://api.apis.guru/v2/specs/6-dot-authentiqio.appspot.com/6/swagger.json">this one</a>, to see how an existing and working API is and should be organized and provided.</p>
+<h3 id="learning-outcome">Learning outcome <i>//TODO</i></h3>
 <p>What was the most important thing all the members have learned while developing this part of the project, what questions remained unanswered, how you will use what you’ve learned in your everyday life?</p>
 <p>Examples:</p>
 <ul>
