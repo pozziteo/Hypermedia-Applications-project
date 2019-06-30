@@ -961,6 +961,11 @@ TABLET
 
     body{
     }
+    .pageContainer{
+        padding-right:inherit;
+    padding-left: inherit;
+        
+    }
 }
 
 /*----------------------------
