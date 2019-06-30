@@ -1,4 +1,4 @@
-$(function(){
+function genList(){
 
   var $genres = $('#genres');
 
@@ -9,13 +9,13 @@ $(function(){
       $.each(data, function(i,genre){
 
         // $genres.append('<img class="singleI" src=""> name:'+genre.name+' - <br> </div>');
-        $genres.append('<div class="col-3 genre"><img class="singleI" src="../assets/img/gen/'+genre.name+'.jpg"><a href=""><span>'+genre.name+'</span> </a></div>');
+        $genres.append('<div class="col-12 col-md-3 genre"><img class="singleI" src="../assets/img/gen/'+genre.name+'.jpg"><a href=""><span>'+genre.name+'</span> </a></div>');
       });
     }
   });
 
 
-});
+};
 
 
 
@@ -74,7 +74,7 @@ $(function(){
 
 
 
-$(function(){
+function booksList(){
 
   var $list = $('#books')
   $.ajax({
@@ -84,7 +84,7 @@ $(function(){
 
       $.each(data, function(i,book){
 
-        //console.log(books);
+        console.log("ho caricato la lista dei");
 
         $list.append('<div class="col-2 singleBook"><a href=""><img src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.author +'</h7></a></div>');
 
@@ -95,7 +95,7 @@ $(function(){
   });
 
 
-});
+};
 
 
 $(function(){
@@ -203,7 +203,7 @@ Function for events page
 ----------------*/
 
 
-$(function(){
+function eventsList(){
 
   var $list = $('#events');
   $.ajax({
@@ -222,9 +222,7 @@ $(function(){
     }
 
   });
-
-
-});
+};
 
 function dateSplit(text){
 

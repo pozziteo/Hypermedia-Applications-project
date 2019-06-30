@@ -19,7 +19,7 @@ h6{
 }
 
 .col-3{
-    display:  -webkit-inline-box;
+    display: flex;
     text-align: center;
 }
 
@@ -71,7 +71,7 @@ a:hover {
     background: #f8f7f7;
     padding: 15px 200px 15px ;
 }
-#pageContainer{
+.pageContainer{
     height: 100%;
     padding-right: 200px;
     padding-left: 200px;
@@ -487,7 +487,7 @@ genres page
 }
 
 .genre{
-
+    text-align: center;
     height: 200px;
 }
 .genre img{
@@ -499,15 +499,17 @@ genres page
 }
 
 .genre a{
+    
     color: white;
     float: left;
     position: absolute;
     display:block;
+    
 }
 
 .genre a span{
     display: block;
-
+    text-align: center;
     background: rgb(0, 0, 0, 8);
 }
 
@@ -968,5 +970,11 @@ SMARTPHONE
 @media (max-width: 767px) {
 
     body{
+    }
+    
+    .pageContainer{
+        padding-right:inherit;
+    padding-left: inherit;
+        
     }
 }
