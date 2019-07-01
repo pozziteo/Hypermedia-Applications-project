@@ -700,7 +700,7 @@ END ContactUs page
 ---------------------*/
 
 /*---------------------
-Home page
+Home page index.html
 ---------------------*/
 
 /*-------Book Author Event------*/
@@ -757,6 +757,7 @@ Home page
     position: relative;
     border: 1px solid #80bfff;
     background-color: white;
+    min-height: 19.3em;
 }
 
 #bestSellerContainerTitle{
@@ -838,6 +839,8 @@ Home page
     position: relative;
     border: 1px solid #80bfff;
     background-color: white;
+    min-height: 19.3em;
+    
 }
 
 #ourFavouriteTitle{
@@ -923,7 +926,7 @@ Cart page
   position: relative;
   padding: 1em;
   border: 1px solid #aaa;
-  border-radius: 0.5em; 
+  border-radius: 0.5em;
   background-color: #ccc;
 
 }

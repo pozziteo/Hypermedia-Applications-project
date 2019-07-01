@@ -290,15 +290,15 @@ Function for SignUp in SignUp page
 ----------------*/
 
 $(document).ready(function(){
+  var $mail = $('#signUpEmail');
+  var $username = $('#signUpUsername');
+  var $psw = $('#signUpPassword');
   $("#signUpButton").click(function () {
-    var $mail = $('#signUpEmail');
-    var $username = $('#signUpUsername');
-    var $psw = $('#signUpPassword');
     $.ajax({
       type: "POST",
       url:'/user/register',
       data:jQuery.param({email:$mail.val(),username:$username.val(),password:$psw.val()}),
-      success: function (response) {
+      success: function () {
         alert("You have successfully registered");
         window.open("../index.html", "index.html");
       },
@@ -309,7 +309,6 @@ $(document).ready(function(){
   });
 });
 
-
 /*----------------
 Function for LogIn in LogIn page
 ----------------*/
@@ -318,6 +317,7 @@ $(document).ready(function(){
   var $username = $('#logInUsername');
   var $psw = $('#logInPassword');
   $("#logInButton").click(function () {
+    alert("Log In ???");
     $.ajax({
       type: "POST",
       url:'/user/login',
@@ -344,11 +344,13 @@ $(document).ready(function(){
       success: function() {
         alert("You have successfully logged out");
       },
-      error: function() {
-        alert("Log Out failed");
+      error: function(res) {
+        alert(res);
       }
     });
-  })});
+  });
+});
+
 
   /*----------------
   Function for User Cart Item in Cart page
@@ -373,4 +375,5 @@ $buy.append('<p>Totale Provvisorio (' + data.length + 'articolo)</p><p>EUR ' + d
 }
 });
 });
+
 ----------------*/
