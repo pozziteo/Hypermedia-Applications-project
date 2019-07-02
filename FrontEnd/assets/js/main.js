@@ -279,21 +279,21 @@ function dateSplit(text, type){
 
     var array = text.split("T");
     var date;
-     var newDate;
-    
+    var newDate;
+
     if(type=="date"){
-        
+
         date=array[0].split("-");
         newDate=date[1]+"-"+date[2]+"-"+date[0];
     }else {
         date=array[1].split(":");
         newDate=date[0]+":"+date[1];
-        
+
     }
-     
-    
-    
-  
+
+
+
+
 
     return newDate;
 
@@ -354,23 +354,23 @@ Function for SignUp in SignUp page
 
 $(document).ready(function(){
 
+    var $mail = $('#signUpEmail');
+    var $username = $('#signUpUsername');
+    var $psw = $('#signUpPassword');
     $("#signUpButton").click(function () {
-        var $mail = $('#signUpEmail');
-        var $username = $('#signUpUsername');
-        var $psw = $('#signUpPassword');
         $.ajax({
             type: "POST",
             url:'/user/register',
             data:jQuery.param({email:$mail.val(),username:$username.val(),password:$psw.val()}),
-            success: function (response) {
-                alert("You are successfully registered");
+            success: function () {
+                alert("You have successfully registered");
                 window.open("../index.html", "index.html");
             },
             error: function (response) {
                 alert("Sign Up failed");
             }
-        });
 
+        });
     });
 });
 
@@ -379,47 +379,49 @@ Function for LogIn in LogIn page
 ----------------*/
 
 $(document).ready(function(){
-
-    var $username = $('#logInUsername');
-    var $psw = $('#logInPassword');
-    $("#logInButton").click(function () {
-        $.ajax({
-            type: "POST",
-            url:'/user/login',
-            data:jQuery.param({username:$username.val(),password:$psw.val()}),
-            success: function () {
-                alert("You have successfully logged in");
-                window.open("../index.html", "index.html");
-            },
-            error: function (response) {
-                alert("Log In failed");
-            }
+    
+            var $username = $('#logInUsername');
+        var $psw = $('#logInPassword');
+        $("#logInButton").click(function () {
+            alert("Log In ???");
+            $.ajax({
+                type: "POST",
+                url:'/user/login',
+                data:jQuery.param({username:$username.val(),password:$psw.val()}),
+                success: function () {
+                    alert("You have successfully logged in");
+                    window.open("../index.html", "index.html");
+                },
+                error: function (response) {
+                    alert("Log In failed");
+                }
+                
+            });
         });
+     });
 
-    });
-});
-
-/*----------------
+        /*----------------
 Function for LogOut in Home page
 ----------------*/
-$(document).ready(function(){
-
-    $("#logOutButton").click(function() {
-        $.ajax({
-            type: "POST",
-            url : "/user/logout",
-            success: function() {
-                alert("You have successfully logged out");
-            },
-            error: function() {
-                alert("Log Out failed");
-            }
+        $(document).ready(function(){
+            
+            $("#logOutButton").click(function() {
+            $.ajax({
+                type: "POST",
+                url : "/user/logout",
+                success: function() {
+                    alert("You have successfully logged out");
+                },
+                error: function(res) {
+                    alert(res);
+                }
+            });
         });
-    })});
+    });
 
-  
+   
 
-/*----------------
+    /*----------------
   Function for User Cart Item in Cart page
 
   $(function(){
@@ -446,38 +448,38 @@ $buy.append('<p>Totale Provvisorio (' + data.length + 'articolo)</p><p>EUR ' + d
 ----------------*/
 
 
-/*-------------function single event----------*/
+    /*-------------function single event----------*/
 
-function eventD(id){
+    function eventD(id){
 
-    var $img = $('#eventImg');
+        var $img = $('#eventImg');
 
-    parseInt(id);
-    console.log(id);
+        parseInt(id);
+        console.log(id);
 
-    $.ajax({
-        type:'GET',
-        url:'/events/'+id+'',
-        success: function(eve){
+        $.ajax({
+            type:'GET',
+            url:'/events/'+id+'',
+            success: function(eve){
 
 
 
-            $('#title').html(eve.title);
-          $('#book').append("<a href='Book.html?idBook="+eve.book.code+"'>"+eve.book.title+"</a");
-            $img.attr('src', '../assets/img/events/'+id +'.jpg');
+                $('#title').html(eve.title);
+                $('#book').append("<a href='Book.html?idBook="+eve.book.code+"'>"+eve.book.title+"</a");
+                $img.attr('src', '../assets/img/events/'+id +'.jpg');
 
-           $('#evDesc').html(eve.description);
-            $('#evDate').html(dateSplit(eve.date, "date")+" / "+dateSplit(eve.date, "time"));
-            
-            $('#evPlace').html(eve.place);
-            
-            
-            
+                $('#evDesc').html(eve.description);
+                $('#evDate').html(dateSplit(eve.date, "date")+" / "+dateSplit(eve.date, "time"));
 
-        }
-    });
+                $('#evPlace').html(eve.place);
 
-   
-   
 
-};
+
+
+            }
+        });
+
+
+
+
+    };
