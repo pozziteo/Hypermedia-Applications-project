@@ -353,6 +353,7 @@ Function for SignUp in SignUp page
 ----------------*/
 
 $(document).ready(function(){
+
     $("#signUpButton").click(function () {
         var $mail = $('#signUpEmail');
         var $username = $('#signUpUsername');
@@ -362,22 +363,23 @@ $(document).ready(function(){
             url:'/user/register',
             data:jQuery.param({email:$mail.val(),username:$username.val(),password:$psw.val()}),
             success: function (response) {
-                alert("You have successfully registered");
+                alert("You are successfully registered");
                 window.open("../index.html", "index.html");
             },
             error: function (response) {
                 alert("Sign Up failed");
             }
         });
+
     });
 });
-
 
 /*----------------
 Function for LogIn in LogIn page
 ----------------*/
 
 $(document).ready(function(){
+
     var $username = $('#logInUsername');
     var $psw = $('#logInPassword');
     $("#logInButton").click(function () {
@@ -393,6 +395,7 @@ $(document).ready(function(){
                 alert("Log In failed");
             }
         });
+
     });
 });
 
@@ -400,6 +403,7 @@ $(document).ready(function(){
 Function for LogOut in Home page
 ----------------*/
 $(document).ready(function(){
+
     $("#logOutButton").click(function() {
         $.ajax({
             type: "POST",
@@ -412,6 +416,8 @@ $(document).ready(function(){
             }
         });
     })});
+
+  
 
 /*----------------
   Function for User Cart Item in Cart page
@@ -436,6 +442,7 @@ $buy.append('<p>Totale Provvisorio (' + data.length + 'articolo)</p><p>EUR ' + d
 }
 });
 });
+
 ----------------*/
 
 

@@ -50,8 +50,9 @@
 <li><p>Deliverable D5: the address of the online source control repository is available <a href="https://github.com/pozziteo/Hypermedia-Applications-project.git">this address</a>. We hereby declare that this is a private repository and, upon request, we will give access to the instructors.</p></li>
 </ul>
 <h2 id="specification">Specification</h2>
-<h3 id="web-architecture">Web Architecture <i>//TODO</i></h3>
-<p>Describe here, with a diagram, the components of your web application and how they interact. Highlight which parts belong to the application layer, data layer or presentation layer. How did you ensure that HTML is not rendered server side?</p>
+<h3 id="web-architecture">Web Architecture</h3>
+<p>The web architecture is described by the following diagram:<br><br><img src="../assets/img/backend-doc/architecture.jpg" alt="Web Architecture"><br><br>
+HTML is not rendered server side because data coming from the client are rendered before being sent, so the parameters received by the server are always just strings, while data sent from server to the client are always in JSON format.</p>
 <h3 id="api">API</h3>
 <h4 id="rest-compliance">REST compliance</h4>
 <p>Each Resource described in the OpenAPI specs and operations about them are accessible over relative URIs which are specific for each Resource (that is, it is not possible to fetch different Resources on the same URI); of course a Resource may contain another Resource (for example Books contains information about their Authors) but specific information are obtained from a different URI.<br><br>
@@ -74,29 +75,33 @@ The interaction is also stateless, which means every request is independent from
     The first server stub was generated with the automatic Swagger generator provided in Swagger Editor, while all the logic's implementation was performed with IntelliJ (an IDE), to get a precious help for debugging and finding errors more efficiently.</p>
 <h3 id="discussion">Discussion</h3>
 <ul>
-<li><p>How did you make sure your web application adheres to the provided OpenAPI specification? <i>//TODO</i></p></li>
-<li><p>Why do you think your web application adheres to common practices to partition the web application (static assets vs. application data) <i>//TODO</i></p></li>
+<li><p><b>Adherence to OpenAPI specification:</b></p>
+    <p>We made sure the web application adheres to the OpenAPI specification with the help of the automatically provided swagger-ui page and a lot of testing to make sure that all the endpoints answered with the right and desired data.</p></li>
+<li><p><b>Partition of the web application</b></p>
+    <p>Static assets and application data are separated, independent and separately developed so that they would be able to evolve without influencing each other, which is surely a good practice</p></li>
     <li><p><b>Session state and management:</b></p>
-        Session state is managed with cookies to provide access to private pages and operations of specific users, as the cart's content and the possibility to finalize orders.
+        <p>Session state is managed with cookies to provide access to private pages and operations of specific users, as the cart's content and the possibility to finalize orders.
 Cookie is set by the server when a POST request to /user/login endpoint is received, and the corresponding id memorized in the database (an integer) of the user who sent the request is saved in the cookie and used as parameter when request about cart are received, to provide the right cart owned by the user.
 To end the session user must send a POST request to /user/logout endpoint.
 Obviously, a client can perform only one session per time, that is if a POST request to /user/login is sent when session is already up, the request will fail. Similarly, if a POST request to /user/logout is sent with no session currently running, the request will fail too.</p></li>
 <li><p><b>Data model technology:</b></p>
-<p>Data are stored in a Postgres database, which is a relational database</p></li>
+<p>Data are stored in a Postgres database, which is a relational database.</p></li>
 </ul>
 <h2 id="other-information">Other information</h2>
-<h3 id="task-assignment">Task assignment <i>//TODO</i></h3>
-<p>Describe here how development tasks have been subdivided among members of the group, e.g.:</p>
+<h3 id="task-assignment">Task assignment</h3>
+<p>Development tasks were divided in this portion:</p>
 <ul>
-<li>Foo worked on front end (80%) and OpenAPI Spec (20% of the time)</li>
-<li>Bar worked on ….</li>
+    <li>Matteo developed the back-end almost the whole time, wrote the OpenAPI Spec and deployed the application on the remote platform</li>
+    <li>Francesco worked on...</li>
+    <li>Cristina worked on...</li>
 </ul>
+<p>All the members of the team worked on the specification of the OpenAPI giving support and ideas for the implementation</p>
 <h3 id="analysis-of-existing-api">Analysis of existing API</h3>
 <p>The most relevant APIs analyzed to provide the OpenAPI specs of this site are the example ones provided by Swagger Editor (Simple Petstore) to learn the basic organization and grouping into tags of endpoints, and more complex APIs such as <a href="https://api.apis.guru/v2/specs/6-dot-authentiqio.appspot.com/6/swagger.json">this one</a>, to see how an existing and working API is and should be organized and provided.</p>
-<h3 id="learning-outcome">Learning outcome <i>//TODO</i></h3>
-<p>What was the most important thing all the members have learned while developing this part of the project, what questions remained unanswered, how you will use what you’ve learned in your everyday life?</p>
-<p>Examples:</p>
+<h3 id="learning-outcome">Learning outcome </h3>
 <ul>
-<li>Foo learned to write SQL queries and Javascript but wanted to know more about caching, he’s probably going to create his own startup with what she has learned</li>
-<li>Bar learned how to deploy on a cloud platform, he would have liked to know more about promises for asynchronous code..</li>
+    <li>Matteo learned JavaScript from scratch, to interact with a database from code and to deploy an application, but wanted to learn more about best-practices in development of a web server and to see more examples to get inspired from.<br>
+    He also would have liked to learn something more about how to manage session states.</li>
+    <li>Francesco learned...</li>
+    <li>Cristina learned...</li>
 </ul>

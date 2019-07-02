@@ -784,7 +784,7 @@ END ContactUs page
 ---------------------*/
 
 /*---------------------
-Home page
+Home page index.html
 ---------------------*/
 
 /*-------Book Author Event------*/
@@ -841,6 +841,7 @@ Home page
     position: relative;
     border: 1px solid #80bfff;
     background-color: white;
+    min-height: 19.3em;
 }
 
 #homeTitles{
@@ -921,6 +922,8 @@ Home page
     position: relative;
     border: 1px solid #80bfff;
     background-color: white;
+    min-height: 19.3em;
+    
 }
 
 
@@ -998,12 +1001,12 @@ Cart page
 
 
 #buyCart{
+
     position: relative;
     padding: 1em;
     border: 1px solid #aaa;
     border-radius: 0.5em; 
     background-color: #ccc;
-
 }
 
 #buyCart button{
