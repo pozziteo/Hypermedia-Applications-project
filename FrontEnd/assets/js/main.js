@@ -310,7 +310,6 @@ $(function(){
         type:'GET',
         url:'/books/best-sellers',
         success: function(data){
-
             $.each(data, function(i, bestSeller){
 
                 if(i == 0){
@@ -324,6 +323,50 @@ $(function(){
     });
 });
 
+/*----------------
+Function for fill user Cart Item in Cart page
+----------------*/
+
+$(document).ready(function(){
+  var $cart = $('#cartList');
+  var $buy = $('#buyCart');
+    $.ajax({
+      type:'GET',
+      url:'/cart',
+      success: function(data){
+        $.each(data, function(i, cartItem){
+          if(i == 0){
+            $cart.append('<div class="cartItem"><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + JSON.stringify(cartItem.title) + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + JSON.stringify(cartItem.title) + '</a> by <a class="cartItemAuthor" href="">' + JSON.stringify(cartItem.author) + '</a><p class="cartItemPrice">EUR ' + cartItem.price + '</p><a class="cartItemRemove" href="#">remove</a></span></div>');
+          }
+          else{
+            $cart.append('<div class="cartItem"><hr><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + JSON.stringify(cartItem.title) + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + JSON.stringify(cartItem.title) + '</a> by <a class="cartItemAuthor" href="">' + JSON.stringify(cartItem.author) + '</a><p class="cartItemPrice">EUR ' + cartItem.price + '</p><a class="cartItemRemove" href="#">remove</a></span></div>');
+          }
+        });
+        $buy.append('<p>Totale Provvisorio: EUR ' + data.total.value + '</p><button type="button" type="submit">Complete your order</button>');
+      }
+    });
+});
+
+
+/*----------------
+Function for remove a book from the Cart in Cart page
+        $(document).ready(function(){
+          $("#cartItemRemove").click(function() {
+            $item = $("#bookImage").src;
+            $.ajax({
+                type: "DELETE",
+                url : "/cart/items/{" + $item + "}",
+                data:jQuery.param({itemID:$src.val()}),
+                success: function() {
+                    alert("You have successful removed the book from your cart");
+                },
+                error: function(res) {
+                    alert("Impossible to remove the book from your cart");
+                }
+            });
+        });
+    });
+    ----------------*/
 
 /*----------------
 Function for OurFavourite in Home Page
@@ -379,11 +422,10 @@ Function for LogIn in LogIn page
 ----------------*/
 
 $(document).ready(function(){
-    
+
             var $username = $('#logInUsername');
         var $psw = $('#logInPassword');
         $("#logInButton").click(function () {
-            alert("Log In ???");
             $.ajax({
                 type: "POST",
                 url:'/user/login',
@@ -395,16 +437,16 @@ $(document).ready(function(){
                 error: function (response) {
                     alert("Log In failed");
                 }
-                
+
             });
         });
      });
 
-        /*----------------
+/*----------------
 Function for LogOut in Home page
 ----------------*/
         $(document).ready(function(){
-            
+
             $("#logOutButton").click(function() {
             $.ajax({
                 type: "POST",
@@ -413,39 +455,13 @@ Function for LogOut in Home page
                     alert("You have successfully logged out");
                 },
                 error: function(res) {
-                    alert(res);
+                    alert("Impossibile to log out");
                 }
             });
         });
     });
 
-   
 
-    /*----------------
-  Function for User Cart Item in Cart page
-
-  $(function(){
-  var $cart = $('#cartList');
-  var $buy = $('#buyCart');
-  $.ajax({
-  type:'GET',
-  url:'/cart',
-  success: function(data){
-  $.each(data, function(i, cartItem){
-  if(i == 0){
-  $cart.append('<div class="cartItem"><img src="../assets/img' + cartItem.code + '.jpg" alt="' + cartItem.title + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + cartItem.title + '</a> by <a class="cartItemAuthor" href="">' + cartItem.author + '</a><p class="cartItemPrice">EUR ' + cartItem.price + '</p><a class="cartItemRemove" href="#">remove</a></span></div>');
-}
-else{
-$cart.append('<div class="cartItem"><hr><img src="../assets/img' + cartItem.code + '.jpg" alt="' + cartItem.title + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + cartItem.title + '</a> by <a class="cartItemAuthor" href="">' + cartItem.author + '</a><p class="cartItemPrice">EUR ' + cartItem.price + '</p><a class="cartItemRemove" href="#">remove</a></span></div>');
-
-}
-});
-$buy.append('<p>Totale Provvisorio (' + data.length + 'articolo)</p><p>EUR ' + data + '</p><button type="button" type="submit">Complete your order</button>');
-}
-});
-});
-
-----------------*/
 
 
     /*-------------function single event----------*/
