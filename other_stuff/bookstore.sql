@@ -5,7 +5,7 @@
 -- Dumped from database version 11.2
 -- Dumped by pg_dump version 11.2
 
--- Started on 2019-06-09 19:43:50
+-- Started on 2019-07-02 19:38:03
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -104,10 +104,6 @@ ALTER SEQUENCE public.cart_owner_id_seq OWNED BY public.cart.owner_id;
 
 CREATE TABLE public.customer (
     email character varying(80) NOT NULL,
-    add_city character varying(15),
-    add_street character varying(50),
-    add_zipcode integer,
-    add_region character varying(15),
     username character varying(30) NOT NULL,
     password character varying(80),
     user_id integer NOT NULL
@@ -263,6 +259,9 @@ COPY public.author (name, author_id, biography) FROM stdin;
 Patricia Cornwell	11	Cornwell began work on her first novel in 1984, about a male detective named Joe Constable and met Dr. Marcella Farinelli Fierro, a medical examiner in Richmond, and subsequent inspiration for the cha
 J. K. Rowling	12	J.K. Rowling was living in Edinburgh, Scotland, and struggling to get by as a single mom before her first book, Harry Potter and the Sorcerer's Stone, was published. The children's fantasy novel becam
 Arthur Conan Doyle	13	Sir Arthur Ignatius Conan Doyle KStJ DL (22 May 1859 – 7 July 1930) was a British writer best known for his detective fiction featuring the character Sherlock Holmes. Originally a physician, in 1887 h
+J.R.R. Tolkien	14	Born on January 3, 1892, in Bloemfontein, South Africa, J.R.R. Tolkien settled in England as a child, going on to study at Exeter College. While teaching at Oxford University, he published the popular
+George R.R. Martin	15	Born in 1948, fantasy writer George R. R. Martin grew up in Bayonne, New Jersey. His first novel, Dying of the Light, debuted in 1977, and by the mid-1980s he was also writing for television. In 1996 
+Valerio Massimo Manfredi	16	Valerio Massimo Manfredi (born 8 March 1942) is an Italian historian, writer, essayist, archaeologist and journalist. He was born in Piumazzo di Castelfranco Emilia province of Modena and, after getti
 \.
 
 
@@ -275,6 +274,7 @@ Arthur Conan Doyle	13	Sir Arthur Ignatius Conan Doyle KStJ DL (22 May 1859 – 7
 COPY public."best-sellers" (book_id) FROM stdin;
 9780439358064
 9780743477154
+9780618640157
 \.
 
 
@@ -286,9 +286,12 @@ COPY public."best-sellers" (book_id) FROM stdin;
 
 COPY public.book (title, description, value, code, publisher, binding, genre, theme, available, series, currency) FROM stdin;
 Postmortem	Four women with nothing in common, united only in death. Four brutalized victims of a brilliant monster - a "Mr. Nobody", moving undetected through a paralyzed city, leaving behind a gruesome trail of	25.00	9780743477154	Pocket Books, December 30th 2003	Hardcover - 350 pages	Crime	Killer Hounting	t	Kay Scarpetta #1	eur
-Harry Potter and the Order of the Phoenix	Dark times have come to Hogwarts. After the Dementors' attack on his cousin Dudley, Harry Potter knows that Voldemort will stop at nothing to find him. There are many who deny the Dark Lord's return, 	17.50	9780439358064	Arthur A. Levine Books; 1st edition (July 1, 2003)	Hardcover - 870 pages	Fantasy	Good vs Evil	t	\N	eur
 Body of Evidence	After months of menacing phone calls and feeling that her every move is being watched, successful writer Beryl Madison flees Key West when a terrifying message is scratched on her car. But the very ni	20.00	9780743493918	Pocket Books, November 30th 2004	Hardcover - 300 pages	Crime	Killer Hounting	t	Kay Scarpetta #2	eur
 Harry Potter and the Sorcerer's Stone	Harry Potter has no idea how famous he is. That's because he's being raised by his miserable aunt and uncle who are terrified Harry will learn that he's really a wizard, just as his parents were. But 	10.00	9780439708180	Scholastic; 1st Edition edition September 1998	Paperback - 309 pages	Fantasy	Good vs Evil	t	Harry Potter #1	eur
+Harry Potter and the Order of the Phoenix	Dark times have come to Hogwarts. After the Dementors' attack on his cousin Dudley, Harry Potter knows that Voldemort will stop at nothing to find him. There are many who deny the Dark Lord's return, 	17.50	9780439358064	Arthur A. Levine Books; 1st edition (July 1, 2003)	Hardcover - 870 pages	Fantasy	Good vs Evil	t	Harry Potter #5	eur
+The Lord of the Rings	One Ring to rule them all, One Ring to find them, One Ring to bring them all and in the darkness bind them\n\nIn ancient times the Rings of Power were crafted by the Elven-smiths, and Sauron, the Dark Lord, forged the One Ring, filling it with his own power so that he could rule all others. But the One Ring was taken from him, and though he sought it throughout Middle-earth, it remained lost to him. After many ages it fell by chance into the hands of the hobbit Bilbo Baggins.\n\nFrom Sauron's fastne	22.99	9780618640157	 Mariner Books	Hardcover - 1178 pages	Fantasy	Travel	t	\N	eur
+Game of Thrones (A Song of Ice and Fire, Book 1)	Kings and queens, knights and renegades, liars, lords and honest men… all will play the GAME OF THRONES.\n\nSummers span decades. Winter can last a lifetime. And the struggle for the Iron Throne has begun.\n\nIt will stretch from the south, where heat breeds plot, lusts and intrigues; to the vast and savage eastern lands; all the way to the frozen north, where a 700-foot wall of ice protects the kingdom from the dark forces that lie beyond. The Game of Thrones. You win, or you die.\n\nBook One of A So	17.93	9780007428540	HarperVoyager	Flexible Cover - 864 pages	Fantasy	Family	t	A Song of Ice and Fire #1	eur
+The Last Legion	Valerio Massimo Manfredi's The Last Legion opens on the day that the Western Roman Empire collapses finally in 470AD, as the Last Emperor of Rome is encamped and protected by the Nova Invicta Legion. All is lost in the space of a few minutes as a horde of Barbarians sweep through the camp in the fog, kill the Imperial family and take the young Emperor captive. The Roman Empire is in ruins . . .\n\nBut all is not lost. From the dust of battlefields emerges a small team of invincible warriors - The 	15.99	9781447271413	Pan	Paperback - 450 pages	Historical fiction	War	t	\N	eur
 \.
 
 
@@ -309,8 +312,8 @@ COPY public.cart (book_id, owner_id) FROM stdin;
 -- Data for Name: customer; Type: TABLE DATA; Schema: public; Owner: -
 --
 
-COPY public.customer (email, add_city, add_street, add_zipcode, add_region, username, password, user_id) FROM stdin;
-giovanni@mail.it	Milano	Via verdi, 23	20035	Lombardia	naani	$2b$10$l0njbpqbGEzAojVTOvAugur/5/fwq2hMSypjkBKuaeeM0nRi2oO/a	1
+COPY public.customer (email, username, password, user_id) FROM stdin;
+giovanni@gmail.com	naani	$2b$10$l0njbpqbGEzAojVTOvAugur/5/fwq2hMSypjkBKuaeeM0nRi2oO/a	1
 \.
 
 
@@ -321,7 +324,11 @@ giovanni@mail.it	Milano	Via verdi, 23	20035	Lombardia	naani	$2b$10$l0njbpqbGEzAo
 --
 
 COPY public.event (book_id, title, place, description, event_id, date) FROM stdin;
-9780743477154	Crime and summer	Milan via pascoli 5	Reading  of the book postmortem	1	2019-12-07 15:00:00+01
+9780007428540	Winter is coming	Milan Mondadori Piazza Monte Titano 	Winter is coming in Milan... and George R.R. Martin too	2	2019-07-20 11:00:00+02
+9780618640157	Rule them all	Turin via Cesare Battisti, 7	Are you ready to face the Nazgul?	3	2019-07-27 19:30:00+02
+9781447271413	For Rome	Rome Piazza Cola di Rienzo, 81/83 	The Last Legion is coming home, for the glory of the Eternal City!	4	2019-07-15 16:00:00+02
+9780439358064	Save the magic world	Milan Piazza Castello	The magic world needs you. Come and join the Dumbledore's army!	5	2019-09-30 12:00:00+02
+9780743477154	Crime and summer	Milan via pascoli 5	Reading of the book postmortem	1	2019-12-07 15:00:00+01
 \.
 
 
@@ -334,6 +341,8 @@ COPY public.event (book_id, title, place, description, event_id, date) FROM stdi
 COPY public.favourites (book_id) FROM stdin;
 9780743477154
 9780439708180
+9780007428540
+9781447271413
 \.
 
 
@@ -356,10 +365,10 @@ Fiction
 Horror
 Poetry
 Drama
-Hystorical fiction
 Fairytail
 Scientific paper
 Crime
+Historical fiction
 \.
 
 
@@ -370,7 +379,11 @@ Crime
 --
 
 COPY public.review (book_id, date, rate, comment, username) FROM stdin;
-9780439358064	2019-05-30	4	nice book	naani
+9780007428540	2018-10-10	5	I really loved this one, WOW!	naani
+9780618640157	2018-12-30	5	I always liked Tolkien's books, this is really a masterpiece	naani
+9780743493918	2019-02-03	2	Not my genre, but somebody may appreciate it	naani
+9780439358064	2019-05-30	4	Nice book	naani
+9781447271413	2019-04-20	3	Roman Empire fascinates me, this is interesting	naani
 \.
 
 
@@ -414,6 +427,9 @@ COPY public.written (book_id, author_id) FROM stdin;
 9780439708180	12
 9780439358064	12
 9780743493918	13
+9780618640157	14
+9780007428540	15
+9781447271413	16
 \.
 
 
@@ -432,7 +448,7 @@ SELECT pg_catalog.setval('public.cart_owner_id_seq', 3, true);
 -- Name: customer_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.customer_user_id_seq', 1, true);
+SELECT pg_catalog.setval('public.customer_user_id_seq', 3, true);
 
 
 --
@@ -651,7 +667,7 @@ ALTER TABLE ONLY public.written
     ADD CONSTRAINT written_book_fkey FOREIGN KEY (book_id) REFERENCES public.book(code) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
--- Completed on 2019-06-09 19:43:53
+-- Completed on 2019-07-02 19:38:07
 
 --
 -- PostgreSQL database dump complete

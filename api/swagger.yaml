@@ -1,8 +1,10 @@
 ---
 swagger: "2.0"
 info:
-  description: "This is a simple bookstore server with a book inventory, users and\
-    \ a shopping cart."
+  description: "This is a book store server provided for users in order to buy books. Users can register into the \
+  \ store, can login and logout and each user owns a Cart in which they can put their books in order to buy them later. \
+  \ The store provides a book inventory with information about their authors too, and there are also events where \
+  \ books are presented for promotional purpose. "
   version: "1.0.0"
   title: "Simple Bookstore"
   contact:
