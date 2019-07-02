@@ -1,72 +1,123 @@
 function genList(){
 
-  var $genres = $('#genres');
+    var $genres = $('#genres');
 
-  $.ajax({
-    type:'GET',
-    url:'/books/genres',
-    success: function(data){
-      $.each(data, function(i,genre){
+    $.ajax({
+        type:'GET',
+        url:'/books/genres',
+        success: function(data){
+            $.each(data, function(i,genre){
 
-        // $genres.append('<img class="singleI" src=""> name:'+genre.name+' - <br> </div>');
-        $genres.append('<div class="col-12 col-md-3 genre"><img class="singleI" src="../assets/img/gen/'+genre.name+'.jpg"><a href=""><span>'+genre.name+'</span> </a></div>');
-      });
-    }
-  });
+                // $genres.append('<img class="singleI" src=""> name:'+genre.name+' - <br> </div>');
+                $genres.append('<div class="col-12 col-md-6 col-lg-3 genre"><img class="singleI" src="../assets/img/gen/'+genre.name+'.jpg"><a href=""><span>'+genre.name+'</span> </a></div>');
+            });
+        }
+    });
+
+
+};
+
+function themList(){
+
+    var $them = $('#themes');
+
+    $.ajax({
+        type:'GET',
+        url:'/books/themes',
+        success: function(data){
+            $.each(data, function(i,theme){
+
+                // $genres.append('<img class="singleI" src=""> name:'+genre.name+' - <br> </div>');
+                $them.append('<div class="col-12 col-md-6 col-lg-3 "><h2 class="theme"><a href="">'+theme.name+'</a></h2> </div>');
+            });
+        }
+    });
+
+
+};
+
+/*-------- single book page------*/
+
+function bookD(id){
+
+    var $img = $('#bookImage');
+    var $title = $('#titoloLibro');
+    var $aut = $('#autoreLibro');
+    var $desc = $('#descLibro');
+    parseInt(id);
+    console.log(id);
+
+    $.ajax({
+        type:'GET',
+        url:'/books/'+id+'',
+        success: function(book){
+
+
+
+            $title.append(book.title);
+            // $aut.append(book.au)
+            $img.attr('src', '../assets/img/'+book.code +'.jpg');
+
+            $desc.html(book.description);
+            $('#prezzoLibro').html('Price: '+book.price.value +' €');
+
+        }
+    });
+
+    $.ajax({
+        type:'GET',
+        url:'/books/'+id+'/similar',
+        success: function(data){
+
+
+
+            $.each(data, function(i,sim){
+
+                $('#similar').append('<div class="col-12 col-md-6 col-lg-3 "><a href="Book.html?idBook='+sim.code+'"><img  src="../assets/img/'+sim.code+'.jpg" alt=""><h6>'+sim.title+'</h6></a></div>');
+            });
+
+        }
+    });
+
+    $.ajax({
+        type:'GET',
+        url:'/books/'+id+'/reviews',
+        success: function(data){
+
+
+
+            $.each(data, function(i,rev){
+
+                $('#reviews').append('<div class="rBox"><div class="user"><b>'+rev.username+'</b></div><div class="comment"><p>'+rev.comment+'</p></div></div>');
+            });
+
+        }
+    });
 
 
 };
 
 
 
+/*------single author page-------*/
 $(function(){
 
-  var $img = $('#bookImage');
-  var $title = $('#titoloLibro');
-  var $aut = $('#autoreLibro');
-  var $desc = $('#descLibro');
+    $.ajax({
+        type:'GET',
+        url:'/authors/11',
+        success: function(author){
+
+            console.log(author);
+
+            $('#autName').html(author.name);
+
+            $('#authorPic').attr('src', '../assets/img/authors/'+author.author_id +'.jpg');
+
+            $('#bio').html(author.biography);
 
 
-
-  $.ajax({
-    type:'GET',
-    url:'/books/9780743477154',
-    success: function(book){
-
-      // console.log(book);
-
-      $title.append(book.title);
-      // $aut.append(book.au)
-      $img.attr('src', '../assets/img/'+book.code +'.jpg');
-
-      $desc.html(book.description);
-      $('#prezzoLibro').html('Price: '+book.price.value +' €');
-
-    }
-  });
-
-
-});
-
-
-$(function(){
-
-  $.ajax({
-    type:'GET',
-    url:'/authors/11',
-    success: function(author){
-
-      console.log(author);
-
-      $('#autName').html(author.name);
-
-      $('#authorPic').attr('src', '../assets/img/authors/'+author.author_id +'.jpg');
-
-      $('#bio').html(author.biography);
-
-
-    }
-  });
+        }
+    });
 
 
 });
@@ -76,23 +127,23 @@ $(function(){
 
 function booksList(){
 
-  var $list = $('#books')
-  $.ajax({
-    type:'GET',
-    url:'/books',
-    success: function(data){
+    var $list = $('#books')
+    $.ajax({
+        type:'GET',
+        url:'/books',
+        success: function(data){
 
-      $.each(data, function(i,book){
+            $.each(data, function(i,book){
 
-        console.log("ho caricato la lista dei");
+                console.log("ho caricato la lista dei");
 
-        $list.append('<div class="col-2 singleBook"><a href=""><img src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.author +'</h7></a></div>');
+                $list.append('<div class="col-lg-2 col-md-3 singleBook"><a href="Book.html?idBook='+book.code+'"><img src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.author +'</h7></a></div>');
 
-      });
+            });
 
-    }
+        }
 
-  });
+    });
 
 
 };
@@ -100,47 +151,47 @@ function booksList(){
 
 $(function(){
 
-  var $list = $('#gFilters');
-  $.ajax({
-    type:'GET',
-    url:'/books/genres',
-    success: function(data){
+    var $list = $('#gFilters');
+    $.ajax({
+        type:'GET',
+        url:'/books/genres',
+        success: function(data){
 
-      $.each(data, function(i,genre){
+            $.each(data, function(i,genre){
 
-        // console.log(genre);
+                // console.log(genre);
 
 
-        $list.append("<button class="+"btn"+" onclick="+"filterSelection('genre','"+genre.name+"')"+">"+genre.name+"</button>");
+                $list.append("<button class="+"btn"+" onclick="+"filterSelection('genre','"+genre.name+"')"+">"+genre.name+"</button>");
 
-      });
+            });
 
-    }
+        }
 
-  });
+    });
 
 
 });
 
 $(function(){
 
-  var $list = $('#tFilters');
-  $.ajax({
-    type:'GET',
-    url:'/books/themes',
-    success: function(data){
+    var $list = $('#tFilters');
+    $.ajax({
+        type:'GET',
+        url:'/books/themes',
+        success: function(data){
 
-      $.each(data, function(i,theme){
+            $.each(data, function(i,theme){
 
-        // console.log(urlString(theme.name));
+                // console.log(urlString(theme.name));
 
-        $list.append("<button class="+"btn"+" onclick="+"filterSelection('theme','"+urlString(theme.name)+"')"+">"+theme.name+"</button>");
+                $list.append("<button class="+"btn"+" onclick="+"filterSelection('theme','"+urlString(theme.name)+"')"+">"+theme.name+"</button>");
 
-      });
+            });
 
-    }
+        }
 
-  });
+    });
 
 
 });
@@ -148,31 +199,31 @@ $(function(){
 
 function filterSelection(type, nome){
 
-  document.getElementById("gFilters").style.backgroundColor = "red";
+    document.getElementById("gFilters").style.backgroundColor = "red";
 
 
-  console.log(type);
-  var $list = $('#books');
-  // var $genre="Fatasy"
-  $.ajax({
-    type:'GET',
-    url:'/books?'+type+'='+nome+'',
-    success: function(data){
+    console.log(type);
+    var $list = $('#books');
+    // var $genre="Fatasy"
+    $.ajax({
+        type:'GET',
+        url:'/books?'+type+'='+nome+'',
+        success: function(data){
 
-      $list.html("");
+            $list.html("");
 
-      $.each(data, function(i,book){
+            $.each(data, function(i,book){
 
 
-        //console.log(book);
+                //console.log(book);
 
-        $list.append('<div class="col-2 singleBook"><a href=""><img src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.author +'</h7></a></div>');
+                $list.append('<div class="col-2 singleBook"><a href=""><img src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.author +'</h7></a></div>');
 
-      });
+            });
 
-    }
+        }
 
-  });
+    });
 
 
 };
@@ -184,16 +235,16 @@ function filterSelection(type, nome){
 
 function urlString(text){
 
-  var array = text.split(" ");
-  var newString=array[0];
+    var array = text.split(" ");
+    var newString=array[0];
 
-  for(i=1; i< array.length; i++){
+    for(i=1; i< array.length; i++){
 
-    newString+="%20"+array[i];
-  }
+        newString+="%20"+array[i];
+    }
 
 
-  return newString;
+    return newString;
 };
 
 
@@ -205,32 +256,46 @@ Function for events page
 
 function eventsList(){
 
-  var $list = $('#events');
-  $.ajax({
-    type:'GET',
-    url:'/events',
-    success: function(data){
+    var $list = $('#events');
+    $.ajax({
+        type:'GET',
+        url:'/events',
+        success: function(data){
 
-      $.each(data, function(i,event){
+            $.each(data, function(i,event){
 
-        console.log(event.id);
+                console.log(event.id);
 
-        $list.append("<div class='event'><div class='ribbon'>"+ dateSplit(event.date)+"</div> <div><a href=''><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
+                $list.append("<div class='event'><div class='ribbon'>"+ dateSplit(event.date,'date')+"</div> <div><a href='event.html?idEv="+event.event_id+"'><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
 
-      });
+            });
 
-    }
+        }
 
-  });
+    });
 };
 
-function dateSplit(text){
+function dateSplit(text, type){
 
-  var array = text.split("T");
-  var date=array[0].split("-");
-  var newDate=date[1]+"-"+date[2]+"-"+date[0];
+    var array = text.split("T");
+    var date;
+     var newDate;
+    
+    if(type=="date"){
+        
+        date=array[0].split("-");
+        newDate=date[1]+"-"+date[2]+"-"+date[0];
+    }else {
+        date=array[1].split(":");
+        newDate=date[0]+":"+date[1];
+        
+    }
+     
+    
+    
+  
 
-  return newDate;
+    return newDate;
 
 };
 
@@ -240,23 +305,23 @@ Function for BestSeller in Home Page
 ----------------*/
 
 $(function(){
-  var $list = $('#bestSellerContainer');
-  $.ajax({
-    type:'GET',
-    url:'/books/best-sellers',
-    success: function(data){
+    var $list = $('#bestSellerContainer');
+    $.ajax({
+        type:'GET',
+        url:'/books/best-sellers',
+        success: function(data){
 
-      $.each(data, function(i, bestSeller){
+            $.each(data, function(i, bestSeller){
 
-        if(i == 0){
-          $list.append('<div id="firstBestSeller" class="bestSeller row"><div class="col-4"><img src="assets/img/'+ bestSeller.code +'.jpg" alt="'+ bestSeller.title +'"></div><div class="col-7"><p id="firstBestSellerNumber">#1</p><span><p>'+ bestSeller.title +'</p><p>'+ bestSeller.author +'</p><p>'+ bestSeller.value +'</p><span></div></div>');
+                if(i == 0){
+                    $list.append('<div id="firstBestSeller" class="bestSeller row"><div class="col-4"><img src="assets/img/'+ bestSeller.code +'.jpg" alt="'+ bestSeller.title +'"></div><div class="col-7"><p id="firstBestSellerNumber">#1</p><span><p>'+ bestSeller.title +'</p><p>'+ bestSeller.author +'</p><p>'+ bestSeller.value +'</p><span></div></div>');
+                }
+                else{
+                    $list.append('<div class="bestSeller"><p class="bestSellerNumber">#2</p><span><p>'+ bestSeller.title +'</p><p>'+ bestSeller.author +'</p><p>'+ bestSeller.value +'</p></span></div>');
+                }
+            });
         }
-        else{
-          $list.append('<div class="bestSeller"><p class="bestSellerNumber">#2</p><span><p>'+ bestSeller.title +'</p><p>'+ bestSeller.author +'</p><p>'+ bestSeller.value +'</p></span></div>');
-        }
-      });
-    }
-  });
+    });
 });
 
 
@@ -265,22 +330,22 @@ Function for OurFavourite in Home Page
 ----------------*/
 
 $(function(){
-  var $left = $('#leftOurFavourite');
-  var $right = $('#rightOurFavourite');
-  $.ajax({
-    type:'GET',
-    url:'/books/our-favourites',
-    success: function(data){
-      $.each(data, function(i, ourFavourite){
-        if(i%2 == 0){
-          $left.append('<div class="ourFavourite row"><div class="col"><img src="assets/img/'+ ourFavourite.code +'.jpg" alt="'+ ourFavourite.title +'"></div><div class="col"><span><p>'+ ourFavourite.title +'</p><p>'+ ourFavourite.author +'</p><p>'+ ourFavourite.value +'</p></span></div></div>');
+    var $left = $('#leftOurFavourite');
+    var $right = $('#rightOurFavourite');
+    $.ajax({
+        type:'GET',
+        url:'/books/our-favourites',
+        success: function(data){
+            $.each(data, function(i, ourFavourite){
+                if(i%2 == 0){
+                    $left.append('<div class="ourFavourite row"><div class="col"><a href="book.html?bookId='+ourFavourite.code+'><img src="assets/img/'+ ourFavourite.code +'.jpg" alt="'+ ourFavourite.title +'"></div><div class="col"><span><p>'+ ourFavourite.title +'</p></a><p>'+ ourFavourite.author +'</p><p>'+ ourFavourite.value +'</p></span></div></div>');
+                }
+                else{
+                    $right.append('<div class="ourFavourite row"><div class="col"><img src="assets/img/'+ ourFavourite.code +'.jpg" alt="'+ ourFavourite.title +'"></div><div class="col"><span><p>'+ ourFavourite.title +'</p><p>'+ ourFavourite.author +'</p><p>'+ ourFavourite.value  +'</p></span></div></div>');
+                }
+            });
         }
-        else{
-          $right.append('<div class="ourFavourite row"><div class="col"><img src="assets/img/'+ ourFavourite.code +'.jpg" alt="'+ ourFavourite.title +'"></div><div class="col"><span><p>'+ ourFavourite.title +'</p><p>'+ ourFavourite.author +'</p><p>'+ ourFavourite.value  +'</p></span></div></div>');
-        }
-      });
-    }
-  });
+    });
 });
 
 /*----------------
@@ -288,23 +353,23 @@ Function for SignUp in SignUp page
 ----------------*/
 
 $(document).ready(function(){
-  $("#signUpButton").click(function () {
-    var $mail = $('#signUpEmail');
-    var $username = $('#signUpUsername');
-    var $psw = $('#signUpPassword');
-    $.ajax({
-      type: "POST",
-      url:'/user/register',
-      data:jQuery.param({email:$mail.val(),username:$username.val(),password:$psw.val()}),
-      success: function (response) {
-        alert("You have successfully registered");
-        window.open("../index.html", "index.html");
-      },
-      error: function (response) {
-        alert("Sign Up failed");
-      }
+    $("#signUpButton").click(function () {
+        var $mail = $('#signUpEmail');
+        var $username = $('#signUpUsername');
+        var $psw = $('#signUpPassword');
+        $.ajax({
+            type: "POST",
+            url:'/user/register',
+            data:jQuery.param({email:$mail.val(),username:$username.val(),password:$psw.val()}),
+            success: function (response) {
+                alert("You have successfully registered");
+                window.open("../index.html", "index.html");
+            },
+            error: function (response) {
+                alert("Sign Up failed");
+            }
+        });
     });
-  });
 });
 
 
@@ -313,42 +378,42 @@ Function for LogIn in LogIn page
 ----------------*/
 
 $(document).ready(function(){
-  var $username = $('#logInUsername');
-  var $psw = $('#logInPassword');
-  $("#logInButton").click(function () {
-    $.ajax({
-      type: "POST",
-      url:'/user/login',
-      data:jQuery.param({username:$username.val(),password:$psw.val()}),
-      success: function () {
-        alert("You have successfully logged in");
-        window.open("../index.html", "index.html");
-      },
-      error: function (response) {
-        alert("Log In failed");
-      }
+    var $username = $('#logInUsername');
+    var $psw = $('#logInPassword');
+    $("#logInButton").click(function () {
+        $.ajax({
+            type: "POST",
+            url:'/user/login',
+            data:jQuery.param({username:$username.val(),password:$psw.val()}),
+            success: function () {
+                alert("You have successfully logged in");
+                window.open("../index.html", "index.html");
+            },
+            error: function (response) {
+                alert("Log In failed");
+            }
+        });
     });
-  });
 });
 
 /*----------------
 Function for LogOut in Home page
 ----------------*/
 $(document).ready(function(){
-  $("#logOutButton").click(function() {
-    $.ajax({
-      type: "POST",
-      url : "/user/logout",
-      success: function() {
-        alert("You have successfully logged out");
-      },
-      error: function() {
-        alert("Log Out failed");
-      }
-    });
-  })});
+    $("#logOutButton").click(function() {
+        $.ajax({
+            type: "POST",
+            url : "/user/logout",
+            success: function() {
+                alert("You have successfully logged out");
+            },
+            error: function() {
+                alert("Log Out failed");
+            }
+        });
+    })});
 
-  /*----------------
+/*----------------
   Function for User Cart Item in Cart page
 
   $(function(){
@@ -372,3 +437,40 @@ $buy.append('<p>Totale Provvisorio (' + data.length + 'articolo)</p><p>EUR ' + d
 });
 });
 ----------------*/
+
+
+/*-------------function single event----------*/
+
+function eventD(id){
+
+    var $img = $('#eventImg');
+
+    parseInt(id);
+    console.log(id);
+
+    $.ajax({
+        type:'GET',
+        url:'/events/'+id+'',
+        success: function(eve){
+
+
+
+            $('#title').html(eve.title);
+          $('#book').append("<a href='Book.html?idBook="+eve.book.code+"'>"+eve.book.title+"</a");
+            $img.attr('src', '../assets/img/events/'+id +'.jpg');
+
+           $('#evDesc').html(eve.description);
+            $('#evDate').html(dateSplit(eve.date, "date")+" / "+dateSplit(eve.date, "time"));
+            
+            $('#evPlace').html(eve.place);
+            
+            
+            
+
+        }
+    });
+
+   
+   
+
+};

@@ -482,8 +482,8 @@ author page
 genres page
 ----------------*/
 #genres{
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 2%;
+    padding-right: 2%;
 }
 
 .genre{
@@ -499,12 +499,16 @@ genres page
 }
 
 .genre a{
-    
+    font-size: 1.2em;
     color: white;
     float: left;
     position: absolute;
+    bottom: 50%;
+    transform: translateY(-50%);
+    left:50%; 
+    transform: translateX(-50%);
     display:block;
-    
+
 }
 
 .genre a span{
@@ -513,15 +517,42 @@ genres page
     background: rgb(0, 0, 0, 8);
 }
 
+
+
+/*-------------
+Themes list
+----------------*/
+
+h2.theme{ 
+    margin: 30px 0;
+    text-align: center;
+    font: bold 30px Monserrat, Sans-Serif;
+    text-transform: uppercase;
+    text-shadow: 1px 1px gray, 2px 2px gray, 3px 3px gray;
+    -webkit-transition: all 0.12s ease-out;
+    -moz-transition: all 0.12s ease-out;
+    -o-transition: all 0.12s ease-out;
+}
+h2.theme :hover {
+    text-shadow: 1px 1px green, 2px 2px green, 3px 3px green, 4px 4px green, 5px 5px green, 5px 5px green;
+}
+
+h2.theme a{
+    text-decoration: none;
+    font: bold 34px helvetica, Sans-Serif;
+    color: #c6c6c6;
+}
+
+
 /*-------------
 All books page
 ----------------*/
 .singleBook{
-    margin: 2%;
+    margin: 0px auto;
     background-color:ghostwhite;
     width: 100%;
     height: min-content;
-    padding: 0px;
+    padding: 2%;
 }
 
 .singleBook h6{
@@ -553,7 +584,7 @@ All books page
 }
 
 .filters{
-    margin-top: 1em;
+    margin: 0 auto;
     font-family: 'Josefin Sans', sans-serif;
 }
 
@@ -621,7 +652,7 @@ All events page
     padding: 6px 4px 6px 16px;
     text-align: left;
     z-index: 100;
-    background: red;
+    background: #097006;
     color: white;
 }
 
@@ -629,7 +660,7 @@ All events page
     color: black;
     margin-top: 3%;
     margin-left: 10%;
-     margin-right:0;
+    margin-right:0;
     //width: 60%;
     padding: 6px 6px 6px 6px;
     min-height: 200px;
@@ -668,6 +699,57 @@ All events page
 
 
 
+/*-------------
+ single event page
+----------------*/
+.evtop{
+    background-color: gainsboro;
+
+
+
+}
+#eventImg{
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    object-position: 100% 0;
+    padding: 0px;
+}
+
+#basicInfo{
+    padding: 15px;
+
+}
+#title{
+    font-size: 34px;
+    font-weight: 700;
+}
+
+#book{
+    margin-top: 2%;
+    font-size: 19px;
+}
+
+#book a{
+     color: green;
+}
+
+
+.desc{
+    padding-left: 50px;
+}
+
+.infoContainer{
+    margin-top: 50px;
+}
+.info {
+    border-left: 2px dotted #297e44a6;
+}
+
+.place{
+
+    margin-top: 50px;
+}
 
 
 /*---------------------
@@ -761,9 +843,10 @@ Home page
     background-color: white;
 }
 
-#bestSellerContainerTitle{
-    text-align: center;
-    text-decoration: underline;
+#homeTitles{
+    text-align: left;
+    font-weight: 700;
+    padding-left: 15px;
     padding-top: 1.5em;
     padding-bottom: 1em;
 }
@@ -828,9 +911,7 @@ Home page
     padding-right: 1em;
 }
 
-.bestSeller p{
-    /*TODO tipizzazione di titolo autore e descrizione */
-}
+
 
 /*-------END Bestseller------*/
 /*-------ourFavourite------*/
@@ -842,12 +923,7 @@ Home page
     background-color: white;
 }
 
-#ourFavouriteTitle{
-    text-align: center;
-    text-decoration: underline;
-    padding-top: 1.5em;
-    padding-bottom: 1em;
-}
+
 
 #leftOurFavourite{
     border-right: 1px solid #aaa;
@@ -889,49 +965,49 @@ Cart page
 ---------------------*/
 
 #cartTitle{
-  padding-top: 1em;
+    padding-top: 1em;
 }
 
 .cartItem{
-  position: relative;
+    position: relative;
 }
 
 .cartItem img{
-  position: relative;
-  margin: 1em;
-  display: inline-block;
-  width: 10%;
+    position: relative;
+    margin: 1em;
+    display: inline-block;
+    width: 10%;
 
 }
 
 .cartItemInfo{
-  position: absolute;
-  top: 1.5em;
+    position: absolute;
+    top: 1.5em;
 
-  display: inline-block;
+    display: inline-block;
 }
 
 .cartItemPrice{
-  position: relative;
+    position: relative;
 
 }
 .cartItemRemove{
-  position: relative;
-  top: 1em;
+    position: relative;
+    top: 1em;
 }
 
 
 #buyCart{
-  position: relative;
-  padding: 1em;
-  border: 1px solid #aaa;
-  border-radius: 0.5em; 
-  background-color: #ccc;
+    position: relative;
+    padding: 1em;
+    border: 1px solid #aaa;
+    border-radius: 0.5em; 
+    background-color: #ccc;
 
 }
 
 #buyCart button{
-  border-radius: 1em;
+    border-radius: 1em;
 }
 
 /*---------------------
@@ -957,29 +1033,160 @@ footer a{
 /*----------------------------
 TABLET
 -----------------------------*/
-@media (max-width: 1024px) {
+@media screen and (min-width:768px) and (max-width:1024px) {
 
     body{
+
+    }
+
+    .breads{
+        padding-left: 50px;
     }
     .pageContainer{
-        padding-right:inherit;
-    padding-left: inherit;
-        
+        /*background: blue;*/
+        padding-right: 20px;
+        padding-left: 20px;
+
     }
+
+    .bookFilters{
+        position: relative;
+
+        min-height: fit-content;
+        /*display: inline-flex;*/
+
+
+    }
+
+    .filters{
+        margin: 0px auto;
+    }
+
+    .navbar{
+        padding: .6rem 1.5rem;
+        display: none;
+    }
+    
+     /* event list*/
+    
+    
+    .event{
+        
+        margin: 3% auto;
+    }
+    
+    
 }
 
 /*----------------------------
 SMARTPHONE
 -----------------------------*/
 
-@media (max-width: 767px) {
+@media screen and (min-width: 320px) and (max-width: 767px) {
 
     body{
     }
     
+    h5{
+        font-size: 20px
+    }
+
     .pageContainer{
-        padding-right:inherit;
-    padding-left: inherit;
+        padding-right:20px;
+        padding-left: 20px;
+
+    }
+    
+     .bookFilters{
+        position: relative;
+
+        min-height: fit-content;
+        /*display: inline-flex;*/
+
+
+    }
+
+
+    .breads{
+        padding-left: 20px;
+    }
+
+    h2.theme{
+        text-align: center;
+    }
+
+    .navbar{
+        padding: .6rem 1.5rem;
+        display: none;
+
+
+    }
+    
+    
+    
+    /* event list*/
+    
+    
+    .event{
+        
+        margin: 3% auto;
+    }
+    
+    .event img{
+    width: 100%;
+    height: 150px;
+
+    object-fit: cover;
+    object-position: 100% 0;
+
+}
+    
+    
+    
+    
+/* single event*/
+    
+    .evtop{
+        background-color: transparent;
+
+    }
+    
+    #eventImg{
+        height: 150px;
+        width: 100%;
+        object-fit: cover;
         
     }
+
+    #basicInfo{
+        margin: 5px 15px;
+        padding: 10px;
+        background-color: gainsboro;
+
+    }
+    #title{
+        font-size: 23px;
+    }
+
+    .desc {
+        padding: 25px;
+    }
+
+    .info{
+        margin-top: 30px;
+        border-left: none;
+        border-top: 2px dotted #297e44a6;
+        padding: 25px;
+
+    }
+
+    .infoContainer{
+        margin-top: 20px;
+    }
+
+
+
 }
+
+
+

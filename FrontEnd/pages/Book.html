@@ -22,8 +22,15 @@
 
         <script src="../assets/js/main.js"></script>
     </head>
-
-    <body>
+    <script>
+    var url=new URL(window.location.href);
+        var id=parseInt( url.searchParams.get("idBook"));
+        console.log(id);
+        
+        
+    </script>
+   
+    <body onload="bookD(id)">
         <!--upper navbar-->
         <div class="container-fluid ">
             <div class="upper-nav navbar">
@@ -190,21 +197,16 @@
 
             <div class="section col-12">
                 <h4>Similar Books</h4>
-                <div class="inlineBooks">
-                    <a href><img  src="../assets/img/grigia" alt=""></a>
-                    <a href><img  src="../assets/img/hp_chamber.jpg" alt=""></a>
+                <div id="similar" class="inlineBooks">
+                   
 
                 </div>
             </div>
 
             <div class="section">
                 <h4 > Reviews</h4>
-                <div>
-                    <div class="rBox"> 
-                        <div class="user"><b>username</b></div>
-                        <div class="comment"><p>cnmdfnfdfkdnfdnf</p></div> 
-
-                    </div>
+                <div id="reviews">
+                    
                 </div>
 
             </div>
