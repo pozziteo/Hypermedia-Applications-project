@@ -9,7 +9,7 @@ function genList(){
             $.each(data, function(i,genre){
 
                 // $genres.append('<img class="singleI" src=""> name:'+genre.name+' - <br> </div>');
-                $genres.append('<div class="col-12 col-md-6 col-lg-3 genre"><img class="singleI" src="../assets/img/gen/'+genre.name+'.jpg"><a href="booksList.html?type=genre&name='+genre.name+'"><span>'+genre.name+'</span> </a></div>');
+                $genres.append('<div class="col-12 col-md-6 col-lg-3 genre"><img class="singleI" src="../assets/img/gen/'+genre.name+'.jpg"><a href="BooksList.html?type=genre&name='+genre.name+'"><span>'+genre.name+'</span> </a></div>');
             });
         }
     });
@@ -28,13 +28,36 @@ function themList(){
             $.each(data, function(i,theme){
 
                 // $genres.append('<img class="singleI" src=""> name:'+genre.name+' - <br> </div>');
-                $them.append('<div class="col-12 col-md-6 col-lg-3 "><h2 class="theme"><a href="">'+theme.name+'</a></h2> </div>');
+                $them.append('<div class="col-12 col-md-6 col-lg-3 "><h2 class="theme"><a href="BooksList.html?type=theme&name='+theme.name+'">'+theme.name+'</a></h2> </div>');
             });
         }
     });
 
 
 };
+
+
+
+
+function autList(){
+
+    var $author = $('#authors');
+
+    $.ajax({
+        type:'GET',
+        url:'/authors',
+        success: function(data){
+            $.each(data, function(i,aut){
+
+                // $genres.append('<img class="singleI" src=""> name:'+genre.name+' - <br> </div>');
+                $author.append('<div class="col-12 col-md-6 col-lg-3 auts"><a href="Author.html?autId='+aut.author_id+'"><img class="autI" src="../assets/img/authors/'+aut.author_id+'.jpg"><span>'+aut.name+'</span> </a></div>');
+            });
+        }
+    });
+
+
+};
+
 
 /*-------- single book page------*/
 
@@ -52,7 +75,7 @@ function bookD(id){
         url:'/books/'+id+'',
         success: function(book){
 
-
+            
 
             $title.append(book.title);
             $aut.append(book.authors.name);
@@ -107,11 +130,11 @@ function bookD(id){
 
 
 /*------single author page-------*/
-$(function(){
-
+function authorD(id){
+    parseInt(id);
     $.ajax({
         type:'GET',
-        url:'/authors/11',
+        url:'/authors/'+id+'',
         success: function(author){
 
             console.log(author);
@@ -127,7 +150,7 @@ $(function(){
     });
 
 
-});
+};
 
 
 
@@ -169,7 +192,7 @@ $(function(){
                 // console.log(genre);
 
 
-                $list.append("<button class="+"btn"+" onclick="+"filterSelection('genre','"+urlString(genre.name)+"')"+">"+genre.name+"</button>");
+                $list.append("<button class='dropdown-item' onclick="+"filterSelection('genre','"+urlString(genre.name)+"')"+">"+genre.name+"</button>");
 
             });
 
@@ -222,9 +245,9 @@ function filterSelection(type, name){
 
                 $.each(data, function(i,book){
 
-                    console.log("ho caricato la lista dei");
+                   
                         
-                    $list.append('<div class="col-lg-2 col-md-3 singleBook"><a href="Book.html?idBook='+book.code+'"><img src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.authors.name +'</h7></a></div>');
+                    $list.append('<div class="col-lg-3 col-md-3 singleBook"><a href="Book.html?idBook='+book.code+'"><img class="book" src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.authors[0].name +'</h7></a></div>');
 
                 });
 
@@ -235,7 +258,7 @@ function filterSelection(type, name){
 
     }else{
         
-        $('#activeF').html("<div class='activeF'><p>"+type+" : "+name+"</p><h3 onclick='unsetF()'>x</h3></div>")
+        $('#activeF').html("<button onclick='unsetF()'class=' btn btn-success '><p>"+type+" : "+name+" x</p></button>")
         $.ajax({
             type:'GET',
             url:'/books?'+type+'='+name+'',
@@ -251,9 +274,9 @@ function filterSelection(type, name){
                     $.each(data, function(i,book){
 
 
-                        //console.log(book);
+                        console.log(book);
 
-                        $list.append('<div class="col-lg-2 col-md-3 singleBook"><a href="book.html?idBook='+book.code+'"><img src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.author +'</h7></a></div>');
+                        $list.append('<div class="col-lg-3 col-md-3 singleBook"><a href="Book.html?idBook='+book.code+'"><img class="book" src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.author +'</h7></a></div>');
 
                     });
 
@@ -308,7 +331,7 @@ function eventsList(){
 
                 console.log(event.id);
 
-                $list.append("<div class='event'><div class='ribbon'>"+ dateSplit(event.date,'date')+"</div> <div><a href='event.html?idEv="+event.event_id+"'><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
+                $list.append("<div class='event'><div class='ribbon'>"+ dateSplit(event.date,'date')+"</div> <div><a href='Event.html?idEv="+event.event_id+"'><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
 
             });
 
@@ -332,9 +355,6 @@ function dateSplit(text, type){
         newDate=date[0]+":"+date[1];
 
     }
-
-
-
 
 
     return newDate;
@@ -368,7 +388,7 @@ $(function(){
 /*----------------
 Function for fill user Cart Item in Cart page
 ----------------*/
-
+/*
 $(document).ready(function(){
   var $cart = $('#cartList');
   var $buy = $('#buyCart');
@@ -389,7 +409,7 @@ $(document).ready(function(){
     });
 });
 
-
+*/
 /*----------------
 Function for remove a book from the Cart in Cart page
         $(document).ready(function(){

@@ -24,35 +24,48 @@
     </head>
 
     <body onload="eventsList()">
-        <!--upper navbar-->
-        <div class="container-fluid ">
-            <div class="upper-nav navbar">
-                <!--div class="container"--> 
-
-                <div class="col-3"><h2>Titolo e Logo del  sito</h2></div>
-                <div class="col-6"><form class="header-search-form" action="">
+      
+       <!-- upper navbar-->
 
 
-                   
-                    <input  type="text" placeholder="Search for books, events and authors">
-                    <button class="btn btn-outline-success my-2 my-sm-0  " type="submit"><i class="flaticon-search"></i></button>      
-                    </form></div>
+        <div class="container-fluid">
+            <nav class=" upper navbar navbar-expand-lg navbar-light bg-light">
+                <!--div class="container"-->
 
-                <div class="col-3">
+                <div class="col-lg-3 col-md-5 col-sm-4"><h2>Titolo e Logo del  sito</h2></div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                    <a class="nav-link " href="pages/Log_In.html"><i class="flaticon-user"></i>Log In</a>
 
-                    <div class="cart" >
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 
-                        <a class="nav-link" href="pages/Log_In.html"><i class="flaticon-shopping-cart"></i>
-                        </a> <span>0</span>
+                    <div class=" nav-item col-lg-8 col-md-7 col-sm-12">
+                        
+                        <form class="header-search-form form-inline my-2 my-lg-0" action="">
+
+                        <input  class="form-control mr-lg-6" type="search" placeholder="Search for books, events and authors">
+                        <button class="btn btn-outline-success my-2 my-sm-0  " type="submit"><i class="flaticon-search"></i></button>
+                        </form>
+                        </div>
+
+                    <div >
+
+                        <a class="nav-link aaa " href="Log_In.html"><i class="flaticon-user"></i>Log In</a>
+
+                        <div class="cart" >
+
+                            <a id="mimicchio" class="nav-link" href="Cart.html"><i class="flaticon-shopping-cart"></i>
+                            </a> <p>0</p>
+                        </div>
+                        <!--/div-->
+
                     </div>
-                    <!--/div-->
 
                 </div>
 
 
-            </div>
+            </nav>
 
 
             <!--lower navbar-->
