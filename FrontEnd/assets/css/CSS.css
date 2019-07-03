@@ -858,12 +858,13 @@ Home page index.html
 #eventLink{
     background-image: url("../img/Event.jpg");
     background-position: left,bottom;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; 
     background-size: cover;
 }
 
 
 .Link{
+    
     position: relative;
     top:40%;
     height: 40px;
