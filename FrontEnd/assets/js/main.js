@@ -352,7 +352,6 @@ $(function(){
         type:'GET',
         url:'/books/best-sellers',
         success: function(data){
-
             $.each(data, function(i, bestSeller){
 
                 if(i == 0){
@@ -366,6 +365,50 @@ $(function(){
     });
 });
 
+/*----------------
+Function for fill user Cart Item in Cart page
+----------------*/
+
+$(document).ready(function(){
+  var $cart = $('#cartList');
+  var $buy = $('#buyCart');
+    $.ajax({
+      type:'GET',
+      url:'/cart',
+      success: function(data){
+        $.each(data, function(i, cartItem){
+          if(i == 0){
+            $cart.append('<div class="cartItem"><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + JSON.stringify(cartItem.title) + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + JSON.stringify(cartItem.title) + '</a> by <a class="cartItemAuthor" href="">' + JSON.stringify(cartItem.author) + '</a><p class="cartItemPrice">EUR ' + cartItem.price + '</p><a class="cartItemRemove" href="#">remove</a></span></div>');
+          }
+          else{
+            $cart.append('<div class="cartItem"><hr><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + JSON.stringify(cartItem.title) + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + JSON.stringify(cartItem.title) + '</a> by <a class="cartItemAuthor" href="">' + JSON.stringify(cartItem.author) + '</a><p class="cartItemPrice">EUR ' + cartItem.price + '</p><a class="cartItemRemove" href="#">remove</a></span></div>');
+          }
+        });
+        $buy.append('<p>Totale Provvisorio: EUR ' + data.total.value + '</p><button type="button" type="submit">Complete your order</button>');
+      }
+    });
+});
+
+
+/*----------------
+Function for remove a book from the Cart in Cart page
+        $(document).ready(function(){
+          $("#cartItemRemove").click(function() {
+            $item = $("#bookImage").src;
+            $.ajax({
+                type: "DELETE",
+                url : "/cart/items/{" + $item + "}",
+                data:jQuery.param({itemID:$src.val()}),
+                success: function() {
+                    alert("You have successful removed the book from your cart");
+                },
+                error: function(res) {
+                    alert("Impossible to remove the book from your cart");
+                }
+            });
+        });
+    });
+    ----------------*/
 
 /*----------------
 Function for OurFavourite in Home Page
@@ -438,6 +481,8 @@ $(document).ready(function(){
                 alert("Log In failed");
             }
 
+
+            
         });
     });
 });
@@ -445,21 +490,24 @@ $(document).ready(function(){
 /*----------------
 Function for LogOut in Home page
 ----------------*/
-$(document).ready(function(){
 
-    $("#logOutButton").click(function() {   
-        $.ajax({
-            type: "POST",
-            url : "/user/logout",
-            success: function() {
-                alert("You have successfully logged out");
-            },
-            error: function(res) {
-                alert(res);
-            }
+        $(document).ready(function(){
+
+            $("#logOutButton").click(function() {
+            $.ajax({
+                type: "POST",
+                url : "/user/logout",
+                success: function() {
+                    alert("You have successfully logged out");
+                },
+                error: function(res) {
+                    alert("Impossibile to log out");
+                }
+            });
         });
     });
-});
+
+
 
 
 
@@ -488,6 +536,7 @@ $buy.append('<p>Totale Provvisorio (' + data.length + 'articolo)</p><p>EUR ' + d
 });
 
 ----------------*/
+
 
 
 /*-------------function single event----------*/
