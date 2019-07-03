@@ -9,7 +9,7 @@ function genList(){
             $.each(data, function(i,genre){
 
                 // $genres.append('<img class="singleI" src=""> name:'+genre.name+' - <br> </div>');
-                $genres.append('<div class="col-12 col-md-6 col-lg-3 genre"><img class="singleI" src="../assets/img/gen/'+genre.name+'.jpg"><a href=""><span>'+genre.name+'</span> </a></div>');
+                $genres.append('<div class="col-12 col-md-6 col-lg-3 genre"><img class="singleI" src="../assets/img/gen/'+genre.name+'.jpg"><a href="booksList.html?type=genre&name='+genre.name+'"><span>'+genre.name+'</span> </a></div>');
             });
         }
     });
@@ -55,11 +55,18 @@ function bookD(id){
 
 
             $title.append(book.title);
-            // $aut.append(book.au)
+            $aut.append(book.authors.name);
             $img.attr('src', '../assets/img/'+book.code +'.jpg');
 
             $desc.html(book.description);
             $('#prezzoLibro').html('Price: '+book.price.value +' €');
+            $('#bind').append('<p>'+book.binding+'</p>');
+            $('#code').append('<p>'+book.code+'</p>');
+            $('#publish').append('<p>'+book.publisher+'</p>');
+
+            if(book.series!=null){
+                $('#fact').append('<div id="publish"><h6>Sries: </h6><p>'+book.series+'</p></div>');
+            }
 
         }
     });
@@ -73,7 +80,7 @@ function bookD(id){
 
             $.each(data, function(i,sim){
 
-                $('#similar').append('<div class="col-12 col-md-6 col-lg-3 "><a href="Book.html?idBook='+sim.code+'"><img  src="../assets/img/'+sim.code+'.jpg" alt=""><h6>'+sim.title+'</h6></a></div>');
+                $('#similar').append('<div class="col-sm-6 col-md-3 col-lg-3 "><a href="Book.html?idBook='+sim.code+'"><img  src="../assets/img/'+sim.code+'.jpg" alt=""><h6>'+sim.title+'</h6></a></div>');
             });
 
         }
@@ -88,7 +95,7 @@ function bookD(id){
 
             $.each(data, function(i,rev){
 
-                $('#reviews').append('<div class="rBox"><div class="user"><b>'+rev.username+'</b></div><div class="comment"><p>'+rev.comment+'</p></div></div>');
+                $('#reviews').append('<div class=" col-lg-6 col-sm-12 rBox"><div class="user"><b>'+rev.username+'</b></div><div class="comment"><p>'+rev.comment+'</p></div></div>');
             });
 
         }
@@ -125,7 +132,7 @@ $(function(){
 
 
 
-function booksList(){
+/*function booksList(){
 
     var $list = $('#books')
     $.ajax({
@@ -146,7 +153,7 @@ function booksList(){
     });
 
 
-};
+};*/
 
 
 $(function(){
@@ -162,7 +169,7 @@ $(function(){
                 // console.log(genre);
 
 
-                $list.append("<button class="+"btn"+" onclick="+"filterSelection('genre','"+genre.name+"')"+">"+genre.name+"</button>");
+                $list.append("<button class="+"btn"+" onclick="+"filterSelection('genre','"+urlString(genre.name)+"')"+">"+genre.name+"</button>");
 
             });
 
@@ -197,33 +204,68 @@ $(function(){
 });
 
 
-function filterSelection(type, nome){
+function unsetF(){
+    $('#activeF').html("");
+    filterSelection("all", "all");
+};
 
-    document.getElementById("gFilters").style.backgroundColor = "red";
-
-
-    console.log(type);
+function filterSelection(type, name){
+    
     var $list = $('#books');
-    // var $genre="Fatasy"
-    $.ajax({
-        type:'GET',
-        url:'/books?'+type+'='+nome+'',
-        success: function(data){
+    $list.html("");
+    if(type=='all'|| name=='all'){
 
-            $list.html("");
+        $.ajax({
+            type:'GET',
+            url:'/books',
+            success: function(data){
 
-            $.each(data, function(i,book){
+                $.each(data, function(i,book){
+
+                    console.log("ho caricato la lista dei");
+                        
+                    $list.append('<div class="col-lg-2 col-md-3 singleBook"><a href="Book.html?idBook='+book.code+'"><img src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.authors.name +'</h7></a></div>');
+
+                });
+
+            }
+
+        });
 
 
-                //console.log(book);
+    }else{
+        
+        $('#activeF').html("<div class='activeF'><p>"+type+" : "+name+"</p><h3 onclick='unsetF()'>x</h3></div>")
+        $.ajax({
+            type:'GET',
+            url:'/books?'+type+'='+name+'',
+            success: function(data){
+                console.log(name);
+                     
+                if(data==""){
+                   $list.append("<h3>Sorry at the moment we don't have books for this "+type+" </h3>");
+                }else{
+                    
+                    
 
-                $list.append('<div class="col-2 singleBook"><a href=""><img src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.author +'</h7></a></div>');
+                    $.each(data, function(i,book){
 
-            });
 
-        }
+                        //console.log(book);
 
-    });
+                        $list.append('<div class="col-lg-2 col-md-3 singleBook"><a href="book.html?idBook='+book.code+'"><img src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.author +'</h7></a></div>');
+
+                    });
+
+                }
+
+
+
+            }
+
+        });}
+
+
 
 
 };
@@ -379,49 +421,49 @@ Function for LogIn in LogIn page
 ----------------*/
 
 $(document).ready(function(){
-    
-            var $username = $('#logInUsername');
-        var $psw = $('#logInPassword');
-        $("#logInButton").click(function () {
-            alert("Log In ???");
-            $.ajax({
-                type: "POST",
-                url:'/user/login',
-                data:jQuery.param({username:$username.val(),password:$psw.val()}),
-                success: function () {
-                    alert("You have successfully logged in");
-                    window.open("../index.html", "index.html");
-                },
-                error: function (response) {
-                    alert("Log In failed");
-                }
-                
-            });
-        });
-     });
 
-        /*----------------
-Function for LogOut in Home page
-----------------*/
-        $(document).ready(function(){
-            
-            $("#logOutButton").click(function() {
-            $.ajax({
-                type: "POST",
-                url : "/user/logout",
-                success: function() {
-                    alert("You have successfully logged out");
-                },
-                error: function(res) {
-                    alert(res);
-                }
-            });
+    var $username = $('#logInUsername');
+    var $psw = $('#logInPassword');
+    $("#logInButton").click(function () {
+        alert("Log In ???");
+        $.ajax({
+            type: "POST",
+            url:'/user/login',
+            data:jQuery.param({username:$username.val(),password:$psw.val()}),
+            success: function () {
+                alert("You have successfully logged in");
+                window.open("../index.html", "index.html");
+            },
+            error: function (response) {
+                alert("Log In failed");
+            }
+
         });
     });
+});
 
-   
+/*----------------
+Function for LogOut in Home page
+----------------*/
+$(document).ready(function(){
 
-    /*----------------
+    $("#logOutButton").click(function() {   
+        $.ajax({
+            type: "POST",
+            url : "/user/logout",
+            success: function() {
+                alert("You have successfully logged out");
+            },
+            error: function(res) {
+                alert(res);
+            }
+        });
+    });
+});
+
+
+
+/*----------------
   Function for User Cart Item in Cart page
 
   $(function(){
@@ -448,38 +490,38 @@ $buy.append('<p>Totale Provvisorio (' + data.length + 'articolo)</p><p>EUR ' + d
 ----------------*/
 
 
-    /*-------------function single event----------*/
+/*-------------function single event----------*/
 
-    function eventD(id){
+function eventD(id){
 
-        var $img = $('#eventImg');
+    var $img = $('#eventImg');
 
-        parseInt(id);
-        console.log(id);
+    parseInt(id);
+    console.log(id);
 
-        $.ajax({
-            type:'GET',
-            url:'/events/'+id+'',
-            success: function(eve){
-
-
-
-                $('#title').html(eve.title);
-                $('#book').append("<a href='Book.html?idBook="+eve.book.code+"'>"+eve.book.title+"</a");
-                $img.attr('src', '../assets/img/events/'+id +'.jpg');
-
-                $('#evDesc').html(eve.description);
-                $('#evDate').html(dateSplit(eve.date, "date")+" / "+dateSplit(eve.date, "time"));
-
-                $('#evPlace').html(eve.place);
+    $.ajax({
+        type:'GET',
+        url:'/events/'+id+'',
+        success: function(eve){
 
 
 
+            $('#title').html(eve.title);
+            $('#book').append("<a href='Book.html?idBook="+eve.book.code+"'>"+eve.book.title+"</a");
+            $img.attr('src', '../assets/img/events/'+id +'.jpg');
 
-            }
-        });
+            $('#evDesc').html(eve.description);
+            $('#evDate').html(dateSplit(eve.date, "date")+" / "+dateSplit(eve.date, "time"));
+
+            $('#evPlace').html(eve.place);
 
 
 
 
-    };
+        }
+    });
+
+
+
+
+};

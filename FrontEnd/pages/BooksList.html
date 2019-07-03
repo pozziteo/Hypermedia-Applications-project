@@ -23,10 +23,15 @@
         <script src="../assets/js/main.js"></script>
     </head>
     
-    <script> 
+    <script>
+        
+        var url=new URL(window.location.href);
+        var type= url.searchParams.get("type");
+        var name= url.searchParams.get("name");
+        
     </script>
 
-    <body onload="booksList()">
+    <body onload="filterSelection(type,name)">
         <!--upper navbar-->
         <div class="container-fluid ">
             <div class="upper-nav navbar">
@@ -36,22 +41,6 @@
                 <div class="col-6"><form class="header-search-form" action="">
 
 
-                    <!--div class="input-group mb-3">
-<div class="input-group-prepend">
-<button type="button" class="btn btn-outline-secondary">Action</button>
-<button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<span class="sr-only">Toggle Dropdown</span>
-</button>
-<div class="dropdown-menu">
-<a class="dropdown-item" href="#">Action</a>
-<a class="dropdown-item" href="#">Another action</a>
-<a class="dropdown-item" href="#">Something else here</a>
-<div role="separator" class="dropdown-divider"></div>
-<a class="dropdown-item" href="#">Separated link</a>
-</div>
-</div>
-<input type="text" class="form-control" aria-label="Text input with segmented dropdown button">
-</div-->
                     <input  type="text" placeholder="Search for books, events and authors">
                     <button class="btn btn-outline-success my-2 my-sm-0  " type="submit"><i class="flaticon-search"></i></button>      
                     </form></div>
@@ -126,10 +115,12 @@
                 
                 
                   <div class="col-lg-3 col-md-12 col-sm-12 bookFilters">
-                    <div class="col-12 "><h6 style="text-align: center"><b>FILTER BY</b></h6></div>
-                    
+                    <div class="col-12 "><h6><b>FILTER BY</b></h6></div>
+                    <div id="activeF" >
+                        
+                    </div>
                     <div class="col-12">
-                    <div class="filters">
+                    <div class="col-lg-12 col-6 filters">
                         <button class="" type="button" data-toggle="collapse" data-target="#collapseG" aria-expanded="false" aria-controls="collapseExample">
                             Genre  <i class="flaticon-down-arrow"></i>
                         </button>
@@ -142,7 +133,7 @@
 
                     </div>
 
-                    <div class="filters">
+                    <div class="col-lg-12 col-6 filters">
                         <button class="" type="button" data-toggle="collapse" data-target="#collapseT" aria-expanded="false" aria-controls="collapseExample">
                             Theme  <i class="flaticon-down-arrow"></i>
                         </button>
