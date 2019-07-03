@@ -27,15 +27,15 @@ h6{
     font-weight: 500;
 }
 
-.navbar{
+navbar{
     padding: .6rem 1.5rem;
 }
 
-.upper-nav{
+.upper{
     box-shadow: 0 0.2rem 0.5rem 0 rgba(99, 99, 99, 0.37);
 }
 
-.upper-nav h2{
+.upper h2{
     font-family: 'Josefin Sans', sans-serif;
     color: dimgray;
     font-size: 1.5em;
@@ -43,9 +43,13 @@ h6{
     margin-bottom: 0;
 }
 
-.upper-nav a:link{
+.upper a:link{
     color: gray;
 
+}
+
+.form-inline .form-control{
+    width: 100%;
 }
 
 a{
@@ -138,10 +142,20 @@ a:hover {
 
 }
 
-.cart span {
-    position: absolute;
-    top: 5px;
-    left: 52%;
+.aaa{
+   display: inline-block;
+    float: none; 
+}
+
+.cart{
+display: inline-block;
+    float: none;
+    width: 60px;
+    }
+
+.cart p {
+   position: absolute;
+    bottom: 50px;
     height: 16px;
     min-width: 16px;
     color: #fff;
@@ -149,8 +163,8 @@ a:hover {
     background: green;
     text-align: center;
     border-radius: 30px;
-    padding: 0 2px;
-    margin-left: -7px;
+    
+    margin: 5px 0 0 45px;
 }
 
 .nav_text_white{
@@ -571,9 +585,16 @@ h2.theme a{
 /*-------------
 All books page
 ----------------*/
+
+img.book{
+    height: 250px;
+    width: 200px;
+    object-fit: cover;
+}
 .singleBook{
     margin: 0px auto;
-    background-color:ghostwhite;
+    text-align: center;
+
     width: 100%;
     height: min-content;
     padding: 2%;
@@ -598,14 +619,17 @@ All books page
 }
 
 
+.dropdown-menu.show{
+    position: relative !important;
+    transform: translate3d(0px, 5px, 0px)!important;
+}
+
 .bookFilters{
     padding-top: 1em;
     padding-bottom: 1em;
-    background-color: #f0ffff9c;
-    /* position: fixed;*/
-    border: 1px solid azure;
+    /*border: 1px solid azure;*/
     border-radius: 5px;
-    min-height: 500px;
+    min-height: fit-content;
     text-align: left;
     display:block;
     float: left;
@@ -618,13 +642,19 @@ All books page
     font-weight: 700;
     color: #414141;
     text-transform: uppercase;
-    margin-bottom: 45px;
+    margin-bottom: 20px;
+}
+
+#activeF{
+    margin-left: 15px;
 }
 
 .filters{
     margin: 0 auto;
     font-family: 'Josefin Sans', sans-serif;
 }
+
+
 
 .filters button{
     font-weight:500;
@@ -670,6 +700,47 @@ All books page
 
 
 /*fine allbooks*/
+
+
+
+
+/*-------------
+Authors list page
+----------------*/
+
+
+.auts{
+    margin:  2% 0;
+    text-align: center;
+       
+}
+.auts  span{
+    display: block;
+    text-align: center;
+    background: rgb(0, 0, 0, 8);
+    position: absolute;
+    left:50%;
+    transform: translateX(-50%);
+    bottom: 20%;
+}
+
+.auts a{
+    color: white;
+     text-align: center;
+    
+}
+
+
+.autI{
+    
+    width: 250px;
+     height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    opacity:0.95 ;
+    
+}
+
 
 
 
@@ -1130,10 +1201,13 @@ TABLET
         margin: 0px auto;
     }
 
-    .navbar{
+    
+    
+    
+    /*.navbar{
         padding: .6rem 1.5rem;
         display: none;
-    }
+    }*
     
      /*---- event list------*/
     
@@ -1158,6 +1232,15 @@ TABLET
         border: 1.5px solid #000; 
     padding: 3px;
         
+    }
+    
+    
+    #books{
+        margin-top: 2em;
+    }
+    
+    .btnAlign{
+        display: inline-flex;
     }
     
 }
@@ -1199,13 +1282,13 @@ SMARTPHONE
         text-align: center;
     }
 
-    .navbar{
+    /*.navbar{
         padding: .6rem 1.5rem;
         display: none;
 
 
     }
-    
+    */
     
     
      /*---- book page------*/
@@ -1227,6 +1310,24 @@ SMARTPHONE
     .section{
         margin: 15% 0;
     }
+    
+    /*books list*/
+    
+    #books{
+        margin-top: 2em;
+    }
+    
+    img.book {
+     height: auto; 
+    width: 200px;
+    
+    }
+    
+    
+    .singleBook{
+        margin: 20px auto;
+    }
+    
     
     
     /* event list*/
@@ -1300,7 +1401,10 @@ SMARTPHONE
         line-height: 1.5;
     }
 
-
+    
+    .btnAlign{
+        display: inline-flex;
+    }
 
 
 }

@@ -22,46 +22,56 @@
 
         <script src="../assets/js/main.js"></script>
     </head>
-    
+
     <script>
-        
+
         var url=new URL(window.location.href);
         var type= url.searchParams.get("type");
         var name= url.searchParams.get("name");
-        
+
     </script>
 
     <body onload="filterSelection(type,name)">
         <!--upper navbar-->
-        <div class="container-fluid ">
-            <div class="upper-nav navbar">
-                <!--div class="container"--> 
+        
+        <div class="container-fluid">
+            <nav class=" upper navbar navbar-expand-lg navbar-light bg-light">
+                <!--div class="container"-->
 
-                <div class="col-3"><h2>Titolo e Logo del  sito</h2></div>
-                <div class="col-6"><form class="header-search-form" action="">
+                <div class="col-lg-3 col-md-5 col-sm-4"><h2>Titolo e Logo del  sito</h2></div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
 
-                    <input  type="text" placeholder="Search for books, events and authors">
-                    <button class="btn btn-outline-success my-2 my-sm-0  " type="submit"><i class="flaticon-search"></i></button>      
-                    </form></div>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 
-                <div class="col-3">
+                    <div class=" nav-item col-lg-8 col-md-7 col-sm-12">
+                        
+                        <form class="header-search-form form-inline my-2 my-lg-0" action="">
 
-                    <a class="nav-link " href="pages/Log_In.html"><i class="flaticon-user"></i>Log In</a>
+                        <input  class="form-control mr-lg-6" type="search" placeholder="Search for books, events and authors">
+                        <button class="btn btn-outline-success my-2 my-sm-0  " type="submit"><i class="flaticon-search"></i></button>
+                        </form>
+                        </div>
 
-                    <div class="cart" >
+                    <div >
 
-                        <a class="nav-link" href="pages/Log_In.html"><i class="flaticon-shopping-cart"></i>
-                        </a> <span>0</span>
+                        <a class="nav-link aaa " href="Log_In.html"><i class="flaticon-user"></i>Log In</a>
+
+                        <div class="cart" >
+
+                            <a id="mimicchio" class="nav-link" href="Cart.html"><i class="flaticon-shopping-cart"></i>
+                            </a> <p>0</p>
+                        </div>
+                        <!--/div-->
+
                     </div>
-                    <!--/div-->
 
                 </div>
 
 
-            </div>
-
-
+            </nav>
             <!--lower navbar-->
             <nav id="navbar" class=" lower-nav navbar navbar-expand-sm dark_color sticky-top">
 
@@ -112,52 +122,60 @@
         <div class="pageContainer" >
 
             <div class="row ">
-                
-                
-                  <div class="col-lg-3 col-md-12 col-sm-12 bookFilters">
+
+
+                <div class="col-lg-3 col-md-12 col-sm-12 bookFilters">
                     <div class="col-12 "><h6><b>FILTER BY</b></h6></div>
+                    
                     <div id="activeF" >
+
+                    </div>
+                    <div class="col-12 btnAlign">
+
+                        <div class="dropdown">
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Genre
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                
+                                    <div id="gFilters" class="filterBody">
+
+                                    </div>
+
+
+                            </div>
+                        </div>
+
+
+                        <div class="dropdown ">
+                            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Theme
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <div id="tFilters" class="filterBody">
+
+                                </div>
+
+                            </div>
+                        </div>
                         
-                    </div>
-                    <div class="col-12">
-                    <div class="col-lg-12 col-6 filters">
-                        <button class="" type="button" data-toggle="collapse" data-target="#collapseG" aria-expanded="false" aria-controls="collapseExample">
-                            Genre  <i class="flaticon-down-arrow"></i>
-                        </button>
+                        
 
-                        <div class="collapse" id="collapseG">
-                            <div id="gFilters" class="filterBody">
-                                
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-lg-12 col-6 filters">
-                        <button class="" type="button" data-toggle="collapse" data-target="#collapseT" aria-expanded="false" aria-controls="collapseExample">
-                            Theme  <i class="flaticon-down-arrow"></i>
-                        </button>
-
-                        <div class="collapse" id="collapseT">
-                            <div id="tFilters" class="filterBody">
-                                
-                            </div>
-                        </div>
-                    </div>
+                        
                     </div>
 
                 </div>
-                
-                
+
+
 
                 <div class="col-lg-9 col-md-12">
                     <div id="books" class="row"> 
-                        
+
                     </div>
 
                 </div>
 
-              
+
 
 
 
