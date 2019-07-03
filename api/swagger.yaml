@@ -381,11 +381,12 @@ paths:
       parameters:
         - name: "book"
           in: "body"
-          description: "A book to insert into the cart.\
+          description: "The book code to insert into the cart.\
           \ Must not be already present into the user cart"
           required: true
           schema:
-            $ref: "#/definitions/Book"
+            type: "integer"
+            format: "int64"
       responses:
         201:
           description: "Book inserted into cart"

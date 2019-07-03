@@ -45,7 +45,7 @@ exports.cartBookDELETE = function(itemID, cartId) {
  **/
 exports.cartBookPOST = function(book, cartId) {
   return sqlDb("book")
-    .where("code", book.code)
+    .where("code", book)
     .then(dbBook => {
       if (lodash.isUndefined(dbBook)) {
         let error = new Error("Invalid book supplied");
