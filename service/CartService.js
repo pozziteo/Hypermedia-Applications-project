@@ -46,6 +46,7 @@ exports.cartBookDELETE = function(itemID, cartId) {
 exports.cartBookPOST = function(book, cartId) {
   return sqlDb("book")
     .where("code", book)
+    .first()
     .then(dbBook => {
       if (lodash.isUndefined(dbBook)) {
         let error = new Error("Invalid book supplied");
@@ -87,7 +88,7 @@ exports.emptyCartPUT = function(cartId) {
 /**
  * View the content of the cart
  *
- * cartId Long 
+ * cartId Long
  * returns Cart
  **/
 exports.userCartGET = function(cartId) {
@@ -144,4 +145,3 @@ function buildCart(content) {
       return cart;
     })
 }
-
