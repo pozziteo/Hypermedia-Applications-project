@@ -2,6 +2,7 @@
 
 let sqlDb = require("./DataLayer.js").database;
 let Book = require("./BookService.js");
+let lodash = require("lodash");
 
 /**
  * Delete an item from the cart
@@ -17,7 +18,7 @@ exports.cartBookDELETE = function(itemID, cartId) {
       owner_id: cartId
     })
     .then(raw => {
-      if (raw.length === 0) {
+      if (lodash.isUndefined(raw)) {
         let error = new Error("The item wasn't in your cart");
         error.code = 400;
         throw error;
@@ -46,7 +47,7 @@ exports.cartBookPOST = function(book, cartId) {
   return sqlDb("book")
     .where("code", book.code)
     .then(dbBook => {
-      if (!book === dbBook) {
+      if (lodash.isUndefined(dbBook)) {
         let error = new Error("Invalid book supplied");
         error.code = 409;
         throw error;
