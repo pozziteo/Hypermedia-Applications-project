@@ -434,10 +434,10 @@ $(function(){
             $.each(data, function(i, bestSeller){
                 number = parseInt(i);
                 if(i == 0){
-                    $list.append('<a href="pages/book.html?idBook='+bestSeller.code+'"><div id="firstBestSeller" class="bestSeller row"><div class="col-4"><img src="assets/img/'+ bestSeller.code +'.jpg" alt="'+ bestSeller.title +'"></div><div class="col-7"><p id="firstBestSellerNumber">#1</p><span><p>'+ bestSeller.title +'</p><p>'+ bestSeller.authors[0].name +'</p><p>'+ bestSeller.price.value + ' ' + bestSeller.price.currency +'</p><span></div></div></a>');
+                    $list.append('<a href="pages/Book.html?idBook='+bestSeller.code+'"><div id="firstBestSeller" class="bestSeller row"><div class="col-4"><img src="assets/img/'+ bestSeller.code +'.jpg" alt="'+ bestSeller.title +'"></div><div class="col-7"><p id="firstBestSellerNumber">#1</p><span><p>'+ bestSeller.title +'</p><p>'+ bestSeller.authors[0].name +'</p><p>'+ bestSeller.price.value + ' ' + bestSeller.price.currency +'</p><span></div></div></a>');
                 }
                 else{
-                    $list.append('<a href="pages/book.html?idBook='+bestSeller.code+'"><div class="bestSeller"><p class="bestSellerNumber">#' + (number + 1) + '</p><span><p>'+ bestSeller.title +'</p><p>'+ bestSeller.authors[0].name +'</p><p>'+ bestSeller.price.value + ' ' + bestSeller.price.currency +'</p></span></div></a>');
+                    $list.append('<a href="pages/Book.html?idBook='+bestSeller.code+'"><div class="bestSeller"><p class="bestSellerNumber">#' + (number + 1) + '</p><span><p>'+ bestSeller.title +'</p><p>'+ bestSeller.authors[0].name +'</p><p>'+ bestSeller.price.value + ' ' + bestSeller.price.currency +'</p></span></div></a>');
                 }
             });
         }
@@ -548,11 +548,11 @@ $(function(){
         success: function(data){
             $.each(data, function(i, ourFavourite){
                 if(i%2 == 0){
-                  $left.append('<a href="pages/book.html?idBook='+ourFavourite.code+'""><div class="ourFavourite row"><div class="col"><img src="assets/img/'+ ourFavourite.code +'.jpg" alt="'+ ourFavourite.title +'" ></div><div class="col"><span><p>'+ ourFavourite.title +'</p><p>'+ ourFavourite.authors[0].name +'</p><p>'+ ourFavourite.price.value +'</p></span></div></div></a>');
+                  $left.append('<a href="pages/Book.html?idBook='+ourFavourite.code+'""><div class="ourFavourite row"><div class="col"><img src="assets/img/'+ ourFavourite.code +'.jpg" alt="'+ ourFavourite.title +'" ></div><div class="col"><span><p>'+ ourFavourite.title +'</p><p>'+ ourFavourite.authors[0].name +'</p><p>'+ ourFavourite.price.value +'</p></span></div></div></a>');
 
                 }
                 else{
-                  $right.append('<a href="pages/book.html?idBook='+ourFavourite.code+'""><div class="ourFavourite row"><div class="col"><img src="assets/img/'+ ourFavourite.code +'.jpg" alt="'+ ourFavourite.title +'" ></div><div class="col"><span><p>'+ ourFavourite.title +'</p><p>'+ ourFavourite.authors[0].name +'</p><p>'+ ourFavourite.price.value +'</p></span></div></div></a>');
+                  $right.append('<a href="pages/Book.html?idBook='+ourFavourite.code+'""><div class="ourFavourite row"><div class="col"><img src="assets/img/'+ ourFavourite.code +'.jpg" alt="'+ ourFavourite.title +'" ></div><div class="col"><span><p>'+ ourFavourite.title +'</p><p>'+ ourFavourite.authors[0].name +'</p><p>'+ ourFavourite.price.value +'</p></span></div></div></a>');
 
                 }
             });
