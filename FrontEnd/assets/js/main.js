@@ -342,6 +342,7 @@ function eventsList(when){
 
                 $('#evfall').addClass("selected");
                 $('#evfmon').removeClass("selected");
+            
                 $.each(data, function(i,event){
                     $list.html("");
                     $list.append("<div class='event'><div class='ribbon'>"+ dateSplit(event.date,'date')+"</div> <div><a href='Event.html?idEv="+event.event_id+"'><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
@@ -370,16 +371,17 @@ function eventsThisMonth(){
 
 
 
-            if(data!=""){
+            //if(data!=""){
 
                 $.each(data, function(i,event){
+                    
                     $list.html("");
                     $list.append("<div class='event'><div class='ribbon'>"+ dateSplit(event.date,'date')+"</div> <div><a href='Event.html?idEv="+event.event_id+"'><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
 
                 });
-            }else{
+            /*}else{
                 $list.html("<h3 class='sorry'>There aren't Events this month</h3>");
-            }
+            }*/
 
 
         }
