@@ -344,7 +344,7 @@ function eventsList(when){
                 $('#evfmon').removeClass("selected");
             $list.html("");
                 $.each(data, function(i,event){
-                    
+
                     $list.append("<div class='event'><div class='ribbon'>"+ dateSplit(event.date,'date')+"</div> <div><a href='Event.html?idEv="+event.event_id+"'><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
 
                 });
@@ -374,8 +374,8 @@ function eventsThisMonth(){
             //if(data!=""){
                     $list.html("");
                 $.each(data, function(i,event){
-                    
-                    
+
+                    $list.html("");
                     $list.append("<div class='event'><div class='ribbon'>"+ dateSplit(event.date,'date')+"</div> <div><a href='Event.html?idEv="+event.event_id+"'><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
 
                 });
@@ -429,10 +429,10 @@ $(function(){
             $.each(data, function(i, bestSeller){
 
                 if(i == 0){
-                    $list.append('<div id="firstBestSeller" class="bestSeller row"><div class="col-4"><img src="assets/img/'+ bestSeller.code +'.jpg" alt="'+ bestSeller.title +'"></div><div class="col-7"><p id="firstBestSellerNumber">#1</p><span><p>'+ bestSeller.title +'</p><p>'+ bestSeller.author +'</p><p>'+ bestSeller.value +'</p><span></div></div>');
+                    $list.append('<a href="pages/book.html?idBook='+bestSeller.code+'"><div id="firstBestSeller" class="bestSeller row"><div class="col-4"><img src="assets/img/'+ bestSeller.code +'.jpg" alt="'+ bestSeller.title +'"></div><div class="col-7"><p id="firstBestSellerNumber">#1</p><span><p>'+ bestSeller.title +'</p><p>'+ bestSeller.authors[0].name +'</p><p>'+ bestSeller.price.value + ' ' + bestSeller.price.currency +'</p><span></div></div></a>');
                 }
                 else{
-                    $list.append('<div class="bestSeller"><p class="bestSellerNumber">#2</p><span><p>'+ bestSeller.title +'</p><p>'+ bestSeller.author +'</p><p>'+ bestSeller.value +'</p></span></div>');
+                    $list.append('<a href="pages/book.html?idBook='+bestSeller.code+'"><div class="bestSeller"><p class="bestSellerNumber">#2</p><span><p>'+ bestSeller.title +'</p><p>'+ bestSeller.authors[0].name +'</p><p>'+ bestSeller.price.value + ' ' + bestSeller.price.currency +'</p></span></div></a>');
                 }
             });
         }
@@ -452,10 +452,10 @@ $(document).ready(function(){
         success: function(data){
             $.each(data, function(i, cartItem){
                 if(i == 0){
-                    $cart.append('<div class="cartItem"><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + JSON.stringify(cartItem.title) + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + JSON.stringify(cartItem.title) + '</a> by <a class="cartItemAuthor" href="">' + JSON.stringify(cartItem.author) + '</a><p class="cartItemPrice">EUR ' + cartItem.price + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="#">remove</a></span></div>');
+                    $cart.append('<div class="cartItem"><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + JSON.stringify(cartItem.title) + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + JSON.stringify(cartItem.title) + '</a> by <a class="cartItemAuthor" href="">' + JSON.stringify(cartItem.author) + '</a><p class="cartItemPrice">EUR ' + cartItem.price.value + ' ' + cartItem.price.currency + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="#">remove</a></span></div>');
                 }
                 else{
-                    $cart.append('<div class="cartItem"><hr><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + JSON.stringify(cartItem.title) + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + JSON.stringify(cartItem.title) + '</a> by <a class="cartItemAuthor" href="">' + JSON.stringify(cartItem.author) + '</a><p class="cartItemPrice">EUR ' + cartItem.price + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="#">remove</a></span></div>');
+                    $cart.append('<div class="cartItem"><hr><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + JSON.stringify(cartItem.title) + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + JSON.stringify(cartItem.title) + '</a> by <a class="cartItemAuthor" href="">' + JSON.stringify(cartItem.author) + '</a><p class="cartItemPrice">EUR ' + cartItem.price.value + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="#">remove</a></span></div>');
                 }
             });
             $buy.append('<p>Totale Provvisorio: EUR ' + data.total.value + '</p><button type="button" type="submit">Complete your order</button>');
@@ -516,11 +516,11 @@ $(function(){
         success: function(data){
             $.each(data, function(i, ourFavourite){
                 if(i%2 == 0){
-                  $left.append('<a href="pages/book.html?idBook='+ourFavourite.code+'""><div class="ourFavourite row"><div class="col"><img src="assets/img/'+ ourFavourite.code +'.jpg" alt="'+ ourFavourite.title +'" ></div><div class="col"><span><p>'+ ourFavourite.title +'</p><p>'+ ourFavourite.author +'</p><p>'+ ourFavourite.value +'</p></span></div></div></a>');
+                  $left.append('<a href="pages/book.html?idBook='+ourFavourite.code+'""><div class="ourFavourite row"><div class="col"><img src="assets/img/'+ ourFavourite.code +'.jpg" alt="'+ ourFavourite.title +'" ></div><div class="col"><span><p>'+ ourFavourite.title +'</p><p>'+ ourFavourite.authors[0].name +'</p><p>'+ ourFavourite.price.value +'</p></span></div></div></a>');
 
                 }
                 else{
-                  $right.append('<a href="pages/book.html?idBook='+ourFavourite.code+'""><div class="ourFavourite row"><div class="col"><img src="assets/img/'+ ourFavourite.code +'.jpg" alt="'+ ourFavourite.title +'" ></div><div class="col"><span><p>'+ ourFavourite.title +'</p><p>'+ ourFavourite.author +'</p><p>'+ ourFavourite.value +'</p></span></div></div></a>');
+                  $right.append('<a href="pages/book.html?idBook='+ourFavourite.code+'""><div class="ourFavourite row"><div class="col"><img src="assets/img/'+ ourFavourite.code +'.jpg" alt="'+ ourFavourite.title +'" ></div><div class="col"><span><p>'+ ourFavourite.title +'</p><p>'+ ourFavourite.authors[0].name +'</p><p>'+ ourFavourite.price.value +'</p></span></div></div></a>');
 
                 }
             });
