@@ -62,7 +62,8 @@ function autList(){
 /*-------- single book page------*/
 
 function bookD(id){
-    var $pagetitle = $('#title');
+    var $breads = $('#breads');
+    var $pagetitle = $('#pagetitle');
     var $img = $('#bookImage');
     var $title = $('#titoloLibro');
     var $aut = $('#autoreLibro');
@@ -70,7 +71,7 @@ function bookD(id){
     var $button = $('#addToCartButton');
 
     parseInt(id);
-    console.log(id);
+    //console.log(id);
 
     $.ajax({
         type:'GET',
@@ -79,6 +80,7 @@ function bookD(id){
 
 
             $pagetitle.html(book.title)
+            $breads.append("<b>"+book.title+"</b>")
             $title.append(book.title);
             $aut.append(book.authors.name);
             $img.attr('src', '../assets/img/'+book.code +'.jpg');
@@ -134,16 +136,17 @@ function bookD(id){
 
 /*------single author page-------*/
 function authorD(id){
-    
-    var $pagetitle = $('#title');
+    var $breads=$('#breads');
+    var $pagetitle = $('#pagetitle');
     parseInt(id);
     $.ajax({
         type:'GET',
         url:'/authors/'+id+'',
         success: function(author){
 
-            console.log(author);
+           // console.log(author);
             $pagetitle.html(author.name);
+            $breads.append("<b>"+author.name+"</b>")
             $('#autName').html(author.name);
 
             $('#authorPic').attr('src', '../assets/img/authors/'+author.author_id +'.jpg');
@@ -241,6 +244,7 @@ function filterSelection(type, name){
 
     var $list = $('#books');
     $list.html("");
+    
     if(type=='all'|| name=='all'){
 
         $.ajax({
@@ -268,10 +272,10 @@ function filterSelection(type, name){
             type:'GET',
             url:'/books?'+type+'='+name+'',
             success: function(data){
-                console.log(name);
+                //console.log(name);
 
                 if(data==""){
-                   $list.append("<h3>Sorry at the moment we don't have books for this "+type+" </h3>");
+                    $list.append("<h3 class='sorry'>Sorry at the moment we don't have books for this "+type+" </h3>");
                 }else{
 
 
@@ -279,7 +283,7 @@ function filterSelection(type, name){
                     $.each(data, function(i,book){
 
 
-                        console.log(book);
+                       // console.log(book);
 
                         $list.append('<div class="col-lg-3 col-md-3 singleBook"><a href="Book.html?idBook='+book.code+'"><img class="book" src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.author +'</h7></a></div>');
 
@@ -324,26 +328,57 @@ Function for events page
 ----------------*/
 
 
-function eventsList(){
-
+function eventsList(when){
+    var today=new Date;
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+   // console.log(mm);
+    var $evMon;
     var $list = $('#events');
     $.ajax({
         type:'GET',
         url:'/events',
         success: function(data){
+           
+            if(when=='all'){
+                 $('#evfall').addClass("selected");
+               $('#evfmon').removeClass("selected");
+                $.each(data, function(i,event){
+                
+                    $list.html("<div class='event'><div class='ribbon'>"+ dateSplit(event.date,'date')+"</div> <div><a href='Event.html?idEv="+event.event_id+"'><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
 
-            $.each(data, function(i,event){
+                });
+            }else {
+                    $('#evfmon').addClass("selected");
+                $('#evfall').removeClass("selected");
+                    
+                    
+                 $.each(data, function(i,event){
+                     
+                   
+                     if(dateSplit(event.date,'date').split("-")[1]==mm){
+                         $list.html("");
+                        $list.html("<div class='event'><div class='ribbon'>"+ dateSplit(event.date,'date')+"</div> <div><a href='Event.html?idEv="+event.event_id+"'><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
+                        }else{
+                            $list.html("<h3 class='sorry'>There aren't Events this month</h3>");
+                           
+                            
+                        }
+                        
 
-                console.log(event.id);
+                    
 
-                $list.append("<div class='event'><div class='ribbon'>"+ dateSplit(event.date,'date')+"</div> <div><a href='Event.html?idEv="+event.event_id+"'><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
-
-            });
+                });
+                
+            }
 
         }
 
     });
 };
+
+
+
+
 
 function dateSplit(text, type){
 
@@ -354,7 +389,7 @@ function dateSplit(text, type){
     if(type=="date"){
 
         date=array[0].split("-");
-        newDate=date[1]+"-"+date[2]+"-"+date[0];
+        newDate=date[2]+"-"+date[1]+"-"+date[0];
     }else {
         date=array[1].split(":");
         newDate=date[0]+":"+date[1];
@@ -395,22 +430,22 @@ Function for fill user Cart Item in Cart page
 ----------------*/
 
 $(document).ready(function(){
-  var $cart = $('#cartList');
-  var $buy = $('#buyCart');
+    var $cart = $('#cartList');
+    var $buy = $('#buyCart');
     $.ajax({
-      type:'GET',
-      url:'/cart',
-      success: function(data){
-        $.each(data, function(i, cartItem){
-          if(i == 0){
-            $cart.append('<div class="cartItem"><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + JSON.stringify(cartItem.title) + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + JSON.stringify(cartItem.title) + '</a> by <a class="cartItemAuthor" href="">' + JSON.stringify(cartItem.author) + '</a><p class="cartItemPrice">EUR ' + cartItem.price + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="#">remove</a></span></div>');
-          }
-          else{
-            $cart.append('<div class="cartItem"><hr><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + JSON.stringify(cartItem.title) + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + JSON.stringify(cartItem.title) + '</a> by <a class="cartItemAuthor" href="">' + JSON.stringify(cartItem.author) + '</a><p class="cartItemPrice">EUR ' + cartItem.price + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="#">remove</a></span></div>');
-          }
-        });
-        $buy.append('<p>Totale Provvisorio: EUR ' + data.total.value + '</p><button type="button" type="submit">Complete your order</button>');
-      }
+        type:'GET',
+        url:'/cart',
+        success: function(data){
+            $.each(data, function(i, cartItem){
+                if(i == 0){
+                    $cart.append('<div class="cartItem"><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + JSON.stringify(cartItem.title) + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + JSON.stringify(cartItem.title) + '</a> by <a class="cartItemAuthor" href="">' + JSON.stringify(cartItem.author) + '</a><p class="cartItemPrice">EUR ' + cartItem.price + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="#">remove</a></span></div>');
+                }
+                else{
+                    $cart.append('<div class="cartItem"><hr><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + JSON.stringify(cartItem.title) + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + JSON.stringify(cartItem.title) + '</a> by <a class="cartItemAuthor" href="">' + JSON.stringify(cartItem.author) + '</a><p class="cartItemPrice">EUR ' + cartItem.price + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="#">remove</a></span></div>');
+                }
+            });
+            $buy.append('<p>Totale Provvisorio: EUR ' + data.total.value + '</p><button type="button" type="submit">Complete your order</button>');
+        }
     });
 });
 
@@ -418,41 +453,41 @@ $(document).ready(function(){
 /*----------------
 Function for remove a book from the Cart in Cart page
 ----------------*/
-        $(document).ready(function(){
-          $(".cartItemRemove").click(function() {
-            var $itemID = $(this).attr("id");
-            $.ajax({
-                type: "DELETE",
-                url : "/cart/items/" + $itemID + "",
-                data:jQuery.param({itemID:$item.val()}),
-                success: function() {
-                    alert("You have successful removed the book from your cart");
-                },
-                error: function(res) {
-                    alert("Impossible to remove the book from your cart");
-                }
-            });
-        });
-    });
-
-    /*----------------
-    Function for add a book to the Cart in Book page
-    ----------------*/
-    function addToCartID(id){
-
+$(document).ready(function(){
+    $(".cartItemRemove").click(function() {
+        var $itemID = $(this).attr("id");
         $.ajax({
-            type:'POST',
-            url:'/cart/items',
-            data:JSON.stringify(parseInt(id, 10)),
-            success: function(){
-              alert("You added an element to your cart");
+            type: "DELETE",
+            url : "/cart/items/" + $itemID + "",
+            data:jQuery.param({itemID:$item.val()}),
+            success: function() {
+                alert("You have successful removed the book from your cart");
             },
-            error: function(data){
-              alert("Impossible to add this element to your cart");
+            error: function(res) {
+                alert("Impossible to remove the book from your cart");
             }
         });
+    });
+});
 
-    };
+/*----------------
+    Function for add a book to the Cart in Book page
+    ----------------*/
+function addToCartID(id){
+
+    $.ajax({
+        type:'POST',
+        url:'/cart/items',
+        data:JSON.stringify(parseInt(id, 10)),
+        success: function(){
+            alert("You added an element to your cart");
+        },
+        error: function(data){
+            alert("Impossible to add this element to your cart");
+        }
+    });
+
+};
 
 /*----------------
 Function for OurFavourite in Home Page
@@ -509,23 +544,23 @@ Function for LogIn in LogIn page
 
 
 function logIn() {
-  var $username = $('#logInUsername');
-  var $psw = $('#logInPassword');
-            $.ajax({
-                type: "POST",
-                url:'/user/login',
-                data:jQuery.param({username:$username.val(),password:$psw.val()}),
-                success: function () {
-                    alert("You have successfully logged in");
-                    window.open("../index.html", "index.html");
-                },
-                error: function (response) {
-                    alert("Log In failed\nYou are probably already logged");
-                }
+    var $username = $('#logInUsername');
+    var $psw = $('#logInPassword');
+    $.ajax({
+        type: "POST",
+        url:'/user/login',
+        data:jQuery.param({username:$username.val(),password:$psw.val()}),
+        success: function () {
+            alert("You have successfully logged in");
+            window.open("../index.html", "index.html");
+        },
+        error: function (response) {
+            alert("Log In failed\nYou are probably already logged");
+        }
 
-            });
+    });
 
-     };
+};
 
 
 
@@ -550,11 +585,11 @@ function logOut() {
 /*-------------function single event----------*/
 
 function eventD(id){
-
+    var $breads = $('#pagetitle');
     var $img = $('#eventImg');
- var $pagetitle = $('#pagetitle');
+    var $pagetitle = $('#pagetitle');
     parseInt(id);
-    console.log(id);
+    
 
     $.ajax({
         type:'GET',
@@ -563,6 +598,7 @@ function eventD(id){
 
 
             $pagetitle.html(eve.title);
+            $breads.append("<b>"+eve.title+"</b>");
             $('#title').html(eve.title);
             $('#book').append("<a href='Book.html?idBook="+eve.book.code+"'>"+eve.book.title+"</a");
             $img.attr('src', '../assets/img/events/'+id +'.jpg');

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Nome libro</title>
+        <title id="pagetitle"></title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Montserrat&display=swap" rel="stylesheet">
@@ -38,7 +38,7 @@
             <nav class=" upper navbar navbar-expand-lg navbar-light bg-light">
                 <!--div class="container"-->
 
-                <div class="col-lg-3 col-md-5 col-sm-4"><h2>Titolo e Logo del  sito</h2></div>
+                <div class="col-lg-3 col-md-5 col-sm-4"><a href="../index.html"><h2>Titolo e Logo del  sito</h2></a></div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -57,11 +57,11 @@
 
                     <div >
 
-                        <a class="nav-link aaa " href="pages/Log_In.html"><i class="flaticon-user"></i>Log In</a>
+                        <a class="nav-link aaa " href="Log_In.html"><i class="flaticon-user"></i>Log In</a>
 
                         <div class="cart" >
 
-                            <a id="mimicchio" class="nav-link" href="pages/Cart.html"><i class="flaticon-shopping-cart"></i>
+                            <a id="mimicchio" class="nav-link" href="Cart.html"><i class="flaticon-shopping-cart"></i>
                             </a> <p>0</p>
                         </div>
                         <!--/div-->
@@ -82,30 +82,22 @@
                 <button id="navbarButton" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsCollapse" aria-controls="navbarsCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarsCollapse">
+                <div class="navEl">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link nav_text_color" href="#">Home</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="#"><i class="fas fa-cart-plus"></i></a>
-                        </li>
+                       
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle nav_text_color" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Books</a>
+                            <a class="nav-link dropdown-toggle nav_text_color" href="BooksList.html" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Books</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown03">
-                                <a class="dropdown-item" href="#">Themes</a>
-                                <a class="dropdown-item" href="#">Genres</a>
+                              <a class="dropdown-item" href="BooksList.html?type=all&name=all">All Books</a>
+                              <a class="dropdown-item" href="themesList.html">Themes</a>
+                              <a class="dropdown-item" href="GenresList.html">Genres</a>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav_text_color" href="#">Authors</a>
+                            <a class="nav-link nav_text_color" href="AuthorsList.html">Authors</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav_text_color" href="#">Events</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav_text_color" href="#">Contact Us</a>
+                            <a class="nav-link nav_text_color" href="EventsList.html">Events</a>
                         </li>
                     </ul>
 
@@ -116,9 +108,9 @@
         <br>
         <!--end navbar-->
 
-        <div class="breads">
-            <a class="rootB" href=""><b>Books </b></a>/
-           <b> Libro</b>
+        <div id="breads" class="breads">
+            <a class="rootB" href="BooksList.html?type=all&name=all"><b>Books </b></a>/
+           
         </div>
 
         <div class="pageContainer" >

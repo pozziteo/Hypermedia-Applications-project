@@ -581,7 +581,9 @@ h2.theme a{
     color: #c6c6c6;
 }
 
-
+.sorry{
+    margin: 30px;
+}
 /*-------------
 All books page
 ----------------*/
@@ -642,7 +644,7 @@ img.book{
     text-align: left;
     display:block;
     float: left;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+   box-shadow: 0 1px 5px rgba(0,0,0,0.12), 0 1px 10px rgba(0,0,0,0.24);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
@@ -759,7 +761,7 @@ All events page
 
 .selected a{
     font-weight: 700;
-    color: red !important;
+    color: darkgreen!important;
 }
 
 .ribbon{
@@ -980,7 +982,9 @@ Home page index.html
 
 #bestSellerContainer{
     position: relative;
-    border: 1px solid #80bfff;
+    border: 0.5px solid white;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.12), 0 1px 8px rgba(0,0,0,0.24);
     background-color: white;
     min-height: 19.3em;
 }
@@ -1061,7 +1065,9 @@ Home page index.html
 
 #ourFavouriteContainer{
     position: relative;
-    border: 1px solid #80bfff;
+    border: 1px solid white;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.12), 0 1px 8px rgba(0,0,0,0.24);
     background-color: white;
     min-height: 19.3em;
     
@@ -1217,6 +1223,13 @@ TABLET
         padding: .6rem 1.5rem;
         
     }
+    .navbar-nav{
+        flex-direction: row;
+    }
+    .navbar-nav .nav-link{
+        padding: 8px 16px;
+    }
+    
     
      /*---- event list------*/
     
@@ -1434,8 +1447,7 @@ SMARTPHONE
     
     .dropdown-menu.dfilters.show{
     
-    left: 50% !important;
-    transform: translate3d(0px, 50px, 0px)!important;
+    transform: translate3d(0px, 5px, 0px)!important;
 }
 
 

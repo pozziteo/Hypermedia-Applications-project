@@ -1,188 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Home</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Montserrat&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<head>
+  <title>Home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Montserrat&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 
-        <link rel="stylesheet" href="assets/css/my-icons-collection/font/flaticon.css">
+  <link rel="stylesheet" href="assets/css/my-icons-collection/font/flaticon.css">
 
-        <link rel="stylesheet" href="assets/css/CSS.css">
+  <link rel="stylesheet" href="assets/css/CSS.css">
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <script src="assets/js/main.js"></script>
-    </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</head>
 
-    <body>
-
-
-        <!--mia upper navbar-->
+<body>
 
 
-        <div class="container-fluid">
-            <nav class=" upper navbar navbar-expand-lg navbar-light bg-light">
-                <!--div class="container"-->
-
-                <div class="col-lg-3 col-md-5 col-sm-4"><h2>Titolo e Logo del  sito</h2></div>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+  <!--mia upper navbar-->
 
 
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+  <div class="container-fluid">
+    <nav class=" upper navbar navbar-expand-lg navbar-light bg-light">
+      <!--div class="container"-->
 
-                    <div class=" nav-item col-lg-8 col-md-7 col-sm-12">
-
-                        <form class="header-search-form form-inline my-2 my-lg-0" action="">
-
-                            <input  class="form-control mr-lg-6" type="search" placeholder="Search for books, events and authors">
-                            <button class="btn btn-outline-success my-2 my-sm-0  " type="submit"><i class="flaticon-search"></i></button>
-                        </form>
-                    </div>
+      <div class="col-lg-3 col-md-5 col-sm-4"><h2>Titolo e Logo del  sito</h2></div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
 
-                    <div class="row">
-                        <a class="nav-link aaa " href="pages/Log_In.html"><i class="flaticon-user"></i>Log In</a>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+        <div class=" nav-item col-lg-8 col-md-7 col-sm-12">
+
+          <form class="header-search-form form-inline my-2 my-lg-0" action="">
+
+            <input  class="form-control mr-lg-6" type="search" placeholder="Search for books, events and authors">
+            <button class="btn btn-outline-success my-2 my-sm-0  " type="submit"><i class="flaticon-search"></i></button>
+          </form>
+        </div>
 
 
-                        <div class="cart" >
+        <div class="row">
+          <a class="nav-link aaa " href="pages/Log_In.html"><i class="flaticon-user"></i>Log In</a>
+          
+        
+            <a class="nav-link aaa " id="logOutLink" onclick="logOut()">Log Out</a>
+       
 
-                            <a id="mimicchio" class="nav-link" href="pages/Cart.html"><i class="flaticon-shopping-cart"></i>
-                            </a> <p>0</p>
-                        </div>
-                        <!--/div-->
-                        <a id="ciao" href="#" onclick="logIn()">ahha</a>
-                    </div>
+          <div class="cart" >
+
+            <a id="mimicchio" class="nav-link" href="pages/Cart.html"><i class="flaticon-shopping-cart"></i>
+            </a> <p>0</p>
+          </div>
+          
+        </div>
 
 
-                </div>
+      </div>
 
-            </nav>
+    </nav>
 
 
-            <!--lower navbar-->
-            <!--nav id="navbar" class=" lower-nav navbar navbar-expand-sm dark_color sticky-top">
-
-<!--div class="container"-->
-
-            <!--button id="navbarButton" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsCollapse" aria-controls="navbarsCollapse" aria-expanded="false" aria-label="Toggle navigation">
-<span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse" id="navbarsCollapse">
-<ul class="navbar-nav mr-auto">
-<li class="nav-item active">
-<a class="nav-link nav_text_color" href="#">Home</a>
-</li>
-
-<li class="nav-item">
-<a href="#"><i class="fas fa-cart-plus"></i></a>
-</li>
-<li class="nav-item dropdown">
-<a class="nav-link dropdown-toggle nav_text_color" href="pages/allBooks.html" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Books</a>
-<div class="dropdown-menu" aria-labelledby="dropdown03">
-<a class="dropdown-item" href="#">Themes</a>
-<a class="dropdown-item" href="pages/allGenre.html">Genres</a>
+    
 </div>
-</li>
-<li class="nav-item">
-<a class="nav-link nav_text_color" href="#">Authors</a>
-</li>
-<li class="nav-item">
-<a class="nav-link nav_text_color" href="#">Events</a>
-</li>
-<li class="nav-item">
-<a class="nav-link nav_text_color" href="#">Contact Us</a>
-</li>
-</ul>
+<br>
 
+<!--___________END NAVBAR_____________-->
+
+<!--Book, Author, Event-->
+<div class="containerTop">
+  <div class="row">
+
+    <div id="bookLink" class="col-lg-4 col-md-4 col-sm-12">
+      <div class="Link">
+        <a href="pages/BooksList.html?type=all&name=all">All Book</a>
+      </div>
+      <div class="Link">
+        <a href="pages/GenresList.html">Genres</a>
+      </div>
+      <div class="Link">
+        <a href="pages/themesList.html">Themes</a>
+      </div>
+    </div>
+
+
+    <div id="writerLink" class="col-lg-4 col-md-4 col-sm-12">
+      <div class="Link"></div>
+      <div class="Link">
+
+      </div>
+      <div class="Link"><a href="pages/AuthorsList.html">Authors</a></div>
+    </div>
+
+    <div id="eventLink" class="col-lg-4 col-md-4 col-sm-12">
+      <div class="Link"></div>
+      <div class="Link">
+
+      </div>
+      <div class="Link"><a href="pages/EventsList.html">Events</a></div>
+    </div>
+
+  </div>
 </div>
+<!--___________END Book, Author, Event_____________-->
 
-</nav-->
+<!--BestSeller, ourFavourite-->
+
+<div class="pageContainer">
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-12 ">
+      <div id="bestSellerContainer">
+        <p id="homeTitles">BEST SELLERS</p>
+
+      </div>
+    </div>
+
+    <div class="col-lg-8 col-md-8 col-sm-12">
+      <div id="ourFavouriteContainer">
+        <p id="homeTitles">OUR FAVOURITES</p>
+        <div class="row">
+          <div id="leftOurFavourite" class="col-lg-6 col-md-6 col-sm-12">
+
+          </div>
+
+
+          <div id="rightOurFavourite" class="col-lg-6 col-md-6 col-sm-12">
+
+          </div>
         </div>
-        <br>
+      </div>
+    </div>
+  </div>
+</div>
+<!--___________END BestSeller, ourFavourite_____________-->
+<!--Footer-->
 
-        <!--___________END NAVBAR_____________-->
+<footer>
+  <a href="pages/ContactUs.html">Contact Us</a>
+  <a href="pages/ContactUs.html">Shipping Info</a>
+  <a href="">Cookies</a>
+  <a href="">Privacy</a>
+</footer>
+<!--___________END Footer_____________-->
 
-        <!--Book, Author, Event-->
-        <div class="containerTop">
-            <div class="row">
-
-                <div id="bookLink" class="col-lg-4 col-md-4 col-sm-12">
-                    <div class="Link">
-                        <a href="pages/BooksList.html?type=all&name=all">Book</a>
-                    </div>
-                    <div class="Link">
-                        <a href="pages/GenresList.html?">Genres</a>
-                    </div>
-                    <div class="Link">
-                        <a href="pages/themesList.html">Themes</a>
-                    </div>
-                </div>
-
-
-                <div id="writerLink" class="col-lg-4 col-md-4 col-sm-12">
-                    <div class="Link"></div>
-                    <div class="Link">
-
-                    </div>
-                    <div class="Link"><a href="pages/AuthorsList.html">Authors</a></div>
-                </div>
-
-                <div id="eventLink" class="col-lg-4 col-md-4 col-sm-12">
-                    <div class="Link"></div>
-                    <div class="Link">
-
-                    </div>
-                    <div class="Link"><a href="pages/EventsList.html">Events</a></div>
-                </div>
-
-            </div>
-        </div>
-        <!--___________END Book, Author, Event_____________-->
-
-        <!--BestSeller, ourFavourite-->
-
-        <div class="pageContainer">
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-12 ">
-                    <div id="bestSellerContainer">
-                        <p id="homeTitles">BEST SELLERS</p>
-
-                    </div>
-                </div>
-
-                <div class="col-lg-8 col-md-8 col-sm-12">
-                    <div id="ourFavouriteContainer">
-                        <p id="homeTitles">OUR FAVOURITES</p>
-                        <div class="row">
-                            <div id="leftOurFavourite" class="col-lg-6 col-md-6 col-sm-12">
-
-                            </div>
-
-
-                            <div id="rightOurFavourite" class="col-lg-6 col-md-6 col-sm-12">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--___________END BestSeller, ourFavourite_____________-->
-        <!--Footer-->
-
-        <footer>
-            <a href="pages/ContactUs.html">Contact Us</a>
-            <a href="pages/ContactUs.html">Shipping Info</a>
-            <a href="">Cookies</a>
-            <a href="">Privacy</a>
-        </footer>
-        <!--___________END Footer_____________-->
-
-    </body>
+</body>
 </html>

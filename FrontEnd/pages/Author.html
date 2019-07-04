@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Nome autore</title>
+        <title id="pagetitle"></title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Montserrat&display=swap" rel="stylesheet">
@@ -19,21 +19,21 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        
+
          <script src="../assets/js/main.js"></script>
-         
+
     </head>
     <script>
     var url=new URL(window.location.href);
         var id=parseInt( url.searchParams.get("autId"));
-        
-        
-        
+
+
+
     </script>
 
     <body onload="authorD(id)">
         <!--upper navbar-->
-        
+
 
 
         <div class="container-fluid">
@@ -49,7 +49,7 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 
                     <div class=" nav-item col-lg-8 col-md-7 col-sm-12">
-                        
+
                         <form class="header-search-form form-inline my-2 my-lg-0" action="">
 
                         <input  class="form-control mr-lg-6" type="search" placeholder="Search for books, events and authors">
@@ -80,34 +80,30 @@
             <!--lower navbar-->
             <nav id="navbar" class=" lower-nav navbar navbar-expand-sm dark_color sticky-top">
 
-                <!--div class="container"-->   
+                <!--div class="container"-->
 
                 <button id="navbarButton" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsCollapse" aria-controls="navbarsCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarsCollapse">
+                <div class="navEl">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link nav_text_color" href="#">Home</a>
-                        </li>
+                        
 
-                        <li class="nav-item">
-                            <a href="#"><i class="fas fa-cart-plus"></i></a>
-                        </li>
+                        
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle nav_text_color" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Books</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown03">
-                                <a class="dropdown-item" href="#">Themes</a>
-                                <a class="dropdown-item" href="#">Genres</a>
+                              <a class="dropdown-item" href="BooksList.html?type=all&name=all">All Books</a>
+                              <a class="dropdown-item" href="themesList.html">Themes</a>
+                              <a class="dropdown-item" href="GenresList.html">Genres</a>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav_text_color" href="#">Authors</a>
+                            <a class="nav-link nav_text_color" href="AuthorsList.html">Authors</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav_text_color" href="#">Events</a>
+                            <a class="nav-link nav_text_color" href="EventsList.html">Events</a>
                         </li>
-                        
                     </ul>
 
                 </div>
@@ -118,8 +114,8 @@
         <!--end navbar-->
 
         <div class="breads">
-            <a class="rootB" href=""><b>Authors </b></a>/
-            
+            <a class="rootB" href="AuthorsList.html"><b>Authors </b></a>/
+
         </div>
 
         <div class="pageContainer" >
