@@ -170,32 +170,7 @@ function authorD(id){
 
 
 
-
-/*function booksList(){
-
-    var $list = $('#books')
-    $.ajax({
-        type:'GET',
-        url:'/books',
-        success: function(data){
-
-            $.each(data, function(i,book){
-
-                console.log("ho caricato la lista dei");
-
-                $list.append('<div class="col-lg-2 col-md-3 singleBook"><a href="Book.html?idBook='+book.code+'"><img src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.author +'</h7></a></div>');
-
-            });
-
-        }
-
-    });
-
-
-};*/
-
-
-$(function(){
+function gFilters(){
 
     var $list = $('#gFilters');
     $.ajax({
@@ -217,9 +192,9 @@ $(function(){
     });
 
 
-});
+};
 
-$(function(){
+function tFilters(){
 
     var $list = $('#tFilters');
     $.ajax({
@@ -240,7 +215,7 @@ $(function(){
     });
 
 
-});
+};
 
 
 function unsetF(){
@@ -250,6 +225,8 @@ function unsetF(){
 
 function filterSelection(type, name){
 
+    gFilters();
+    tFilters();
     var $list = $('#books');
     $list.html("");
 
@@ -424,7 +401,7 @@ function dateSplit(text, type){
 Function for BestSeller in Home Page
 ----------------*/
 
-$(function(){
+function best(){
     var $list = $('#bestSellerContainer');
     var number;
     $.ajax({
@@ -442,7 +419,7 @@ $(function(){
             });
         }
     });
-});
+};
 
 /*----------------
 Function for fill user Cart Item in Cart page
@@ -535,11 +512,20 @@ function addToCartID(id){
 
 };
 
+
+
+function homeFunctions(){
+   favs();
+    best();
+    
+}
 /*----------------
 Function for OurFavourite in Home Page
 ----------------*/
 
-$(function(){
+
+
+function favs(){
     var $left = $('#leftOurFavourite');
     var $right = $('#rightOurFavourite');
     $.ajax({
@@ -558,7 +544,7 @@ $(function(){
             });
         }
     });
-});
+};
 
 /*----------------
 Function for SignUp in SignUp page
