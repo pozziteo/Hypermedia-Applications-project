@@ -79,7 +79,7 @@ function bookD(id){
         success: function(book){
 
             $('#semAut').attr('href','Author.html?autId='+book.authors[0].author_id+'');
-            
+
             $pagetitle.html(book.title);
             $breads.append("<b>"+book.title+"</b>");
             $title.append(book.title);
@@ -88,7 +88,7 @@ function bookD(id){
             $aut.attr('href','Author.html?autId='+book.authors[0].author_id+'');
             $('#genB').html(book.genre);
             $('#genB').attr('href','BooksList.html?type=genre&name='+book.genre+'');
-            
+
             $('#themB').html(book.theme);
             $('#themB').attr('href','BooksList.html?type=theme&name='+book.theme+'');
             $img.attr('src', '../assets/img/'+book.code +'.jpg');
@@ -337,7 +337,7 @@ Function for events page
 
 
 function eventsList(){
-  
+
     var $list = $('#events');
      $list.html("");
     $.ajax({
@@ -347,7 +347,7 @@ function eventsList(){
 
                 $('#evfall').addClass("selected");
                 $('#evfmon').removeClass("selected");
-            
+
                 $.each(data, function(i,event){
 
                     $list.append("<div class='event'><div class='ribbon'>"+ dateSplit(event.date,'date')+"</div> <div><a href='Event.html?idEv="+event.event_id+"'><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
@@ -363,7 +363,7 @@ function eventsList(){
 
 
 function eventsThisMonth(){
- 
+
 
     $('#evfall').addClass("selected");
     $('#evfmon').removeClass("selected");
@@ -378,10 +378,10 @@ function eventsThisMonth(){
 
 
             //if(data!=""){
-                   
+
                 $.each(data, function(i,event){
 
-                    
+
                     $list.append("<div class='event'><div class='ribbon'>"+ dateSplit(event.date,'date')+"</div> <div><a href='Event.html?idEv="+event.event_id+"'><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
 
                 });
@@ -428,17 +428,18 @@ Function for BestSeller in Home Page
 
 $(function(){
     var $list = $('#bestSellerContainer');
+    var number;
     $.ajax({
         type:'GET',
         url:'/books/best-sellers',
         success: function(data){
             $.each(data, function(i, bestSeller){
-
+                number = parseInt(i);
                 if(i == 0){
                     $list.append('<a href="pages/book.html?idBook='+bestSeller.code+'"><div id="firstBestSeller" class="bestSeller row"><div class="col-4"><img src="assets/img/'+ bestSeller.code +'.jpg" alt="'+ bestSeller.title +'"></div><div class="col-7"><p id="firstBestSellerNumber">#1</p><span><p>'+ bestSeller.title +'</p><p>'+ bestSeller.authors[0].name +'</p><p>'+ bestSeller.price.value + ' ' + bestSeller.price.currency +'</p><span></div></div></a>');
                 }
                 else{
-                    $list.append('<a href="pages/book.html?idBook='+bestSeller.code+'"><div class="bestSeller"><p class="bestSellerNumber">#2</p><span><p>'+ bestSeller.title +'</p><p>'+ bestSeller.authors[0].name +'</p><p>'+ bestSeller.price.value + ' ' + bestSeller.price.currency +'</p></span></div></a>');
+                    $list.append('<a href="pages/book.html?idBook='+bestSeller.code+'"><div class="bestSeller"><p class="bestSellerNumber">#' + (number + 1) + '</p><span><p>'+ bestSeller.title +'</p><p>'+ bestSeller.authors[0].name +'</p><p>'+ bestSeller.price.value + ' ' + bestSeller.price.currency +'</p></span></div></a>');
                 }
             });
         }
@@ -449,24 +450,29 @@ $(function(){
 Function for fill user Cart Item in Cart page
 ----------------*/
 
-$(document).ready(function(){
-    var $cart = $('#cartList');
-    var $buy = $('#buyCart');
-    $.ajax({
-        type:'GET',
-        url:'/cart',
-        success: function(data){
-            $.each(data, function(i, cartItem){
-                if(i == 0){
-                    $cart.append('<div class="cartItem"><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + JSON.stringify(cartItem.title) + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + JSON.stringify(cartItem.title) + '</a> by <a class="cartItemAuthor" href="">' + JSON.stringify(cartItem.author) + '</a><p class="cartItemPrice">EUR ' + cartItem.price.value + ' ' + cartItem.price.currency + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="#">remove</a></span></div>');
-                }
-                else{
-                    $cart.append('<div class="cartItem"><hr><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + JSON.stringify(cartItem.title) + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + JSON.stringify(cartItem.title) + '</a> by <a class="cartItemAuthor" href="">' + JSON.stringify(cartItem.author) + '</a><p class="cartItemPrice">EUR ' + cartItem.price.value + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="#">remove</a></span></div>');
-                }
-            });
-            $buy.append('<p>Totale Provvisorio: EUR ' + data.total.value + '</p><button type="button" type="submit">Complete your order</button>');
+
+$(function(){
+  var $cart = $('#cartList');
+  var $buy = $('#buyCart');
+  var books;
+  var total;
+  $.ajax({
+    type:'GET',
+    url:'/cart',
+    success: function(data){
+      books = data.books;
+      total = data.total;
+      $.each(books, function(i, cartItem){
+        if(i == 0){
+          $cart.append('<div class="cartItem"><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + cartItem.title + '"><span class="cartItemInfo"><a class="cartItemTitle" href="#">' + cartItem.title + '</a> by <a class="cartItemAuthor" href="#">' + cartItem.authors[0].name + '</a><p class="cartItemPrice"> ' + cartItem.price.value + ' ' + cartItem.price.currency + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="" onclick="removeFromCart(' + cartItem.code + ')">remove</a></span></div>');
         }
-    });
+        else{
+          $cart.append('<div class="cartItem"><hr><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + cartItem.title + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + cartItem.title + '</a> by <a class="cartItemAuthor" href="">' + cartItem.authors[0].name + '</a><p class="cartItemPrice">EUR ' + cartItem.price.value + ' ' + cartItem.price.currency + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="" onclick="removeFromCart(' + cartItem.code + ')">remove</a></span></div>');
+        }
+      });
+      $buy.append('<p>Totale Provvisorio: ' + total.value + ' ' + total.currency + '</p><button type="button" type="submit" onclick="buyCart()">Complete your order</button>');
+    }
+  });
 });
 
 
