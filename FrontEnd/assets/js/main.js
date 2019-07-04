@@ -62,7 +62,7 @@ function autList(){
 /*-------- single book page------*/
 
 function bookD(id){
-
+    var $pagetitle = $('#title');
     var $img = $('#bookImage');
     var $title = $('#titoloLibro');
     var $aut = $('#autoreLibro');
@@ -78,7 +78,7 @@ function bookD(id){
         success: function(book){
 
 
-
+            $pagetitle.html(book.title)
             $title.append(book.title);
             $aut.append(book.authors.name);
             $img.attr('src', '../assets/img/'+book.code +'.jpg');
@@ -134,6 +134,8 @@ function bookD(id){
 
 /*------single author page-------*/
 function authorD(id){
+    
+    var $pagetitle = $('#title');
     parseInt(id);
     $.ajax({
         type:'GET',
@@ -141,7 +143,7 @@ function authorD(id){
         success: function(author){
 
             console.log(author);
-
+            $pagetitle.html(author.name);
             $('#autName').html(author.name);
 
             $('#authorPic').attr('src', '../assets/img/authors/'+author.author_id +'.jpg');
@@ -550,7 +552,7 @@ function logOut() {
 function eventD(id){
 
     var $img = $('#eventImg');
-
+ var $pagetitle = $('#pagetitle');
     parseInt(id);
     console.log(id);
 
@@ -560,7 +562,7 @@ function eventD(id){
         success: function(eve){
 
 
-
+            $pagetitle.html(eve.title);
             $('#title').html(eve.title);
             $('#book').append("<a href='Book.html?idBook="+eve.book.code+"'>"+eve.book.title+"</a");
             $img.attr('src', '../assets/img/events/'+id +'.jpg');

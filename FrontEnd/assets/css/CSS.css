@@ -619,9 +619,18 @@ img.book{
 }
 
 
-.dropdown-menu.show{
+
+.dropdown-menu.dfilters.show{
     position: relative !important;
+
     transform: translate3d(0px, 5px, 0px)!important;
+    margin-bottom: 50px;
+}
+.btn-success{
+    margin-bottom: 10px;
+}
+.btn-success p{
+    margin: auto;
 }
 
 .bookFilters{
@@ -1204,10 +1213,10 @@ TABLET
     
     
     
-    /*.navbar{
+    .navbar{
         padding: .6rem 1.5rem;
-        display: none;
-    }*
+        
+    }
     
      /*---- event list------*/
     
@@ -1240,9 +1249,10 @@ TABLET
     }
     
     .btnAlign{
-        display: inline-flex;
+        
+        margin-top: 10px;
     }
-    
+        
 }
 
 /*----------------------------
@@ -1258,6 +1268,18 @@ SMARTPHONE
         font-size: 20px
     }
 
+    
+    .navbar-nav{
+        flex-direction: row;
+    }
+    
+    .navbar-nav .nav-link{
+        padding: 8px 16px;
+    }
+    
+    .navEl{
+        margin: auto;
+    }
     .pageContainer{
         padding:20px 25px;
         
@@ -1282,13 +1304,13 @@ SMARTPHONE
         text-align: center;
     }
 
-    /*.navbar{
+    .navbar{
         padding: .6rem 1.5rem;
-        display: none;
+       
 
 
     }
-    */
+    
     
     
      /*---- book page------*/
@@ -1403,8 +1425,18 @@ SMARTPHONE
 
     
     .btnAlign{
-        display: inline-flex;
+        margin-top: 10px;
     }
+        
+    .bookFilters h6{
+    margin-bottom: 10px;
+}
+    
+    .dropdown-menu.dfilters.show{
+    
+    left: 50% !important;
+    transform: translate3d(0px, 50px, 0px)!important;
+}
 
 
 }
