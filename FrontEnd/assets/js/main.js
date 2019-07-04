@@ -438,7 +438,7 @@ Function for fill user Cart Item in Cart page
 ----------------*/
 
 
-function getCart(){
+$.(function(){
   var $cartTitle = $('#cartTitle');
   var $cart = $('#cartList');
   var $buy = $('#buyCart');
@@ -467,7 +467,7 @@ function getCart(){
       }
     }
   });
-};
+});
 
 /*----------------
 Function for clear user Cart Item in Cart page
