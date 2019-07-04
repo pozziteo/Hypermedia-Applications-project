@@ -145,7 +145,7 @@ a.rootB{
 }
 
 .aaa{
-    
+
     padding-top: 16px;
     display: inline-block;
     float: none;
@@ -1175,7 +1175,7 @@ END Cart page
 
 #logOutLink{
     position: relative;
-    top: 1em;
+    top: 0.6em;
 }
 
 
@@ -1183,7 +1183,7 @@ END Cart page
 /*-------Footer------*/
 
 footer{
-   
+
     position: relative;
     bottom: 0px;
     color: white;
