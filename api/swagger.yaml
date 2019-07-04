@@ -6,7 +6,7 @@ info:
   \ The store provides a book inventory with information about their authors too, and there are also events where \
   \ books are presented for promotional purpose. "
   version: "1.0.0"
-  title: "Simple Bookstore"
+  title: "Mimmo's BookStore"
   contact:
     email: "matteo.pozzi0397@gmail.com"
   license:
@@ -54,20 +54,20 @@ paths:
           type: "integer"
         - name: "author"
           in: "query"
-          description: "Filter list of books by author.\
-          \ Working example: 12"
+          description: "Filter list of books by author."
+          x-example: "12"
           required: false
           type: "integer"
         - name: "genre"
           in: "query"
-          description: "Filter list of books about the same genre.\
-          \ Working example: Fantasy"
+          description: "Filter list of books about the same genre."
+          x-example: "Fantasy"
           required: false
           type: "string"
         - name: "theme"
           in: "query"
-          description: "Filter list of books which treat the same theme.\
-          Working example: Killer Hounting"
+          description: "Filter list of books which treat the same theme."
+          x-example: "Killer Hounting"
           required: false
           type: "string"
       responses:
@@ -130,8 +130,8 @@ paths:
       parameters:
         - name: "bookId"
           in: "path"
-          description: "ID of book to return.\
-          \ Working example: 9780743477154"
+          description: "ID of book to return."
+          x-example: "9780743477154"
           required: true
           type: "integer"
           format: "int64"
@@ -157,8 +157,8 @@ paths:
       parameters:
         - name: "bookId"
           in: "path"
-          description: "ID of the book to find reviews about.\
-          \ Working example: 9780439358064"
+          description: "ID of the book to find reviews about."
+          x-example: "9780439358064"
           required: true
           type: integer
           format: int64
@@ -186,8 +186,8 @@ paths:
       parameters:
         - name: "bookId"
           in: "path"
-          description: "ID of book to find similar.\
-          \ Working example: 9780439358064"
+          description: "ID of book to find similar."
+          x-example: "9780439358064"
           required: true
           type: "integer"
           format: "int64"
@@ -279,14 +279,14 @@ paths:
       parameters:
         - name: "username"
           in: "formData"
-          description: "Username of a registered user to log in.\
-          \ Working example: naani"
+          description: "Username of a registered user to log in."
+          x-example: "naani"
           required: true
           type: "string"
         - name: "password"
           in: "formData"
-          description: "Password of the user registered with the provided username.\
-          \ Working example: michiamoGio"
+          description: "Password of the user registered with the provided username."
+          x-example: "michiamoGio"
           required: true
           type: "string"
           format: "password"
@@ -423,8 +423,8 @@ paths:
           in: "path"
           required: true
           description: "ID of the item to remove.\
-          \ Must be present into the cart.
-          \ Working example for user \"naani\": 9780439358064"
+          \ Must be present into the cart."
+          x-example-for-provided-user: "9780439358064"
           type: integer
           format: int64
       responses:
@@ -458,8 +458,8 @@ paths:
           type: "integer"
         - name: "book"
           in: "query"
-          description: "Filter authors who wrote the given book.\
-          \ Working example: 9780439358064"
+          description: "Filter authors who wrote the given book."
+          x-example: "9780439358064"
           required: false
           type: "integer"
       responses:
@@ -484,8 +484,8 @@ paths:
       parameters:
         - name: "authorId"
           in: "path"
-          description: "ID of author to return.\
-          \ Working example: 12"
+          description: "ID of author to return."
+          x-example: "14"
           required: true
           type: "integer"
           format: "int64"
@@ -522,14 +522,14 @@ paths:
           type: "integer"
         - name: "book"
           in: "query"
-          description: "Filter events where given book is presented.\
-          \ Working example: 9780743477154"
+          description: "Filter events where given book is presented."
+          x-example: "9780743477154"
           required: false
           type: "integer"
         - name: "author"
           in: "query"
-          description: "Filter events presented by an author.\
-          \ Working example: 11"
+          description: "Filter events presented by an author."
+          x-example: "11"
           required: false
           type: "integer"
       responses:
@@ -573,8 +573,8 @@ paths:
       parameters:
         - name: "eventId"
           in: "path"
-          description: "ID of event to return.\
-          \ Working example: 1"
+          description: "ID of event to return."
+          x-example: "1"
           required: true
           type: "integer"
           format: "int64"

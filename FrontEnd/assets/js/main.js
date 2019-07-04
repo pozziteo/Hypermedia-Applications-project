@@ -635,7 +635,7 @@ function logOut() {
 /*-------------function single event----------*/
 
 function eventD(id){
-    var $breads = $('#pagetitle');
+    var $breads = $('#breads');
     var $img = $('#eventImg');
     var $pagetitle = $('#pagetitle');
     parseInt(id);

@@ -26,14 +26,18 @@ exports.userLoginPOST = function(username, password) {
         fetchedUser = user;
         return sqlDb("customer").select("password").where("username", username).first()
       }
-      else throw new Error("Wrong username or password");
+      else {
+        throw new Error("Wrong username or password");
+      }
     })
     .then(pw => {
       return bcrypt.compare(password, pw.password)
     }).then(check => {
       if (check === true)
         return fetchedUser;
-      else throw new Error("Wrong username or password");
+      else {
+        throw new Error("Wrong username or password");
+      }
     })
     .catch(error => {
       error.code = 401;
