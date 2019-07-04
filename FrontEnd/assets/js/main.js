@@ -329,11 +329,8 @@ Function for events page
 ----------------*/
 
 
-function eventsList(when){
-    var today=new Date;
-    var mm = String(today.getMonth() + 1).padStart(2, '0');
-    // console.log(mm);
-    var $evMon;
+function eventsList(){
+   $list.html("");
     var $list = $('#events');
     $.ajax({
         type:'GET',
@@ -342,7 +339,7 @@ function eventsList(when){
 
                 $('#evfall').addClass("selected");
                 $('#evfmon').removeClass("selected");
-            $list.html("");
+            
                 $.each(data, function(i,event){
 
                     $list.append("<div class='event'><div class='ribbon'>"+ dateSplit(event.date,'date')+"</div> <div><a href='Event.html?idEv="+event.event_id+"'><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
@@ -358,7 +355,7 @@ function eventsList(when){
 
 
 function eventsThisMonth(){
-
+ $list.html("");
 
     $('#evfall').addClass("selected");
     $('#evfmon').removeClass("selected");
@@ -372,10 +369,10 @@ function eventsThisMonth(){
 
 
             //if(data!=""){
-                    $list.html("");
+                   
                 $.each(data, function(i,event){
 
-                    $list.html("");
+                    
                     $list.append("<div class='event'><div class='ribbon'>"+ dateSplit(event.date,'date')+"</div> <div><a href='Event.html?idEv="+event.event_id+"'><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
 
                 });
