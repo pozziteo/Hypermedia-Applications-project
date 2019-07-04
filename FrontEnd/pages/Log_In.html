@@ -4,18 +4,113 @@
   <title>Log in</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Montserrat&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="../assets/css/CSS.css">
+
+  <link rel="stylesheet" href="../assets/css/my-icons-collection/font/flaticon.css">
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="../assets/js/main.js"></script>
+
+   <script src="../assets/js/main.js"></script>
 </head>
 <body>
-  <div class="container">
+
+
+  <!--upper navbar-->
+
+
+
+  <div class="container-fluid">
+      <nav class=" upper navbar navbar-expand-lg navbar-light bg-light">
+          <!--div class="container"-->
+
+          <div class="col-lg-3 col-md-5 col-sm-4"><a href="../index.html"><h2>Titolo e Logo del  sito</h2></a></div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+
+
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+              <div class=" nav-item col-lg-8 col-md-7 col-sm-12">
+
+                  <form class="header-search-form form-inline my-2 my-lg-0" action="">
+
+                  <input  class="form-control mr-lg-6" type="search" placeholder="Search for books, events and authors">
+                  <button class="btn btn-outline-success my-2 my-sm-0  " type="submit">Search<i class="flaticon-search"></i></button>
+                  </form>
+                  </div>
+
+              <div class="row">
+
+                  <a class="nav-link aaa " href="Log_In.html"><i class="flaticon-user"></i>Log In</a>
+                  <a class="nav-link aaa " id="logOutLink" href="" onclick="logOut()">Log Out</a>
+
+                  <div class="cart" >
+
+                      <a id="mimicchio" class="nav-link" href="Cart.html"><i class="flaticon-shopping-cart"></i>
+                      </a> <p>0</p>
+                  </div>
+                  <!--/div-->
+
+              </div>
+
+          </div>
+
+
+      </nav>
+
+
+
+      <!--lower navbar-->
+      <nav id="navbar" class=" lower-nav navbar navbar-expand-sm dark_color sticky-top">
+
+          <!--div class="container"-->
+
+
+          <div class="navEl">
+              <ul class="navbar-nav mr-auto">
+
+
+
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle nav_text_color" href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Books</a>
+                      <div class="dropdown-menu" aria-labelledby="dropdown03">
+                        <a class="dropdown-item" href="BooksList.html?type=all&name=all">All Books</a>
+                        <a class="dropdown-item" href="themesList.html">Themes</a>
+                        <a class="dropdown-item" href="GenresList.html">Genres</a>
+                      </div>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link nav_text_color" href="AuthorsList.html">Authors</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link nav_text_color" href="EventsList.html">Events</a>
+                  </li>
+              </ul>
+
+          </div>
+          <!--/div-->
+      </nav>
+  </div>
+  <br>
+  <!--end navbar-->
+
+
+  <div class="pageContainer">
+
     <div class="row">
       <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-        <br><br><br><br><br>
+        <br><br>
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center">Log in</h5>
@@ -37,7 +132,10 @@
       </div>
     </div>
   </div>
-  <!--___________END BestSeller, ourFavourite_____________-->
+<<<<<<< HEAD
+  
+=======
+>>>>>>> b98c5585d4eca5171d3f73f2437fca714b11a879
   <!--Footer-->
 
   <footer>
