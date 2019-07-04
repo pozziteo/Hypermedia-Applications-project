@@ -1026,7 +1026,10 @@ Home page index.html
 
 #firstBestSellerNumber{
     position: relative;
-    border: 1px solid red;
+   /* border: 1px solid red;*/
+    color: #269700;
+    font-size: 2em;
+    font-weight: 600;
     margin: 0.5em;
     left: 0.2em;
     top: 1em;
@@ -1146,7 +1149,7 @@ Cart page
     padding: 1em;
     border: 1px solid #aaa;
     border-radius: 0.5em;
-    background-color: #ccc;
+    background-color: #fcfcfc;
 }
 
 #buyCart button{
