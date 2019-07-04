@@ -470,35 +470,50 @@ $(function(){
           $cart.append('<div class="cartItem"><hr><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + cartItem.title + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + cartItem.title + '</a> by <a class="cartItemAuthor" href="">' + cartItem.authors[0].name + '</a><p class="cartItemPrice">EUR ' + cartItem.price.value + ' ' + cartItem.price.currency + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="" onclick="removeFromCart(' + cartItem.code + ')">remove</a></span></div>');
         }
       });
-      $buy.append('<p>Totale Provvisorio: ' + total.value + ' ' + total.currency + '</p><button type="button" type="submit" onclick="buyCart()">Complete your order</button>');
+      $buy.html('<p>Totale Provvisorio: ' + total.value + ' ' + total.currency + '</p><button type="button" type="submit" onclick="clearCart()">Complete your order</button>');
     }
   });
 });
+
+/*----------------
+Function for clear user Cart Item in Cart page
+----------------*/
+
+function clearCart() {
+  $.ajax({
+    type: 'PUT',
+    url : '/cart/items',
+    success: function() {
+      alert("Your order has been placed");
+    },
+    error: function(res) {
+      alert("Impossible to complet you order");
+    }
+  });
+};
 
 
 /*----------------
 Function for remove a book from the Cart in Cart page
 ----------------*/
-$(document).ready(function(){
-    $(".cartItemRemove").click(function() {
-        var $itemID = $(this).attr("id");
-        $.ajax({
-            type: "DELETE",
-            url : "/cart/items/" + $itemID + "",
-            data:jQuery.param({itemID:$item.val()}),
-            success: function() {
-                alert("You have successful removed the book from your cart");
-            },
-            error: function(res) {
-                alert("Impossible to remove the book from your cart");
-            }
-        });
-    });
-});
+
+function removeFromCart(id) {
+  $.ajax({
+    type: 'DELETE',
+    url : '/cart/items/'+id,
+    data: {itemID:parseInt(id)},
+    success: function() {
+      alert("You have successful removed the book from your cart");
+    },
+    error: function(res) {
+      alert("Impossible to remove the book from your cart");
+    }
+  });
+};
 
 /*----------------
-    Function for add a book to the Cart in Book page
-    ----------------*/
+Function for add a book to the Cart in Book page
+----------------*/
 function addToCartID(id){
 
     $.ajax({
