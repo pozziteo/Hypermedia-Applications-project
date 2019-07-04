@@ -35,7 +35,11 @@ navbar{
 
 .upper{
     box-shadow: 0 0.2rem 0.5rem 0 rgba(99, 99, 99, 0.37);
+    max-height: 70px;
+    padding-top: 15px;
 }
+
+
 
 .upper h2{
     font-family: 'Josefin Sans', sans-serif;
@@ -96,15 +100,10 @@ a.rootB{
     padding-left:0px;
     padding-right:0px;
 }
-.upper-nav{
-    line-height: 1.5;
-    height: 70px;
-}
 
 
 .lower-nav{
-
-    height: 50px;
+ height: 50px;
 }
 
 .header-search-form{
@@ -117,7 +116,7 @@ a.rootB{
 .header-search-form input{
 
     width: 100%;
-    height:44px;
+    height:40px;
     font-size: 14px;
     border-radius: 50px;
     border: none;
@@ -145,6 +144,8 @@ a.rootB{
 }
 
 .aaa{
+    
+    padding-top: 16px;
     display: inline-block;
     float: none;
 }
