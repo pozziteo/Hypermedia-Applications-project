@@ -438,7 +438,7 @@ Function for fill user Cart Item in Cart page
 ----------------*/
 
 
-$(document).ready(function(){
+$(function(){
   var $cartTitle = $('#cartTitle');
   var $cart = $('#cartList');
   var $buy = $('#buyCart');
@@ -574,8 +574,7 @@ $(document).ready(function(){
             data:jQuery.param({email:$mail.val(),username:$username.val(),password:$psw.val()}),
             success: function () {
                 alert("You have successfully registered");
-               window.open("../index.html", "index.html");
-              
+                window.open("../index.html", "index.html");
             },
             error: function (response) {
                 alert("Sign Up failed");
