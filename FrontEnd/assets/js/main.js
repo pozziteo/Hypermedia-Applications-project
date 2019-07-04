@@ -146,6 +146,7 @@ function bookD(id){
 function authorD(id){
     var $breads=$('#breads');
     var $pagetitle = $('#pagetitle');
+    var $mainWork = $('#authorMainWork');
     parseInt(id);
     $.ajax({
         type:'GET',
@@ -165,7 +166,18 @@ function authorD(id){
         }
     });
 
+    $.ajax({
+        type:'GET',
+        url:'/books',
+        success: function(data){
 
+            $.each(data, function(i, book){
+                if(book.authors[0].author_id == id){
+                  $mainWork.append('<div class="inlineBooks col-2"><a href="Book.html?idBook='+book.code+'"><img  src="../assets/img/' + book.code + '.jpg" alt=""><p>'+ book.title +'</p></a></div>');
+                }
+            });
+        }
+    });
 };
 
 
