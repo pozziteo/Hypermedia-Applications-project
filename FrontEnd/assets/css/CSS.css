@@ -1015,11 +1015,17 @@ Home page index.html
 
 .bestSellerNumber{
     position: absolute;
-    right: 0px;
+    
+    height: 30px;
+    width: 30px;
+    right: 5px;
     top: 0px;
-    background-color: #ff5;
-    border: 1px solid red;
-    border-radius: 10em;
+    color: #269700;
+    font-size: 1.5em;
+    font-weight: 600;
+    /*background-color: green;*/
+    /*border: 1px solid red;*/
+    border-radius: 50%;
     padding: 0.2em;
     margin: 0.2em;
 }
