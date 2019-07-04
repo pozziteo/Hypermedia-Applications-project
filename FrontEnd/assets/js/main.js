@@ -79,11 +79,18 @@ function bookD(id){
         success: function(book){
 
             $('#semAut').attr('href','Author.html?autId='+book.authors[0].author_id+'');
-            console.log('Author.html?autId='+book.authors[0].author_id+'');
-            $pagetitle.html(book.title)
-            $breads.append("<b>"+book.title+"</b>")
+            
+            $pagetitle.html(book.title);
+            $breads.append("<b>"+book.title+"</b>");
             $title.append(book.title);
+             $aut.html("");
             $aut.append(book.authors[0].name);
+            $aut.attr('href','Author.html?autId='+book.authors[0].author_id+'');
+            $('#genB').html(book.genre);
+            $('#genB').attr('href','BooksList.html?type=genre&name='+book.genre+'');
+            
+            $('#themB').html(book.theme);
+            $('#themB').attr('href','BooksList.html?type=theme&name='+book.theme+'');
             $img.attr('src', '../assets/img/'+book.code +'.jpg');
 
             $desc.html(book.description);
