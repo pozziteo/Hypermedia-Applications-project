@@ -78,11 +78,12 @@ function bookD(id){
         url:'/books/'+id+'',
         success: function(book){
 
-
+            $('#semAut').attr('href','Author.html?autId='+book.authors[0].author_id+'');
+            console.log('Author.html?autId='+book.authors[0].author_id+'');
             $pagetitle.html(book.title)
             $breads.append("<b>"+book.title+"</b>")
             $title.append(book.title);
-            $aut.append(book.authors.name);
+            $aut.append(book.authors[0].name);
             $img.attr('src', '../assets/img/'+book.code +'.jpg');
 
             $desc.html(book.description);
@@ -144,7 +145,7 @@ function authorD(id){
         url:'/authors/'+id+'',
         success: function(author){
 
-           // console.log(author);
+            // console.log(author);
             $pagetitle.html(author.name);
             $breads.append("<b>"+author.name+"</b>")
             $('#autName').html(author.name);
@@ -244,7 +245,7 @@ function filterSelection(type, name){
 
     var $list = $('#books');
     $list.html("");
-    
+
     if(type=='all'|| name=='all'){
 
         $.ajax({
@@ -283,7 +284,7 @@ function filterSelection(type, name){
                     $.each(data, function(i,book){
 
 
-                       // console.log(book);
+                        // console.log(book);
 
                         $list.append('<div class="col-lg-3 col-md-3 singleBook"><a href="Book.html?idBook='+book.code+'"><img class="book" src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.author +'</h7></a></div>');
 
@@ -331,44 +332,45 @@ Function for events page
 function eventsList(when){
     var today=new Date;
     var mm = String(today.getMonth() + 1).padStart(2, '0');
-   // console.log(mm);
+    // console.log(mm);
     var $evMon;
     var $list = $('#events');
     $.ajax({
         type:'GET',
         url:'/events',
         success: function(data){
-           
+
             if(when=='all'){
-                 $('#evfall').addClass("selected");
-               $('#evfmon').removeClass("selected");
+                $('#evfall').addClass("selected");
+                $('#evfmon').removeClass("selected");
                 $.each(data, function(i,event){
-                
-                    $list.html("<div class='event'><div class='ribbon'>"+ dateSplit(event.date,'date')+"</div> <div><a href='Event.html?idEv="+event.event_id+"'><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
+                    $list.html("");
+                    $list.append("<div class='event'><div class='ribbon'>"+ dateSplit(event.date,'date')+"</div> <div><a href='Event.html?idEv="+event.event_id+"'><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
 
                 });
-            }else {
-                    $('#evfmon').addClass("selected");
+
+            }else if(when=='mon') {
+                $('#evfmon').addClass("selected");
                 $('#evfall').removeClass("selected");
-                    
-                    
-                 $.each(data, function(i,event){
-                     
-                   
-                     if(dateSplit(event.date,'date').split("-")[1]==mm){
-                         $list.html("");
-                        $list.html("<div class='event'><div class='ribbon'>"+ dateSplit(event.date,'date')+"</div> <div><a href='Event.html?idEv="+event.event_id+"'><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
-                        }else{
-                            $list.html("<h3 class='sorry'>There aren't Events this month</h3>");
-                           
-                            
-                        }
-                        
 
-                    
+
+                $.each(data, function(i,event){
+
+
+                    if(dateSplit(event.date,'date').split("-")[1]==mm){
+                        $list.html("");
+                        $list.html("<div class='event'><div class='ribbon'>"+ dateSplit(event.date,'date')+"</div> <div><a href='Event.html?idEv="+event.event_id+"'><img src='../assets/img/events/"+event.event_id+".jpg' alt='Event Image'></a><div class='overlayInfo'><h5> <a href=''>"+ event.title +"</a></h5><h6> <a href=''>"+ event.book.title +"</a>, by <a href=''>"+ event.book.authors[0].name +"</a></h6><p>"+ event.place+"</p></div></div></div>");
+                    }else{
+                        $list.html("<h3 class='sorry'>There aren't Events this month</h3>");
+
+
+                    }
+
+
+
 
                 });
-                
+
             }
 
         }
@@ -589,7 +591,7 @@ function eventD(id){
     var $img = $('#eventImg');
     var $pagetitle = $('#pagetitle');
     parseInt(id);
-    
+
 
     $.ajax({
         type:'GET',
