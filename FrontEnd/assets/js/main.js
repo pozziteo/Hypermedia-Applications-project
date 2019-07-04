@@ -349,7 +349,7 @@ function eventsList(when){
 
                 });
 
-          
+
 
         }
 
@@ -516,10 +516,12 @@ $(function(){
         success: function(data){
             $.each(data, function(i, ourFavourite){
                 if(i%2 == 0){
-                    $left.append('<div class="ourFavourite row"><div class="col"><a href="book.html?bookId='+ourFavourite.code+'><img src="assets/img/'+ ourFavourite.code +'.jpg" alt="'+ ourFavourite.title +'"></div><div class="col"><span><p>'+ ourFavourite.title +'</p></a><p>'+ ourFavourite.author +'</p><p>'+ ourFavourite.value +'</p></span></div></div>');
+                  $left.append('<a href="pages/book.html?idBook='+ourFavourite.code+'""><div class="ourFavourite row"><div class="col"><img src="assets/img/'+ ourFavourite.code +'.jpg" alt="'+ ourFavourite.title +'" ></div><div class="col"><span><p>'+ ourFavourite.title +'</p><p>'+ ourFavourite.author +'</p><p>'+ ourFavourite.value +'</p></span></div></div></a>');
+
                 }
                 else{
-                    $right.append('<div class="ourFavourite row"><div class="col"><img src="assets/img/'+ ourFavourite.code +'.jpg" alt="'+ ourFavourite.title +'"></div><div class="col"><span><p>'+ ourFavourite.title +'</p><p>'+ ourFavourite.author +'</p><p>'+ ourFavourite.value  +'</p></span></div></div>');
+                  $right.append('<a href="pages/book.html?idBook='+ourFavourite.code+'""><div class="ourFavourite row"><div class="col"><img src="assets/img/'+ ourFavourite.code +'.jpg" alt="'+ ourFavourite.title +'" ></div><div class="col"><span><p>'+ ourFavourite.title +'</p><p>'+ ourFavourite.author +'</p><p>'+ ourFavourite.value +'</p></span></div></div></a>');
+
                 }
             });
         }

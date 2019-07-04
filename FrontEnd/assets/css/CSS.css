@@ -70,7 +70,7 @@ a:hover {
 }
 
 .breads{
-    
+
     margin-top: inherit;
     background: #f8f7f7;
     padding: 15px 200px 15px ;
@@ -144,7 +144,7 @@ a:hover {
 
 .aaa{
    display: inline-block;
-    float: none; 
+    float: none;
 }
 
 .cart{
@@ -163,7 +163,7 @@ display: inline-block;
     background: green;
     text-align: center;
     border-radius: 30px;
-    
+
     margin: 5px 0 0 45px;
 }
 
@@ -328,14 +328,14 @@ book page
     position: relative;
     border: 3px solid #000;
     padding: 5px;
-    
+
 }
 
 #bookData{
     position: relative;
     padding-right: 5%;
     padding-left: 5%;
-    
+
 
 }
 
@@ -375,7 +375,7 @@ book page
 .description p{
     margin-left: 2%;
     margin-top: 4%;
-    
+
     text-align: justify;
 }
 
@@ -493,7 +493,7 @@ author page
 }
 
 .inlineBooks h6{
-    
+
     margin-top: 10px;
 }
 
@@ -543,7 +543,7 @@ genres page
     position: absolute;
     bottom: 50%;
     transform: translateY(-50%);
-    left:50%; 
+    left:50%;
     transform: translateX(-50%);
     display:block;
 
@@ -561,7 +561,7 @@ genres page
 Themes list
 ----------------*/
 
-h2.theme{ 
+h2.theme{
     margin: 30px 0;
     text-align: center;
     font: bold 30px Monserrat, Sans-Serif;
@@ -617,7 +617,7 @@ img.book{
 .activeF button{
     background-color: transparent;
     float: left;
-    
+
 }
 
 
@@ -723,7 +723,7 @@ Authors list page
 .auts{
     margin:  2% 0;
     text-align: center;
-       
+
 }
 .auts  span{
     display: block;
@@ -738,18 +738,18 @@ Authors list page
 .auts a{
     color: white;
      text-align: center;
-    
+
 }
 
 
 .autI{
-    
+
     width: 250px;
      height: 250px;
     border-radius: 50%;
     object-fit: cover;
     opacity:0.95 ;
-    
+
 }
 
 
@@ -940,13 +940,13 @@ Home page index.html
 #eventLink{
     background-image: url("../img/Event.jpg");
     background-position: left,bottom;
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
     background-size: cover;
 }
 
 
 .Link{
-    
+
     position: relative;
     top:40%;
     height: 40px;
@@ -1070,7 +1070,7 @@ Home page index.html
     box-shadow: 0 1px 5px rgba(0,0,0,0.12), 0 1px 8px rgba(0,0,0,0.24);
     background-color: white;
     min-height: 19.3em;
-    
+
 }
 
 
@@ -1152,7 +1152,7 @@ Cart page
     position: relative;
     padding: 1em;
     border: 1px solid #aaa;
-    border-radius: 0.5em; 
+    border-radius: 0.5em;
     background-color: #ccc;
 }
 
@@ -1164,6 +1164,18 @@ Cart page
 END Cart page
 ---------------------*/
 
+#logOutDiv{
+  position: relative;
+  left: 2em;
+}
+
+#logOutLink{
+  position: relative;
+  top: 1em;
+}
+
+
+
 /*-------Footer------*/
 
 footer{
@@ -1174,7 +1186,7 @@ footer{
     vertical-align: middle;
     text-align: center;
     background-color: #333;
-    
+
 }
 
 footer a{
@@ -1199,7 +1211,7 @@ TABLET
     .pageContainer{
         /*background: blue;*/
         padding:  20px 35px;
-        
+
 
     }
 
@@ -1216,12 +1228,12 @@ TABLET
         margin: 0px auto;
     }
 
-    
-    
-    
+
+
+
     .navbar{
         padding: .6rem 1.5rem;
-        
+
     }
     .navbar-nav{
         flex-direction: row;
@@ -1229,43 +1241,43 @@ TABLET
     .navbar-nav .nav-link{
         padding: 8px 16px;
     }
-    
-    
+
+
      /*---- event list------*/
-    
-    
+
+
     .event{
-        
+
         margin: 3% auto;
     }
-    
-    
-    
+
+
+
     /*---- book page------*/
-    
+
     #titoloLibro{
         font-size: 25px;
     }
     #bookData{
         padding: 0px 2%;
     }
-    
+
     #bookImage{
-        border: 1.5px solid #000; 
+        border: 1.5px solid #000;
     padding: 3px;
-        
+
     }
-    
-    
+
+
     #books{
         margin-top: 2em;
     }
-    
+
     .btnAlign{
-        
+
         margin-top: 10px;
     }
-        
+
 }
 
 /*----------------------------
@@ -1276,29 +1288,29 @@ SMARTPHONE
 
     body{
     }
-    
+
     h5{
         font-size: 20px
     }
 
-    
+
     .navbar-nav{
         flex-direction: row;
     }
-    
+
     .navbar-nav .nav-link{
         padding: 8px 16px;
     }
-    
+
     .navEl{
         margin: auto;
     }
     .pageContainer{
         padding:20px 25px;
-        
+
 
     }
-    
+
      .bookFilters{
         position: relative;
 
@@ -1319,60 +1331,60 @@ SMARTPHONE
 
     .navbar{
         padding: .6rem 1.5rem;
-       
+
 
 
     }
-    
-    
-    
+
+
+
      /*---- book page------*/
-    
+
     #titoloLibro{
         font-size: 20px;
     }
-    
-    
+
+
     #bookData{
         margin-top: 15px;
     }
-    
+
     #bookImage{
-        border: 1.5px solid #000; 
+        border: 1.5px solid #000;
         max-height: 300px;
     }
-    
+
     .section{
         margin: 15% 0;
     }
-    
+
     /*books list*/
-    
+
     #books{
         margin-top: 2em;
     }
-    
+
     img.book {
-     height: auto; 
+     height: auto;
     width: 200px;
-    
+
     }
-    
-    
+
+
     .singleBook{
         margin: 20px auto;
     }
-    
-    
-    
+
+
+
     /* event list*/
-    
-    
+
+
     .event{
-        
+
         margin: 3% auto;
     }
-    
+
     .event img{
     width: 100%;
     height: 150px;
@@ -1381,22 +1393,22 @@ SMARTPHONE
     object-position: 100% 0;
 
 }
-    
-    
-    
-    
+
+
+
+
 /* single event*/
-    
+
     .evtop{
         background-color: transparent;
 
     }
-    
+
     #eventImg{
         height: 150px;
         width: 100%;
         object-fit: cover;
-        
+
     }
 
     #basicInfo{
@@ -1424,34 +1436,31 @@ SMARTPHONE
     .infoContainer{
         margin-top: 20px;
     }
-    
-    
+
+
     /*-----contact us -----*/
     .form-field .long {
     max-width: 100%;
 }
-    
+
     .ContactUsText h5{
         font-size: 1.1em;
         line-height: 1.5;
     }
 
-    
+
     .btnAlign{
         margin-top: 10px;
     }
-        
+
     .bookFilters h6{
     margin-bottom: 10px;
 }
-    
+
     .dropdown-menu.dfilters.show{
-    
+
     transform: translate3d(0px, 5px, 0px)!important;
 }
 
 
 }
-
-
-
