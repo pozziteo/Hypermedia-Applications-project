@@ -575,7 +575,7 @@ $(document).ready(function(){
             success: function () {
                 alert("You have successfully registered");
                // window.open("../index.html", "index.html");
-                window.open("../Log_In.html","/Log_In.html" )
+                window.open("Log_In.html","pages/Log_In.html" )
             },
             error: function (response) {
                 alert("Sign Up failed");
