@@ -177,13 +177,7 @@ display: inline-block;
 .bright_color{
     background color: white;
 }
-.footer {
-    height: 4%;
-    width: 100%;
-    background-color: #333;
-    color: #333;
-    text-align: center;
-}
+
 .funny_color {
     background: #33AEFF;
 }
@@ -1192,8 +1186,9 @@ footer{
     vertical-align: middle;
     text-align: center;
     background-color: #333;
-
+        min-height: fit-content;
 }
+
 
 footer a{
     padding-right: 3em;
