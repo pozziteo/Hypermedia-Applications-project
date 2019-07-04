@@ -1384,7 +1384,10 @@ SMARTPHONE
 
 
     /* event list*/
-
+    
+    .overlayInfo{
+   font-size: 1em;
+}
 
     .event{
 
