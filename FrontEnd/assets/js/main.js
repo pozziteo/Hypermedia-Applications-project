@@ -438,7 +438,7 @@ Function for fill user Cart Item in Cart page
 ----------------*/
 
 
-$(function(){
+function getCart(){
   var $cartTitle = $('#cartTitle');
   var $cart = $('#cartList');
   var $buy = $('#buyCart');
@@ -467,7 +467,7 @@ $(function(){
       }
     }
   });
-});
+};
 
 /*----------------
 Function for clear user Cart Item in Cart page
@@ -574,8 +574,8 @@ $(document).ready(function(){
             data:jQuery.param({email:$mail.val(),username:$username.val(),password:$psw.val()}),
             success: function () {
                 alert("You have successfully registered");
-               // window.open("../index.html", "index.html");
-                window.open("Log_In.html","pages/Log_In.html" )
+               window.open("../index.html", "index.html");
+              
             },
             error: function (response) {
                 alert("Sign Up failed");
