@@ -264,7 +264,7 @@ function filterSelection(type, name){
 
 
 
-                    $list.append('<div class="col-lg-3 col-md-3 singleBook"><a href="Book.html?idBook='+book.code+'"><img class="book" src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.authors[0].name +'</h7></a></div>');
+                    $list.append('<div class="col-lg-3 col-md-3 singleBook"><a href="Book.html?idBook='+book.code+'"><img class="book" src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.authors[0].name +'</h7></a><p><h7>'+ book.price.value +' ' + book.price.currency + '</h7></p></div>');
 
                 });
 
@@ -291,9 +291,7 @@ function filterSelection(type, name){
                     $.each(data, function(i,book){
 
 
-                        // console.log(book);
-
-                        $list.append('<div class="col-lg-3 col-md-3 singleBook"><a href="Book.html?idBook='+book.code+'"><img class="book" src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.author +'</h7></a></div>');
+                        $list.append('<div class="col-lg-3 col-md-3 singleBook"><a href="Book.html?idBook='+book.code+'"><img class="book" src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.authors[0].name +'</h7></a><p><h7>'+ book.price.value +' ' + book.price.currency + '</h7></p></div>');
 
                     });
 
@@ -452,6 +450,7 @@ Function for fill user Cart Item in Cart page
 
 
 $(function(){
+  var $cartTitle = $('#cartTitle');
   var $cart = $('#cartList');
   var $buy = $('#buyCart');
   var books;
@@ -460,45 +459,66 @@ $(function(){
     type:'GET',
     url:'/cart',
     success: function(data){
-      books = data.books;
-      total = data.total;
-      $.each(books, function(i, cartItem){
-        if(i == 0){
-          $cart.append('<div class="cartItem"><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + cartItem.title + '"><span class="cartItemInfo"><a class="cartItemTitle" href="#">' + cartItem.title + '</a> by <a class="cartItemAuthor" href="#">' + cartItem.authors[0].name + '</a><p class="cartItemPrice"> ' + cartItem.price.value + ' ' + cartItem.price.currency + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="" onclick="removeFromCart(' + cartItem.code + ')">remove</a></span></div>');
-        }
-        else{
-          $cart.append('<div class="cartItem"><hr><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + cartItem.title + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + cartItem.title + '</a> by <a class="cartItemAuthor" href="">' + cartItem.authors[0].name + '</a><p class="cartItemPrice">EUR ' + cartItem.price.value + ' ' + cartItem.price.currency + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="" onclick="removeFromCart(' + cartItem.code + ')">remove</a></span></div>');
-        }
-      });
-      $buy.append('<p>Totale Provvisorio: ' + total.value + ' ' + total.currency + '</p><button type="button" type="submit" onclick="buyCart()">Complete your order</button>');
+      if(data.books == null){
+        $cartTitle.html('<p>Your cart is empty</p><p>Add element to your cart to buy them</p>');
+        $buy.html('<p>Totale Provvisorio: 0 eur</p>');
+      }
+      else{
+        books = data.books;
+        total = data.total;
+        $.each(books, function(i, cartItem){
+          if(i == 0){
+            $cart.append('<div class="cartItem"><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + cartItem.title + '"><span class="cartItemInfo"><a class="cartItemTitle" href="#">' + cartItem.title + '</a> by <a class="cartItemAuthor" href="#">' + cartItem.authors[0].name + '</a><p class="cartItemPrice"> ' + cartItem.price.value + ' ' + cartItem.price.currency + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="" onclick="removeFromCart(' + cartItem.code + ')">remove</a></span></div>');
+          }
+          else{
+            $cart.append('<div class="cartItem"><hr><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + cartItem.title + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + cartItem.title + '</a> by <a class="cartItemAuthor" href="">' + cartItem.authors[0].name + '</a><p class="cartItemPrice">EUR ' + cartItem.price.value + ' ' + cartItem.price.currency + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="" onclick="removeFromCart(' + cartItem.code + ')">remove</a></span></div>');
+          }
+        });
+        $buy.html('<p>Totale Provvisorio: ' + total.value + ' ' + total.currency + '</p><button type="button" type="submit" onclick="clearCart()">Complete your order</button>');
+      }
     }
   });
 });
+
+/*----------------
+Function for clear user Cart Item in Cart page
+----------------*/
+
+function clearCart() {
+  $.ajax({
+    type: 'PUT',
+    url : '/cart/items',
+    success: function() {
+      alert("Your order has been placed");
+    },
+    error: function(res) {
+      alert("Impossible to complet you order");
+    }
+  });
+};
 
 
 /*----------------
 Function for remove a book from the Cart in Cart page
 ----------------*/
-$(document).ready(function(){
-    $(".cartItemRemove").click(function() {
-        var $itemID = $(this).attr("id");
-        $.ajax({
-            type: "DELETE",
-            url : "/cart/items/" + $itemID + "",
-            data:jQuery.param({itemID:$item.val()}),
-            success: function() {
-                alert("You have successful removed the book from your cart");
-            },
-            error: function(res) {
-                alert("Impossible to remove the book from your cart");
-            }
-        });
-    });
-});
+
+function removeFromCart(id) {
+  $.ajax({
+    type: 'DELETE',
+    url : '/cart/items/'+id,
+    data: {itemID:parseInt(id)},
+    success: function() {
+      alert("You have successful removed the book from your cart");
+    },
+    error: function(res) {
+      alert("Impossible to remove the book from your cart");
+    }
+  });
+};
 
 /*----------------
-    Function for add a book to the Cart in Book page
-    ----------------*/
+Function for add a book to the Cart in Book page
+----------------*/
 function addToCartID(id){
 
     $.ajax({

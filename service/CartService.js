@@ -104,7 +104,6 @@ exports.userCartGET = function(cartId) {
         content = content.map(el => {
           return el.book_id;
         });
-        console.log(content);
         return buildCart(content)
       }
     }).catch(error => {
