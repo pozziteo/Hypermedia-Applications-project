@@ -23,7 +23,7 @@
         <script src="../assets/js/main.js"></script>
     </head>
     <script>
-    var url=new URL(window.location.href);
+        var url=new URL(window.location.href);
         var id=parseInt( url.searchParams.get("idBook"));
         //console.log(id);
 
@@ -50,10 +50,10 @@
 
                         <form class="header-search-form form-inline my-2 my-lg-0" action="">
 
-                        <input  class="form-control mr-lg-6" type="search" placeholder="Search for books, events and authors">
-                        <button class="btn btn-outline-success my-2 my-sm-0  " type="submit"><i class="flaticon-search"></i></button>
+                            <input  class="form-control mr-lg-6" type="search" placeholder="Search for books, events and authors">
+                            <button class="btn btn-outline-success my-2 my-sm-0  " type="submit"><i class="flaticon-search"></i></button>
                         </form>
-                        </div>
+                    </div>
 
                     <div >
 
@@ -84,13 +84,13 @@
                 </button>
                 <div class="navEl">
                     <ul class="navbar-nav mr-auto">
-                       
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle nav_text_color" href="BooksList.html" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Books</a>
                             <div class="dropdown-menu" aria-labelledby="dropdown03">
-                              <a class="dropdown-item" href="BooksList.html?type=all&name=all">All Books</a>
-                              <a class="dropdown-item" href="themesList.html">Themes</a>
-                              <a class="dropdown-item" href="GenresList.html">Genres</a>
+                                <a class="dropdown-item" href="BooksList.html?type=all&name=all">All Books</a>
+                                <a class="dropdown-item" href="themesList.html">Themes</a>
+                                <a class="dropdown-item" href="GenresList.html">Genres</a>
                             </div>
                         </li>
                         <li class="nav-item">
@@ -110,7 +110,7 @@
 
         <div id="breads" class="breads">
             <a class="rootB" href="BooksList.html?type=all&name=all"><b>Books </b></a>/
-           
+
         </div>
 
         <div class="pageContainer" >
@@ -136,7 +136,7 @@
 
 
                     <div class="buy">
-                       <h6 id="prezzoLibro">Prezzo:</h6>
+                        <h6 id="prezzoLibro">Prezzo:</h6>
                         <a id="addToCartButton" href="#" class="btn addtoCart" >
                             <i class="flaticon-shopping-cart"></i> Add to Cart
                         </a>
@@ -167,6 +167,10 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div id="semantic" class="col-lg-4 col-md-6 col-sm-12"> 
+                    <a id="semAut"> Discover the author </a>
                 </div>
 
             </div>
