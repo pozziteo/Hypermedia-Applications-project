@@ -264,7 +264,7 @@ function filterSelection(type, name){
 
 
 
-                    $list.append('<div class="col-lg-3 col-md-3 singleBook"><a href="Book.html?idBook='+book.code+'"><img class="book" src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.authors[0].name +'</h7></a></div>');
+                    $list.append('<div class="col-lg-3 col-md-3 singleBook"><a href="Book.html?idBook='+book.code+'"><img class="book" src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.authors[0].name +'</h7></a><p><h7>'+ book.price.value +' ' + book.price.currency + '</h7></p></div>');
 
                 });
 
@@ -291,9 +291,7 @@ function filterSelection(type, name){
                     $.each(data, function(i,book){
 
 
-                        // console.log(book);
-
-                        $list.append('<div class="col-lg-3 col-md-3 singleBook"><a href="Book.html?idBook='+book.code+'"><img class="book" src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.author +'</h7></a></div>');
+                        $list.append('<div class="col-lg-3 col-md-3 singleBook"><a href="Book.html?idBook='+book.code+'"><img class="book" src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.authors[0].name +'</h7></a><p><h7>'+ book.price.value +' ' + book.price.currency + '</h7></p></div>');
 
                     });
 
