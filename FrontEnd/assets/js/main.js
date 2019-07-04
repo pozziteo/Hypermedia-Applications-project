@@ -67,6 +67,8 @@ function bookD(id){
     var $title = $('#titoloLibro');
     var $aut = $('#autoreLibro');
     var $desc = $('#descLibro');
+    var $button = $('#addToCartButton');
+
     parseInt(id);
     console.log(id);
 
@@ -75,7 +77,7 @@ function bookD(id){
         url:'/books/'+id+'',
         success: function(book){
 
-            
+
 
             $title.append(book.title);
             $aut.append(book.authors.name);
@@ -86,6 +88,7 @@ function bookD(id){
             $('#bind').append('<p>'+book.binding+'</p>');
             $('#code').append('<p>'+book.code+'</p>');
             $('#publish').append('<p>'+book.publisher+'</p>');
+            $button.attr('onclick', 'addToCartID(' + id + ')')
 
             if(book.series!=null){
                 $('#fact').append('<div id="publish"><h6>Sries: </h6><p>'+book.series+'</p></div>');
@@ -233,7 +236,7 @@ function unsetF(){
 };
 
 function filterSelection(type, name){
-    
+
     var $list = $('#books');
     $list.html("");
     if(type=='all'|| name=='all'){
@@ -245,8 +248,8 @@ function filterSelection(type, name){
 
                 $.each(data, function(i,book){
 
-                   
-                        
+
+
                     $list.append('<div class="col-lg-3 col-md-3 singleBook"><a href="Book.html?idBook='+book.code+'"><img class="book" src="../assets/img/'+book.code+'.jpg" alt="nnndnd"> <h6>'+ book.title +'</h6><h7>'+ book.authors[0].name +'</h7></a></div>');
 
                 });
@@ -257,19 +260,19 @@ function filterSelection(type, name){
 
 
     }else{
-        
+
         $('#activeF').html("<button onclick='unsetF()'class=' btn btn-success '><p>"+type+" : "+name+" x</p></button>")
         $.ajax({
             type:'GET',
             url:'/books?'+type+'='+name+'',
             success: function(data){
                 console.log(name);
-                     
+
                 if(data==""){
                    $list.append("<h3>Sorry at the moment we don't have books for this "+type+" </h3>");
                 }else{
-                    
-                    
+
+
 
                     $.each(data, function(i,book){
 
@@ -388,7 +391,7 @@ $(function(){
 /*----------------
 Function for fill user Cart Item in Cart page
 ----------------*/
-/*
+
 $(document).ready(function(){
   var $cart = $('#cartList');
   var $buy = $('#buyCart');
@@ -398,10 +401,10 @@ $(document).ready(function(){
       success: function(data){
         $.each(data, function(i, cartItem){
           if(i == 0){
-            $cart.append('<div class="cartItem"><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + JSON.stringify(cartItem.title) + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + JSON.stringify(cartItem.title) + '</a> by <a class="cartItemAuthor" href="">' + JSON.stringify(cartItem.author) + '</a><p class="cartItemPrice">EUR ' + cartItem.price + '</p><a class="cartItemRemove" href="#">remove</a></span></div>');
+            $cart.append('<div class="cartItem"><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + JSON.stringify(cartItem.title) + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + JSON.stringify(cartItem.title) + '</a> by <a class="cartItemAuthor" href="">' + JSON.stringify(cartItem.author) + '</a><p class="cartItemPrice">EUR ' + cartItem.price + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="#">remove</a></span></div>');
           }
           else{
-            $cart.append('<div class="cartItem"><hr><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + JSON.stringify(cartItem.title) + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + JSON.stringify(cartItem.title) + '</a> by <a class="cartItemAuthor" href="">' + JSON.stringify(cartItem.author) + '</a><p class="cartItemPrice">EUR ' + cartItem.price + '</p><a class="cartItemRemove" href="#">remove</a></span></div>');
+            $cart.append('<div class="cartItem"><hr><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + JSON.stringify(cartItem.title) + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + JSON.stringify(cartItem.title) + '</a> by <a class="cartItemAuthor" href="">' + JSON.stringify(cartItem.author) + '</a><p class="cartItemPrice">EUR ' + cartItem.price + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="#">remove</a></span></div>');
           }
         });
         $buy.append('<p>Totale Provvisorio: EUR ' + data.total.value + '</p><button type="button" type="submit">Complete your order</button>');
@@ -409,16 +412,17 @@ $(document).ready(function(){
     });
 });
 
-*/
+
 /*----------------
 Function for remove a book from the Cart in Cart page
+----------------*/
         $(document).ready(function(){
-          $("#cartItemRemove").click(function() {
-            $item = $("#bookImage").src;
+          $(".cartItemRemove").click(function() {
+            var $itemID = $(this).attr("id");
             $.ajax({
                 type: "DELETE",
-                url : "/cart/items/{" + $item + "}",
-                data:jQuery.param({itemID:$src.val()}),
+                url : "/cart/items/" + $itemID + "",
+                data:jQuery.param({itemID:$item.val()}),
                 success: function() {
                     alert("You have successful removed the book from your cart");
                 },
@@ -428,7 +432,25 @@ Function for remove a book from the Cart in Cart page
             });
         });
     });
+
+    /*----------------
+    Function for add a book to the Cart in Book page
     ----------------*/
+    function addToCartID(id){
+
+        $.ajax({
+            type:'POST',
+            url:'/cart/items',
+            data:JSON.stringify(parseInt(id, 10)),
+            success: function(){
+              alert("You added an element to your cart");
+            },
+            error: function(data){
+              alert("Impossible to add this element to your cart");
+            }
+        });
+
+    };
 
 /*----------------
 Function for OurFavourite in Home Page
@@ -483,80 +505,44 @@ $(document).ready(function(){
 Function for LogIn in LogIn page
 ----------------*/
 
-$(document).ready(function(){
 
-    var $username = $('#logInUsername');
-    var $psw = $('#logInPassword');
-    $("#logInButton").click(function () {
-        alert("Log In ???");
-        $.ajax({
-            type: "POST",
-            url:'/user/login',
-            data:jQuery.param({username:$username.val(),password:$psw.val()}),
-            success: function () {
-                alert("You have successfully logged in");
-                window.open("../index.html", "index.html");
-            },
-            error: function (response) {
-                alert("Log In failed");
-            }
+function logIn() {
+  var $username = $('#logInUsername');
+  var $psw = $('#logInPassword');
+            $.ajax({
+                type: "POST",
+                url:'/user/login',
+                data:jQuery.param({username:$username.val(),password:$psw.val()}),
+                success: function () {
+                    alert("You have successfully logged in");
+                    window.open("../index.html", "index.html");
+                },
+                error: function (response) {
+                    alert("Log In failed\nYou are probably already logged");
+                }
+
+            });
+
+     };
 
 
-            
-        });
-    });
-});
 
 /*----------------
 Function for LogOut in Home page
 ----------------*/
 
-        $(document).ready(function(){
-
-            $("#logOutButton").click(function() {
-            $.ajax({
-                type: "POST",
-                url : "/user/logout",
-                success: function() {
-                    alert("You have successfully logged out");
-                },
-                error: function(res) {
-                    alert("Impossibile to log out");
-                }
-            });
-        });
+function logOut() {
+    $.ajax({
+        type: "POST",
+        url : "/user/logout",
+        success: function() {
+            alert("You have successfully logged out");
+        },
+        error: function(res) {
+            alert("Impossibile to log out");
+        }
     });
-
-
-
-
-
-/*----------------
-  Function for User Cart Item in Cart page
-
-  $(function(){
-  var $cart = $('#cartList');
-  var $buy = $('#buyCart');
-  $.ajax({
-  type:'GET',
-  url:'/cart',
-  success: function(data){
-  $.each(data, function(i, cartItem){
-  if(i == 0){
-  $cart.append('<div class="cartItem"><img src="../assets/img' + cartItem.code + '.jpg" alt="' + cartItem.title + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + cartItem.title + '</a> by <a class="cartItemAuthor" href="">' + cartItem.author + '</a><p class="cartItemPrice">EUR ' + cartItem.price + '</p><a class="cartItemRemove" href="#">remove</a></span></div>');
-}
-else{
-$cart.append('<div class="cartItem"><hr><img src="../assets/img' + cartItem.code + '.jpg" alt="' + cartItem.title + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + cartItem.title + '</a> by <a class="cartItemAuthor" href="">' + cartItem.author + '</a><p class="cartItemPrice">EUR ' + cartItem.price + '</p><a class="cartItemRemove" href="#">remove</a></span></div>');
-
-}
-});
-$buy.append('<p>Totale Provvisorio (' + data.length + 'articolo)</p><p>EUR ' + data + '</p><button type="button" type="submit">Complete your order</button>');
-}
-});
-});
-
-----------------*/
-
+};
 
 
 /*-------------function single event----------*/
