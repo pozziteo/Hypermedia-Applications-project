@@ -457,7 +457,7 @@ $(function(){
         total = data.total;
         $.each(books, function(i, cartItem){
           if(i == 0){
-            $cart.append('<div class="cartItem col-3"><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + cartItem.title + '"><span class="cartItemInfo"><a class="cartItemTitle" href="#">' + cartItem.title + '</a> by <a class="cartItemAuthor" href="#">' + cartItem.authors[0].name + '</a><p class="cartItemPrice"> ' + cartItem.price.value + ' ' + cartItem.price.currency + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="" onclick="removeFromCart(' + cartItem.code + ')">remove</a></span></div>');
+            $cart.append('<div class="cartItem"><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + cartItem.title + '"><span class="cartItemInfo"><a class="cartItemTitle" href="#">' + cartItem.title + '</a> by <a class="cartItemAuthor" href="#">' + cartItem.authors[0].name + '</a><p class="cartItemPrice"> ' + cartItem.price.value + ' ' + cartItem.price.currency + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="" onclick="removeFromCart(' + cartItem.code + ')">remove</a></span></div>');
           }
           else{
             $cart.append('<div class="cartItem"><hr><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + cartItem.title + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + cartItem.title + '</a> by <a class="cartItemAuthor" href="">' + cartItem.authors[0].name + '</a><p class="cartItemPrice">EUR ' + cartItem.price.value + ' ' + cartItem.price.currency + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="" onclick="removeFromCart(' + cartItem.code + ')">remove</a></span></div>');
