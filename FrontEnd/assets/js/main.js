@@ -452,6 +452,7 @@ Function for fill user Cart Item in Cart page
 
 
 $(function(){
+  var $cartTitle = $('#cartTitle');
   var $cart = $('#cartList');
   var $buy = $('#buyCart');
   var books;
@@ -460,17 +461,23 @@ $(function(){
     type:'GET',
     url:'/cart',
     success: function(data){
-      books = data.books;
-      total = data.total;
-      $.each(books, function(i, cartItem){
-        if(i == 0){
-          $cart.append('<div class="cartItem"><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + cartItem.title + '"><span class="cartItemInfo"><a class="cartItemTitle" href="#">' + cartItem.title + '</a> by <a class="cartItemAuthor" href="#">' + cartItem.authors[0].name + '</a><p class="cartItemPrice"> ' + cartItem.price.value + ' ' + cartItem.price.currency + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="" onclick="removeFromCart(' + cartItem.code + ')">remove</a></span></div>');
-        }
-        else{
-          $cart.append('<div class="cartItem"><hr><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + cartItem.title + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + cartItem.title + '</a> by <a class="cartItemAuthor" href="">' + cartItem.authors[0].name + '</a><p class="cartItemPrice">EUR ' + cartItem.price.value + ' ' + cartItem.price.currency + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="" onclick="removeFromCart(' + cartItem.code + ')">remove</a></span></div>');
-        }
-      });
-      $buy.html('<p>Totale Provvisorio: ' + total.value + ' ' + total.currency + '</p><button type="button" type="submit" onclick="clearCart()">Complete your order</button>');
+      if(data.books == null){
+        $cartTitle.html('<p>Your cart is empty</p><p>Add element to your cart to buy them</p>');
+        $buy.html('<p>Totale Provvisorio: 0 eur</p>');
+      }
+      else{
+        books = data.books;
+        total = data.total;
+        $.each(books, function(i, cartItem){
+          if(i == 0){
+            $cart.append('<div class="cartItem"><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + cartItem.title + '"><span class="cartItemInfo"><a class="cartItemTitle" href="#">' + cartItem.title + '</a> by <a class="cartItemAuthor" href="#">' + cartItem.authors[0].name + '</a><p class="cartItemPrice"> ' + cartItem.price.value + ' ' + cartItem.price.currency + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="" onclick="removeFromCart(' + cartItem.code + ')">remove</a></span></div>');
+          }
+          else{
+            $cart.append('<div class="cartItem"><hr><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + cartItem.title + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + cartItem.title + '</a> by <a class="cartItemAuthor" href="">' + cartItem.authors[0].name + '</a><p class="cartItemPrice">EUR ' + cartItem.price.value + ' ' + cartItem.price.currency + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="" onclick="removeFromCart(' + cartItem.code + ')">remove</a></span></div>');
+          }
+        });
+        $buy.html('<p>Totale Provvisorio: ' + total.value + ' ' + total.currency + '</p><button type="button" type="submit" onclick="clearCart()">Complete your order</button>');
+      }
     }
   });
 });
