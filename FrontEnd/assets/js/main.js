@@ -330,8 +330,9 @@ Function for events page
 
 
 function eventsList(){
-   $list.html("");
+  
     var $list = $('#events');
+     $list.html("");
     $.ajax({
         type:'GET',
         url:'/events',
@@ -355,12 +356,13 @@ function eventsList(){
 
 
 function eventsThisMonth(){
- $list.html("");
+ 
 
     $('#evfall').addClass("selected");
     $('#evfmon').removeClass("selected");
 
     var $list = $('#events');
+    $list.html("");
     $.ajax({
         type:'GET',
         url:'/events/this-month',
