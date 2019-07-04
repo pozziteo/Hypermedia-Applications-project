@@ -173,7 +173,7 @@ function authorD(id){
 
             $.each(data, function(i, book){
                 if(book.authors[0].author_id == id){
-                  $mainWork.append('<div class="inlineBooks col-2"><a href="Book.html?idBook='+book.code+'"><img  src="../assets/img/' + book.code + '.jpg" alt=""><p>'+ book.title +'</p></a></div>');
+                  $mainWork.append('<div class="col-sm-6 col-md-3 col-lg-2"><a href="Book.html?idBook='+book.code+'"><img  src="../assets/img/' + book.code + '.jpg" alt=""><p>'+ book.title +'</p></a></div>');
                 }
             });
         }
@@ -423,7 +423,7 @@ function best(){
             $.each(data, function(i, bestSeller){
                 number = parseInt(i);
                 if(i == 0){
-                    $list.append('<a href="pages/Book.html?idBook='+bestSeller.code+'"><div id="firstBestSeller" class="bestSeller row"><div class="col-4"><img src="assets/img/'+ bestSeller.code +'.jpg" alt="'+ bestSeller.title +'"></div><div class="col-7"><p id="firstBestSellerNumber">#1</p><span><p>'+ bestSeller.title +'</p><p>'+ bestSeller.authors[0].name +'</p><p>'+ bestSeller.price.value + ' ' + bestSeller.price.currency +'</p><span></div></div></a>');
+                    $list.append('<a href="pages/Book.html?idBook='+bestSeller.code+'"><div id="firstBestSeller" class="bestSeller row"><div class="col-5"><img src="assets/img/'+ bestSeller.code +'.jpg" alt="'+ bestSeller.title +'"></div><div class="col-7"><p id="firstBestSellerNumber">#1</p><span><p>'+ bestSeller.title +'</p><p>'+ bestSeller.authors[0].name +'</p><p>'+ bestSeller.price.value + ' ' + bestSeller.price.currency +'</p><span></div></div></a>');
                 }
                 else{
                     $list.append('<a href="pages/Book.html?idBook='+bestSeller.code+'"><div class="bestSeller"><p class="bestSellerNumber">#' + (number + 1) + '</p><span><p>'+ bestSeller.title +'</p><p>'+ bestSeller.authors[0].name +'</p><p>'+ bestSeller.price.value + ' ' + bestSeller.price.currency +'</p></span></div></a>');
@@ -457,13 +457,13 @@ $(function(){
         total = data.total;
         $.each(books, function(i, cartItem){
           if(i == 0){
-            $cart.append('<div class="cartItem"><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + cartItem.title + '"><span class="cartItemInfo"><a class="cartItemTitle" href="#">' + cartItem.title + '</a> by <a class="cartItemAuthor" href="#">' + cartItem.authors[0].name + '</a><p class="cartItemPrice"> ' + cartItem.price.value + ' ' + cartItem.price.currency + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="" onclick="removeFromCart(' + cartItem.code + ')">remove</a></span></div>');
+            $cart.append('<div class="cartItem col-3"><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + cartItem.title + '"><span class="cartItemInfo"><a class="cartItemTitle" href="#">' + cartItem.title + '</a> by <a class="cartItemAuthor" href="#">' + cartItem.authors[0].name + '</a><p class="cartItemPrice"> ' + cartItem.price.value + ' ' + cartItem.price.currency + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="" onclick="removeFromCart(' + cartItem.code + ')">remove</a></span></div>');
           }
           else{
             $cart.append('<div class="cartItem"><hr><img src="../assets/img/' + cartItem.code + '.jpg" alt="' + cartItem.title + '"><span class="cartItemInfo"><a class="cartItemTitle" href="">' + cartItem.title + '</a> by <a class="cartItemAuthor" href="">' + cartItem.authors[0].name + '</a><p class="cartItemPrice">EUR ' + cartItem.price.value + ' ' + cartItem.price.currency + '</p><a id="' + cartItem.code + '" class="cartItemRemove" href="" onclick="removeFromCart(' + cartItem.code + ')">remove</a></span></div>');
           }
         });
-        $buy.html('<p>Totale Provvisorio: ' + total.value + ' ' + total.currency + '</p><button type="button" type="submit" onclick="clearCart()">Complete your order</button>');
+        $buy.html('<p>Partial Amount: ' + total.value + ' ' + total.currency + '</p><button type="button" type="submit" onclick="clearCart()">Complete your order</button>');
       }
     }
   });
@@ -574,7 +574,8 @@ $(document).ready(function(){
             data:jQuery.param({email:$mail.val(),username:$username.val(),password:$psw.val()}),
             success: function () {
                 alert("You have successfully registered");
-                window.open("../index.html", "index.html");
+               // window.open("../index.html", "index.html");
+                window.open("../Log_In.html","/Log_In.html" )
             },
             error: function (response) {
                 alert("Sign Up failed");
