@@ -87,11 +87,11 @@ a.rootB{
 }
 
 .pageContainer{
-    height: 100%;
+    min-height:535px;
     padding-right: 200px;
     padding-left: 200px;
     padding-top: 2em;
-    padding-bottom: 5em;
+    padding-bottom: 3em;
 }
 
 
@@ -112,6 +112,7 @@ a.rootB{
     padding: 0 10px;
     margin: auto;
 }
+
 
 .header-search-form input{
 
@@ -1185,7 +1186,7 @@ footer{
    
     position: relative;
     bottom: 0px;
-    height: 100px;
+    color: white;
     padding: 20px 20px;
     vertical-align: middle;
     text-align: center;
@@ -1195,7 +1196,7 @@ footer{
 
 
 footer a{
-     color: white;
+     color: white!important;
     padding-right: 3em;
     padding-left: 3em;
 }
