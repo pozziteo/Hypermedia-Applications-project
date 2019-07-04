@@ -438,7 +438,7 @@ Function for fill user Cart Item in Cart page
 ----------------*/
 
 
-$.(function(){
+$(document).ready(function(){
   var $cartTitle = $('#cartTitle');
   var $cart = $('#cartList');
   var $buy = $('#buyCart');
